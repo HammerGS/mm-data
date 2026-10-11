@@ -29977,6 +29977,18 @@
       "group": "Industrial markings"
     },
     {
+      "id": "decal/industrial/coolant-spill",
+      "label": "Coolant spill",
+      "kind": "decal",
+      "group": "Industrial markings"
+    },
+    {
+      "id": "decal/industrial/oil-spill",
+      "label": "Oil spill",
+      "kind": "decal",
+      "group": "Industrial markings"
+    },
+    {
       "id": "decal/spaceport/vtol-landing-pad",
       "label": "VTOL landing pad markings",
       "kind": "decal",
