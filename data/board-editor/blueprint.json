@@ -30049,42 +30049,6 @@
       "group": "Damage and debris"
     },
     {
-      "id": "decal/wear/mech-footprints",
-      "label": "Mech footprint trail",
-      "kind": "decal",
-      "group": "Vehicle wear"
-    },
-    {
-      "id": "decal/wear/heavy-tread-tracks",
-      "label": "Heavy tread tracks",
-      "kind": "decal",
-      "group": "Vehicle wear"
-    },
-    {
-      "id": "decal/wear/turning-tread-tracks",
-      "label": "Turning tread tracks",
-      "kind": "decal",
-      "group": "Vehicle wear"
-    },
-    {
-      "id": "decal/wear/tire-skid-marks",
-      "label": "Tire skid marks",
-      "kind": "decal",
-      "group": "Vehicle wear"
-    },
-    {
-      "id": "decal/wear/oil-spill",
-      "label": "Oil spill",
-      "kind": "decal",
-      "group": "Vehicle wear"
-    },
-    {
-      "id": "decal/wear/coolant-spill",
-      "label": "Coolant spill",
-      "kind": "decal",
-      "group": "Vehicle wear"
-    },
-    {
       "id": "stamp/maglev-colony-train",
       "label": "Colony maglev",
       "kind": "prop",
