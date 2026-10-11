@@ -1108,7 +1108,7 @@
         {
           "id": "deployment",
           "label": "Deployment zone",
-          "terrain": "deployment_zone:1"
+          "terrain": "deployment_zone:0:1"
         }
       ],
       "replaceExisting": false,
@@ -1181,7 +1181,7 @@
         {
           "id": "industrial",
           "label": "Industrial elevator",
-          "terrain": "industrial_elevator:0"
+          "terrain": "industrial_elevator:0:10"
         }
       ],
       "replaceExisting": false
@@ -1273,7 +1273,13 @@
   "variants": [
     {
       "id": "bridge/built",
-      "label": "Built bridge",
+      "label": "Bridge",
+      "owner": "bridge",
+      "group": "Bridges"
+    },
+    {
+      "id": "bridge/truss",
+      "label": "Truss bridge",
       "owner": "bridge",
       "group": "Bridges"
     },
@@ -1392,6 +1398,77 @@
       "owner": "rough",
       "selectors": "fluff:1",
       "group": "Designs"
+    },
+    {
+      "id": "rough/felled-trees",
+      "label": "Felled trees",
+      "owner": "rough",
+      "selectors": "fluff:2",
+      "group": "Designs"
+    },
+    {
+      "id": "ground/quay-1",
+      "label": "Legacy quay 1",
+      "owner": "ground",
+      "selectors": "fluff:100:1",
+      "thumbnail": "images/hexes/Structured_Pavement/Fluff/quay_fluff01.png",
+      "group": "Legacy quay art"
+    },
+    {
+      "id": "ground/quay-2",
+      "label": "Legacy quay 2",
+      "owner": "ground",
+      "selectors": "fluff:100:2",
+      "thumbnail": "images/hexes/Structured_Pavement/Fluff/quay_fluff02.png",
+      "group": "Legacy quay art"
+    },
+    {
+      "id": "ground/quay-3",
+      "label": "Legacy quay 3",
+      "owner": "ground",
+      "selectors": "fluff:100:3",
+      "thumbnail": "images/hexes/Structured_Pavement/Fluff/quay_fluff03.png",
+      "group": "Legacy quay art"
+    },
+    {
+      "id": "ground/quay-4",
+      "label": "Legacy quay 4",
+      "owner": "ground",
+      "selectors": "fluff:100:4",
+      "thumbnail": "images/hexes/Structured_Pavement/Fluff/quay_fluff04.png",
+      "group": "Legacy quay art"
+    },
+    {
+      "id": "ground/quay-5",
+      "label": "Legacy quay 5",
+      "owner": "ground",
+      "selectors": "fluff:100:5",
+      "thumbnail": "images/hexes/Structured_Pavement/Fluff/quay_fluff05.png",
+      "group": "Legacy quay art"
+    },
+    {
+      "id": "ground/quay-6",
+      "label": "Legacy quay 6",
+      "owner": "ground",
+      "selectors": "fluff:100:6",
+      "thumbnail": "images/hexes/Structured_Pavement/Fluff/quay_fluff06.png",
+      "group": "Legacy quay art"
+    },
+    {
+      "id": "ground/quay-7",
+      "label": "Legacy quay 7",
+      "owner": "ground",
+      "selectors": "fluff:100:7",
+      "thumbnail": "images/hexes/Structured_Pavement/Fluff/quay_fluff07.png",
+      "group": "Legacy quay art"
+    },
+    {
+      "id": "ground/quay-8",
+      "label": "Legacy quay 8",
+      "owner": "ground",
+      "selectors": "fluff:100:8",
+      "thumbnail": "images/hexes/Structured_Pavement/Fluff/quay_fluff08.png",
+      "group": "Legacy quay art"
     },
     {
       "id": "buildings/saxarba/SMV_Buildings/BuildingSystem-02-Intermediate-02-Medium-1-16",
@@ -13909,6 +13986,7 @@
       "id": "buildings/saxarba/building_single/building_single_hard_1",
       "label": "Building Single Hard 1",
       "owner": "building",
+      "selectors": "fluff:1",
       "asset": "buildings/saxarba/building_single/building_single_hard_1",
       "thumbnail": "images/hexes/saxarba/building_single/building_single_hard_1.png",
       "group": "Buildings"
@@ -13973,6 +14051,7 @@
       "id": "buildings/saxarba/building_single/building_single_light_1",
       "label": "Building Single Light 1",
       "owner": "building",
+      "selectors": "fluff:1",
       "asset": "buildings/saxarba/building_single/building_single_light_1",
       "thumbnail": "images/hexes/saxarba/building_single/building_single_light_1.png",
       "group": "Buildings"
@@ -13989,6 +14068,7 @@
       "id": "buildings/saxarba/building_single/building_single_light_3",
       "label": "Building Single Light 3",
       "owner": "building",
+      "selectors": "fluff:3",
       "asset": "buildings/saxarba/building_single/building_single_light_3",
       "thumbnail": "images/hexes/saxarba/building_single/building_single_light_3.png",
       "group": "Buildings"
@@ -14037,6 +14117,7 @@
       "id": "buildings/saxarba/building_single/legacy_barn",
       "label": "Legacy Barn",
       "owner": "building",
+      "selectors": "fluff:11:7",
       "asset": "buildings/saxarba/building_single/legacy_barn",
       "thumbnail": "images/hexes/saxarba/building_single/legacy_barn.png",
       "group": "Buildings"
@@ -14045,6 +14126,7 @@
       "id": "buildings/saxarba/building_single/legacy_building",
       "label": "Legacy Building",
       "owner": "building",
+      "selectors": "fluff:11:3",
       "asset": "buildings/saxarba/building_single/legacy_building",
       "thumbnail": "images/hexes/saxarba/building_single/legacy_building.png",
       "group": "Buildings"
@@ -14053,6 +14135,7 @@
       "id": "buildings/saxarba/building_single/legacy_chicken",
       "label": "Legacy Chicken",
       "owner": "building",
+      "selectors": "fluff:11:8",
       "asset": "buildings/saxarba/building_single/legacy_chicken",
       "thumbnail": "images/hexes/saxarba/building_single/legacy_chicken.png",
       "group": "Buildings"
@@ -14061,6 +14144,7 @@
       "id": "buildings/saxarba/building_single/legacy_church",
       "label": "Legacy Church",
       "owner": "building",
+      "selectors": "fluff:11:2",
       "asset": "buildings/saxarba/building_single/legacy_church",
       "thumbnail": "images/hexes/saxarba/building_single/legacy_church.png",
       "group": "Buildings"
@@ -14069,6 +14153,7 @@
       "id": "buildings/saxarba/building_single/legacy_farm",
       "label": "Legacy Farm",
       "owner": "building",
+      "selectors": "fluff:11:1",
       "asset": "buildings/saxarba/building_single/legacy_farm",
       "thumbnail": "images/hexes/saxarba/building_single/legacy_farm.png",
       "group": "Buildings"
@@ -14077,6 +14162,7 @@
       "id": "buildings/saxarba/building_single/legacy_refinery",
       "label": "Legacy Refinery",
       "owner": "building",
+      "selectors": "fluff:11:5",
       "asset": "buildings/saxarba/building_single/legacy_refinery",
       "thumbnail": "images/hexes/saxarba/building_single/legacy_refinery.png",
       "group": "Buildings"
@@ -14085,6 +14171,7 @@
       "id": "buildings/saxarba/building_single/legacy_tower1",
       "label": "Legacy Tower1",
       "owner": "building",
+      "selectors": "fluff:11:4",
       "asset": "buildings/saxarba/building_single/legacy_tower1",
       "thumbnail": "images/hexes/saxarba/building_single/legacy_tower1.png",
       "group": "Buildings"
@@ -14093,6 +14180,7 @@
       "id": "buildings/saxarba/building_single/legacy_tower2",
       "label": "Legacy Tower2",
       "owner": "building",
+      "selectors": "fluff:11:6",
       "asset": "buildings/saxarba/building_single/legacy_tower2",
       "thumbnail": "images/hexes/saxarba/building_single/legacy_tower2.png",
       "group": "Buildings"
@@ -27754,6 +27842,391 @@
       "group": "Other buildings"
     },
     {
+      "id": "building/legacy-art-1",
+      "label": "Legacy building art 1",
+      "owner": "building",
+      "selectors": "bldg_fluff:1",
+      "group": "Legacy building art"
+    },
+    {
+      "id": "building/legacy-art-2",
+      "label": "Legacy building art 2",
+      "owner": "building",
+      "selectors": "bldg_fluff:2",
+      "group": "Legacy building art"
+    },
+    {
+      "id": "building/legacy-art-3",
+      "label": "Legacy building art 3",
+      "owner": "building",
+      "selectors": "bldg_fluff:3",
+      "group": "Legacy building art"
+    },
+    {
+      "id": "building/legacy-art-4",
+      "label": "Legacy building art 4",
+      "owner": "building",
+      "selectors": "bldg_fluff:4",
+      "group": "Legacy building art"
+    },
+    {
+      "id": "building/legacy-art-5",
+      "label": "Legacy building art 5",
+      "owner": "building",
+      "selectors": "bldg_fluff:5",
+      "group": "Legacy building art"
+    },
+    {
+      "id": "building/legacy-art-6",
+      "label": "Legacy building art 6",
+      "owner": "building",
+      "selectors": "bldg_fluff:6",
+      "group": "Legacy building art"
+    },
+    {
+      "id": "building/legacy-art-7",
+      "label": "Legacy building art 7",
+      "owner": "building",
+      "selectors": "bldg_fluff:7",
+      "group": "Legacy building art"
+    },
+    {
+      "id": "building/legacy-art-8",
+      "label": "Legacy building art 8",
+      "owner": "building",
+      "selectors": "bldg_fluff:8",
+      "group": "Legacy building art"
+    },
+    {
+      "id": "building/legacy-art-9",
+      "label": "Legacy building art 9",
+      "owner": "building",
+      "selectors": "bldg_fluff:9",
+      "group": "Legacy building art"
+    },
+    {
+      "id": "building/legacy-art-10",
+      "label": "Legacy building art 10",
+      "owner": "building",
+      "selectors": "bldg_fluff:10",
+      "group": "Legacy building art"
+    },
+    {
+      "id": "building/legacy-art-11",
+      "label": "Legacy building art 11",
+      "owner": "building",
+      "selectors": "bldg_fluff:11",
+      "group": "Legacy building art"
+    },
+    {
+      "id": "building/legacy-art-12",
+      "label": "Legacy building art 12",
+      "owner": "building",
+      "selectors": "bldg_fluff:12",
+      "group": "Legacy building art"
+    },
+    {
+      "id": "building/legacy-art-13",
+      "label": "Legacy building art 13",
+      "owner": "building",
+      "selectors": "bldg_fluff:13",
+      "group": "Legacy building art"
+    },
+    {
+      "id": "building/legacy-art-14",
+      "label": "Legacy building art 14",
+      "owner": "building",
+      "selectors": "bldg_fluff:14",
+      "group": "Legacy building art"
+    },
+    {
+      "id": "building/legacy-art-15",
+      "label": "Legacy building art 15",
+      "owner": "building",
+      "selectors": "bldg_fluff:15",
+      "group": "Legacy building art"
+    },
+    {
+      "id": "building/legacy-art-16",
+      "label": "Legacy building art 16",
+      "owner": "building",
+      "selectors": "bldg_fluff:16",
+      "group": "Legacy building art"
+    },
+    {
+      "id": "building/legacy-art-17",
+      "label": "Legacy building art 17",
+      "owner": "building",
+      "selectors": "bldg_fluff:17",
+      "group": "Legacy building art"
+    },
+    {
+      "id": "building/legacy-art-18",
+      "label": "Legacy building art 18",
+      "owner": "building",
+      "selectors": "bldg_fluff:18",
+      "group": "Legacy building art"
+    },
+    {
+      "id": "building/legacy-art-19",
+      "label": "Legacy building art 19",
+      "owner": "building",
+      "selectors": "bldg_fluff:19",
+      "group": "Legacy building art"
+    },
+    {
+      "id": "building/legacy-art-20",
+      "label": "Legacy building art 20",
+      "owner": "building",
+      "selectors": "bldg_fluff:20",
+      "group": "Legacy building art"
+    },
+    {
+      "id": "building/legacy-art-21",
+      "label": "Legacy building art 21",
+      "owner": "building",
+      "selectors": "bldg_fluff:21",
+      "group": "Legacy building art"
+    },
+    {
+      "id": "building/legacy-art-22",
+      "label": "Legacy building art 22",
+      "owner": "building",
+      "selectors": "bldg_fluff:22",
+      "group": "Legacy building art"
+    },
+    {
+      "id": "building/legacy-art-23",
+      "label": "Legacy building art 23",
+      "owner": "building",
+      "selectors": "bldg_fluff:23",
+      "group": "Legacy building art"
+    },
+    {
+      "id": "building/legacy-art-24",
+      "label": "Legacy building art 24",
+      "owner": "building",
+      "selectors": "bldg_fluff:24",
+      "group": "Legacy building art"
+    },
+    {
+      "id": "building/legacy-art-25",
+      "label": "Legacy building art 25",
+      "owner": "building",
+      "selectors": "bldg_fluff:25",
+      "group": "Legacy building art"
+    },
+    {
+      "id": "building/legacy-art-26",
+      "label": "Legacy building art 26",
+      "owner": "building",
+      "selectors": "bldg_fluff:26",
+      "group": "Legacy building art"
+    },
+    {
+      "id": "building/legacy-art-27",
+      "label": "Legacy building art 27",
+      "owner": "building",
+      "selectors": "bldg_fluff:27",
+      "group": "Legacy building art"
+    },
+    {
+      "id": "building/legacy-art-28",
+      "label": "Legacy building art 28",
+      "owner": "building",
+      "selectors": "bldg_fluff:28",
+      "group": "Legacy building art"
+    },
+    {
+      "id": "building/legacy-art-29",
+      "label": "Legacy building art 29",
+      "owner": "building",
+      "selectors": "bldg_fluff:29",
+      "group": "Legacy building art"
+    },
+    {
+      "id": "building/legacy-art-30",
+      "label": "Legacy building art 30",
+      "owner": "building",
+      "selectors": "bldg_fluff:30",
+      "group": "Legacy building art"
+    },
+    {
+      "id": "building/legacy-art-31",
+      "label": "Legacy building art 31",
+      "owner": "building",
+      "selectors": "bldg_fluff:31",
+      "group": "Legacy building art"
+    },
+    {
+      "id": "building/legacy-art-32",
+      "label": "Legacy building art 32",
+      "owner": "building",
+      "selectors": "bldg_fluff:32",
+      "group": "Legacy building art"
+    },
+    {
+      "id": "building/legacy-art-33",
+      "label": "Legacy building art 33",
+      "owner": "building",
+      "selectors": "bldg_fluff:33",
+      "group": "Legacy building art"
+    },
+    {
+      "id": "building/legacy-art-34",
+      "label": "Legacy building art 34",
+      "owner": "building",
+      "selectors": "bldg_fluff:34",
+      "group": "Legacy building art"
+    },
+    {
+      "id": "building/legacy-art-35",
+      "label": "Legacy building art 35",
+      "owner": "building",
+      "selectors": "bldg_fluff:35",
+      "group": "Legacy building art"
+    },
+    {
+      "id": "building/legacy-art-36",
+      "label": "Legacy building art 36",
+      "owner": "building",
+      "selectors": "bldg_fluff:36",
+      "group": "Legacy building art"
+    },
+    {
+      "id": "building/legacy-art-37",
+      "label": "Legacy building art 37",
+      "owner": "building",
+      "selectors": "bldg_fluff:37",
+      "group": "Legacy building art"
+    },
+    {
+      "id": "building/legacy-art-38",
+      "label": "Legacy building art 38",
+      "owner": "building",
+      "selectors": "bldg_fluff:38",
+      "group": "Legacy building art"
+    },
+    {
+      "id": "building/legacy-art-39",
+      "label": "Legacy building art 39",
+      "owner": "building",
+      "selectors": "bldg_fluff:39",
+      "group": "Legacy building art"
+    },
+    {
+      "id": "building/legacy-art-40",
+      "label": "Legacy building art 40",
+      "owner": "building",
+      "selectors": "bldg_fluff:40",
+      "group": "Legacy building art"
+    },
+    {
+      "id": "building/legacy-art-41",
+      "label": "Legacy building art 41",
+      "owner": "building",
+      "selectors": "bldg_fluff:41",
+      "group": "Legacy building art"
+    },
+    {
+      "id": "building/legacy-art-42",
+      "label": "Legacy building art 42",
+      "owner": "building",
+      "selectors": "bldg_fluff:42",
+      "group": "Legacy building art"
+    },
+    {
+      "id": "building/legacy-art-43",
+      "label": "Legacy building art 43",
+      "owner": "building",
+      "selectors": "bldg_fluff:43",
+      "group": "Legacy building art"
+    },
+    {
+      "id": "building/legacy-art-44",
+      "label": "Legacy building art 44",
+      "owner": "building",
+      "selectors": "bldg_fluff:44",
+      "group": "Legacy building art"
+    },
+    {
+      "id": "building/legacy-art-45",
+      "label": "Legacy building art 45",
+      "owner": "building",
+      "selectors": "bldg_fluff:45",
+      "group": "Legacy building art"
+    },
+    {
+      "id": "building/legacy-art-46",
+      "label": "Legacy building art 46",
+      "owner": "building",
+      "selectors": "bldg_fluff:46",
+      "group": "Legacy building art"
+    },
+    {
+      "id": "building/legacy-art-47",
+      "label": "Legacy building art 47",
+      "owner": "building",
+      "selectors": "bldg_fluff:47",
+      "group": "Legacy building art"
+    },
+    {
+      "id": "building/legacy-art-48",
+      "label": "Legacy building art 48",
+      "owner": "building",
+      "selectors": "bldg_fluff:48",
+      "group": "Legacy building art"
+    },
+    {
+      "id": "building/legacy-art-49",
+      "label": "Legacy building art 49",
+      "owner": "building",
+      "selectors": "bldg_fluff:49",
+      "group": "Legacy building art"
+    },
+    {
+      "id": "building/legacy-art-50",
+      "label": "Legacy building art 50",
+      "owner": "building",
+      "selectors": "bldg_fluff:50",
+      "group": "Legacy building art"
+    },
+    {
+      "id": "building/legacy-art-51",
+      "label": "Legacy building art 51",
+      "owner": "building",
+      "selectors": "bldg_fluff:51",
+      "group": "Legacy building art"
+    },
+    {
+      "id": "building/legacy-art-52",
+      "label": "Legacy building art 52",
+      "owner": "building",
+      "selectors": "bldg_fluff:52",
+      "group": "Legacy building art"
+    },
+    {
+      "id": "building/legacy-art-53",
+      "label": "Legacy building art 53",
+      "owner": "building",
+      "selectors": "bldg_fluff:53",
+      "group": "Legacy building art"
+    },
+    {
+      "id": "building/legacy-art-54",
+      "label": "Legacy building art 54",
+      "owner": "building",
+      "selectors": "bldg_fluff:54",
+      "group": "Legacy building art"
+    },
+    {
+      "id": "building/legacy-art-100",
+      "label": "Legacy roof outline",
+      "owner": "building",
+      "selectors": "bldg_fluff:100",
+      "group": "Legacy building art"
+    },
+    {
       "id": "road/material/asphalt",
       "label": "Asphalt finish",
       "owner": "road",
@@ -28462,9 +28935,27 @@
     },
     {
       "id": "scenery/maglev/route",
-      "label": "Maglev route",
+      "label": "Maglev",
       "kind": "prop",
-      "group": "Maglev and wagons"
+      "group": "Transport"
+    },
+    {
+      "id": "scenery/rail/route",
+      "label": "Rail",
+      "kind": "prop",
+      "group": "Transport"
+    },
+    {
+      "id": "scenery/rail/crossing-signal",
+      "label": "Crossing signal",
+      "kind": "prop",
+      "group": "Transport"
+    },
+    {
+      "id": "decal/rail/level-crossing",
+      "label": "Level crossing",
+      "kind": "decal",
+      "group": "Transport"
     },
     {
       "id": "scenery/parks/pillar",
@@ -29328,36 +29819,848 @@
     },
     {
       "id": "scenery/maglev/wagon",
-      "label": "Passenger wagon",
+      "label": "City maglev passenger car",
       "kind": "prop",
       "group": "Maglev and wagons"
     },
     {
       "id": "scenery/maglev/cab",
-      "label": "Driver cab",
+      "label": "City maglev cab",
+      "kind": "prop",
+      "group": "Maglev and wagons"
+    },
+    {
+      "id": "scenery/maglev/service-car",
+      "label": "City maglev service car",
+      "kind": "prop",
+      "group": "Maglev and wagons"
+    },
+    {
+      "id": "scenery/maglev/city-freight",
+      "label": "City maglev freight car",
       "kind": "prop",
       "group": "Maglev and wagons"
     },
     {
       "id": "scenery/maglev/coupler",
-      "label": "Wagon coupler",
+      "label": "City maglev gangway",
       "kind": "prop",
       "group": "Maglev and wagons",
       "palette": false
     },
     {
+      "id": "scenery/maglev/colony-cab",
+      "label": "Colony maglev cab",
+      "kind": "prop",
+      "group": "Maglev and wagons"
+    },
+    {
+      "id": "scenery/maglev/colony-cargo",
+      "label": "Colony maglev cargo car",
+      "kind": "prop",
+      "group": "Maglev and wagons"
+    },
+    {
+      "id": "scenery/maglev/colony-tanker",
+      "label": "Colony maglev tanker",
+      "kind": "prop",
+      "group": "Maglev and wagons"
+    },
+    {
+      "id": "scenery/maglev/colony-containers",
+      "label": "Colony maglev container car",
+      "kind": "prop",
+      "group": "Maglev and wagons"
+    },
+    {
+      "id": "scenery/maglev/colony-heavy",
+      "label": "Colony maglev heavy transport",
+      "kind": "prop",
+      "group": "Maglev and wagons"
+    },
+    {
       "id": "scenery/maglev/platform",
-      "label": "Station platform",
+      "label": "Maglev station platform",
       "kind": "prop",
       "group": "Maglev and wagons"
     },
     {
       "id": "stamp/maglev-train",
-      "label": "Maglev train",
+      "label": "City maglev",
       "kind": "prop",
       "layout": "scenery/maglev/train",
       "thumbnail": "models/board/scenery/maglev/train.png",
       "group": "Maglev and wagons"
+    },
+    {
+      "id": "decal/urban/crosswalk-worn",
+      "label": "Crosswalk, worn",
+      "kind": "decal",
+      "group": "Ground details"
+    },
+    {
+      "id": "decal/urban/lane-arrow-straight",
+      "label": "Lane arrow, straight",
+      "kind": "decal",
+      "group": "Ground details"
+    },
+    {
+      "id": "decal/urban/lane-arrow-left",
+      "label": "Lane arrow, left",
+      "kind": "decal",
+      "group": "Ground details"
+    },
+    {
+      "id": "decal/urban/lane-arrow-right",
+      "label": "Lane arrow, right",
+      "kind": "decal",
+      "group": "Ground details"
+    },
+    {
+      "id": "decal/urban/lane-arrow-straight-left",
+      "label": "Lane arrow, straight or left",
+      "kind": "decal",
+      "group": "Ground details"
+    },
+    {
+      "id": "decal/urban/stop-line-worn",
+      "label": "Stop line, worn",
+      "kind": "decal",
+      "group": "Ground details"
+    },
+    {
+      "id": "decal/urban/keep-clear-box",
+      "label": "Keep-clear box",
+      "kind": "decal",
+      "group": "Ground details"
+    },
+    {
+      "id": "decal/urban/loading-bay",
+      "label": "Loading bay outline",
+      "kind": "decal",
+      "group": "Ground details"
+    },
+    {
+      "id": "decal/industrial/hazard-chevron-strip",
+      "label": "Hazard chevron strip",
+      "kind": "decal",
+      "group": "Industrial markings"
+    },
+    {
+      "id": "decal/industrial/mech-service-bay",
+      "label": "Mech service bay markings",
+      "kind": "decal",
+      "group": "Industrial markings"
+    },
+    {
+      "id": "decal/industrial/coolant-service-zone",
+      "label": "Coolant service markings",
+      "kind": "decal",
+      "group": "Industrial markings"
+    },
+    {
+      "id": "decal/industrial/cargo-drop-zone",
+      "label": "Cargo transfer markings",
+      "kind": "decal",
+      "group": "Industrial markings"
+    },
+    {
+      "id": "decal/industrial/maintenance-hatch",
+      "label": "Industrial maintenance hatch",
+      "kind": "decal",
+      "group": "Industrial markings"
+    },
+    {
+      "id": "decal/industrial/drain-grate",
+      "label": "Industrial drain grate",
+      "kind": "decal",
+      "group": "Industrial markings"
+    },
+    {
+      "id": "decal/spaceport/vtol-landing-pad",
+      "label": "VTOL landing pad markings",
+      "kind": "decal",
+      "group": "Spaceport markings"
+    },
+    {
+      "id": "decal/spaceport/approach-chevrons",
+      "label": "Landing approach chevrons",
+      "kind": "decal",
+      "group": "Spaceport markings"
+    },
+    {
+      "id": "decal/spaceport/cargo-pad-03",
+      "label": "Cargo pad 03 markings",
+      "kind": "decal",
+      "group": "Spaceport markings"
+    },
+    {
+      "id": "decal/spaceport/blast-exclusion-ring",
+      "label": "Blast exclusion ring",
+      "kind": "decal",
+      "group": "Spaceport markings"
+    },
+    {
+      "id": "decal/damage/blast-scorch",
+      "label": "Blast scorch",
+      "kind": "decal",
+      "group": "Damage and debris"
+    },
+    {
+      "id": "decal/damage/laser-scoring",
+      "label": "Laser scoring",
+      "kind": "decal",
+      "group": "Damage and debris"
+    },
+    {
+      "id": "decal/damage/autocannon-pockmarks",
+      "label": "Autocannon impact scatter",
+      "kind": "decal",
+      "group": "Damage and debris"
+    },
+    {
+      "id": "decal/damage/shattered-concrete",
+      "label": "Shattered concrete patch",
+      "kind": "decal",
+      "group": "Damage and debris"
+    },
+    {
+      "id": "decal/damage/rubble-scatter",
+      "label": "Fine rubble scatter",
+      "kind": "decal",
+      "group": "Damage and debris"
+    },
+    {
+      "id": "decal/damage/glass-scatter",
+      "label": "Broken glass scatter",
+      "kind": "decal",
+      "group": "Damage and debris"
+    },
+    {
+      "id": "decal/wear/mech-footprints",
+      "label": "Mech footprint trail",
+      "kind": "decal",
+      "group": "Vehicle wear"
+    },
+    {
+      "id": "decal/wear/heavy-tread-tracks",
+      "label": "Heavy tread tracks",
+      "kind": "decal",
+      "group": "Vehicle wear"
+    },
+    {
+      "id": "decal/wear/turning-tread-tracks",
+      "label": "Turning tread tracks",
+      "kind": "decal",
+      "group": "Vehicle wear"
+    },
+    {
+      "id": "decal/wear/tire-skid-marks",
+      "label": "Tire skid marks",
+      "kind": "decal",
+      "group": "Vehicle wear"
+    },
+    {
+      "id": "decal/wear/oil-spill",
+      "label": "Oil spill",
+      "kind": "decal",
+      "group": "Vehicle wear"
+    },
+    {
+      "id": "decal/wear/coolant-spill",
+      "label": "Coolant spill",
+      "kind": "decal",
+      "group": "Vehicle wear"
+    },
+    {
+      "id": "stamp/maglev-colony-train",
+      "label": "Colony maglev",
+      "kind": "prop",
+      "layout": "scenery/maglev/colony-train",
+      "thumbnail": "models/board/scenery/maglev/colony-train.png",
+      "group": "Maglev and wagons"
+    },
+    {
+      "id": "stamp/rail-train",
+      "label": "Freight train",
+      "kind": "prop",
+      "layout": "scenery/rail/train",
+      "thumbnail": "models/board/scenery/rail/train.png",
+      "group": "Maglev and wagons"
+    },
+    {
+      "id": "stamp/express-train",
+      "label": "Express train",
+      "kind": "prop",
+      "layout": "scenery/rail/express-train",
+      "thumbnail": "models/board/scenery/rail/express-train.png",
+      "group": "Maglev and wagons"
+    },
+    {
+      "id": "stamp/colony-train",
+      "label": "Colony train",
+      "kind": "prop",
+      "layout": "scenery/rail/colony-train",
+      "thumbnail": "models/board/scenery/rail/colony-train.png",
+      "group": "Maglev and wagons"
+    },
+    {
+      "id": "scenery/rail/locomotive",
+      "label": "Armoured locomotive",
+      "kind": "prop",
+      "group": "Maglev and wagons"
+    },
+    {
+      "id": "scenery/rail/coach",
+      "label": "Armoured coach",
+      "kind": "prop",
+      "group": "Maglev and wagons"
+    },
+    {
+      "id": "scenery/rail/box-car",
+      "label": "Cargo wagon",
+      "kind": "prop",
+      "group": "Maglev and wagons"
+    },
+    {
+      "id": "scenery/rail/tank-car",
+      "label": "Tanker",
+      "kind": "prop",
+      "group": "Maglev and wagons"
+    },
+    {
+      "id": "scenery/rail/ore-hopper",
+      "label": "Ore hopper",
+      "kind": "prop",
+      "group": "Maglev and wagons"
+    },
+    {
+      "id": "scenery/rail/heavy-flatbed",
+      "label": "Heavy flatbed",
+      "kind": "prop",
+      "group": "Maglev and wagons"
+    },
+    {
+      "id": "scenery/rail/express-power-car",
+      "label": "Express power car",
+      "kind": "prop",
+      "group": "Maglev and wagons"
+    },
+    {
+      "id": "scenery/rail/express-car",
+      "label": "Express car",
+      "kind": "prop",
+      "group": "Maglev and wagons"
+    },
+    {
+      "id": "scenery/rail/colony-locomotive",
+      "label": "Colony locomotive",
+      "kind": "prop",
+      "group": "Maglev and wagons"
+    },
+    {
+      "id": "scenery/rail/container-wagon",
+      "label": "Container wagon",
+      "kind": "prop",
+      "group": "Maglev and wagons"
+    },
+    {
+      "id": "scenery/rail/heavy-hopper",
+      "label": "Heavy hopper",
+      "kind": "prop",
+      "group": "Maglev and wagons"
+    },
+    {
+      "id": "scenery/rail/insulated-tanker",
+      "label": "Insulated tanker",
+      "kind": "prop",
+      "group": "Maglev and wagons"
+    },
+    {
+      "id": "scenery/rail/equipment-carrier",
+      "label": "Equipment carrier",
+      "kind": "prop",
+      "group": "Maglev and wagons"
+    },
+    {
+      "id": "decal/runway/centreline",
+      "label": "Runway centreline",
+      "kind": "decal",
+      "group": "Airfield"
+    },
+    {
+      "id": "decal/runway/threshold",
+      "label": "Runway threshold",
+      "kind": "decal",
+      "group": "Airfield"
+    },
+    {
+      "id": "decal/runway/number-36",
+      "label": "Runway 36",
+      "kind": "decal",
+      "group": "Airfield"
+    },
+    {
+      "id": "decal/runway/number-36l",
+      "label": "Runway 36L",
+      "kind": "decal",
+      "group": "Airfield"
+    },
+    {
+      "id": "decal/runway/number-36c",
+      "label": "Runway 36C",
+      "kind": "decal",
+      "group": "Airfield"
+    },
+    {
+      "id": "decal/runway/number-36r",
+      "label": "Runway 36R",
+      "kind": "decal",
+      "group": "Airfield"
+    },
+    {
+      "id": "decal/runway/number-06",
+      "label": "Runway 06",
+      "kind": "decal",
+      "group": "Airfield"
+    },
+    {
+      "id": "decal/runway/number-06l",
+      "label": "Runway 06L",
+      "kind": "decal",
+      "group": "Airfield"
+    },
+    {
+      "id": "decal/runway/number-06c",
+      "label": "Runway 06C",
+      "kind": "decal",
+      "group": "Airfield"
+    },
+    {
+      "id": "decal/runway/number-06r",
+      "label": "Runway 06R",
+      "kind": "decal",
+      "group": "Airfield"
+    },
+    {
+      "id": "decal/runway/number-12",
+      "label": "Runway 12",
+      "kind": "decal",
+      "group": "Airfield"
+    },
+    {
+      "id": "decal/runway/number-12l",
+      "label": "Runway 12L",
+      "kind": "decal",
+      "group": "Airfield"
+    },
+    {
+      "id": "decal/runway/number-12c",
+      "label": "Runway 12C",
+      "kind": "decal",
+      "group": "Airfield"
+    },
+    {
+      "id": "decal/runway/number-12r",
+      "label": "Runway 12R",
+      "kind": "decal",
+      "group": "Airfield"
+    },
+    {
+      "id": "decal/runway/number-18",
+      "label": "Runway 18",
+      "kind": "decal",
+      "group": "Airfield"
+    },
+    {
+      "id": "decal/runway/number-18l",
+      "label": "Runway 18L",
+      "kind": "decal",
+      "group": "Airfield"
+    },
+    {
+      "id": "decal/runway/number-18c",
+      "label": "Runway 18C",
+      "kind": "decal",
+      "group": "Airfield"
+    },
+    {
+      "id": "decal/runway/number-18r",
+      "label": "Runway 18R",
+      "kind": "decal",
+      "group": "Airfield"
+    },
+    {
+      "id": "decal/runway/number-24",
+      "label": "Runway 24",
+      "kind": "decal",
+      "group": "Airfield"
+    },
+    {
+      "id": "decal/runway/number-24l",
+      "label": "Runway 24L",
+      "kind": "decal",
+      "group": "Airfield"
+    },
+    {
+      "id": "decal/runway/number-24c",
+      "label": "Runway 24C",
+      "kind": "decal",
+      "group": "Airfield"
+    },
+    {
+      "id": "decal/runway/number-24r",
+      "label": "Runway 24R",
+      "kind": "decal",
+      "group": "Airfield"
+    },
+    {
+      "id": "decal/runway/number-30",
+      "label": "Runway 30",
+      "kind": "decal",
+      "group": "Airfield"
+    },
+    {
+      "id": "decal/runway/number-30l",
+      "label": "Runway 30L",
+      "kind": "decal",
+      "group": "Airfield"
+    },
+    {
+      "id": "decal/runway/number-30c",
+      "label": "Runway 30C",
+      "kind": "decal",
+      "group": "Airfield"
+    },
+    {
+      "id": "decal/runway/number-30r",
+      "label": "Runway 30R",
+      "kind": "decal",
+      "group": "Airfield"
+    },
+    {
+      "id": "decal/landing-pads/vtol-concrete",
+      "label": "VTOL pad, concrete",
+      "kind": "decal",
+      "group": "Airfield"
+    },
+    {
+      "id": "decal/landing-pads/vtol-asphalt",
+      "label": "VTOL pad, asphalt",
+      "kind": "decal",
+      "group": "Airfield"
+    },
+    {
+      "id": "decal/landing-pads/medic-concrete",
+      "label": "Medical pad, concrete",
+      "kind": "decal",
+      "group": "Airfield"
+    },
+    {
+      "id": "decal/landing-pads/medic-asphalt",
+      "label": "Medical pad, asphalt",
+      "kind": "decal",
+      "group": "Airfield"
+    },
+    {
+      "id": "decal/landing-pads/aero-concrete",
+      "label": "Aerospace pad, concrete",
+      "kind": "decal",
+      "group": "Airfield"
+    },
+    {
+      "id": "decal/landing-pads/aero-asphalt",
+      "label": "Aerospace pad, asphalt",
+      "kind": "decal",
+      "group": "Airfield"
+    },
+    {
+      "id": "decal/landing-pads/aero-lit-concrete",
+      "label": "Aerospace pad with lights, concrete",
+      "kind": "decal",
+      "group": "Airfield"
+    },
+    {
+      "id": "decal/landing-pads/aero-lit-asphalt",
+      "label": "Aerospace pad with lights, asphalt",
+      "kind": "decal",
+      "group": "Airfield"
+    },
+    {
+      "id": "decal/landing-pads/dropship-concrete",
+      "label": "DropShip pad, concrete",
+      "kind": "decal",
+      "group": "Airfield"
+    },
+    {
+      "id": "decal/landing-pads/dropship-asphalt",
+      "label": "DropShip pad, asphalt",
+      "kind": "decal",
+      "group": "Airfield"
+    },
+    {
+      "id": "decal/landing-pads/dropship-ring-concrete",
+      "label": "DropShip ring pad, concrete",
+      "kind": "decal",
+      "group": "Airfield"
+    },
+    {
+      "id": "decal/landing-pads/dropship-ring-asphalt",
+      "label": "DropShip ring pad, asphalt",
+      "kind": "decal",
+      "group": "Airfield"
+    },
+    {
+      "id": "decal/landing-pads/heli-pad",
+      "label": "Helipad",
+      "kind": "decal",
+      "group": "Airfield"
+    },
+    {
+      "id": "scenery/roofs/landing-light",
+      "label": "Landing light",
+      "kind": "prop",
+      "group": "Airfield"
+    },
+    {
+      "id": "decal/lettering/letter-a",
+      "label": "Letter A",
+      "kind": "decal",
+      "group": "Lettering"
+    },
+    {
+      "id": "decal/lettering/letter-b",
+      "label": "Letter B",
+      "kind": "decal",
+      "group": "Lettering"
+    },
+    {
+      "id": "decal/lettering/letter-c",
+      "label": "Letter C",
+      "kind": "decal",
+      "group": "Lettering"
+    },
+    {
+      "id": "decal/lettering/letter-d",
+      "label": "Letter D",
+      "kind": "decal",
+      "group": "Lettering"
+    },
+    {
+      "id": "decal/lettering/letter-e",
+      "label": "Letter E",
+      "kind": "decal",
+      "group": "Lettering"
+    },
+    {
+      "id": "decal/lettering/letter-f",
+      "label": "Letter F",
+      "kind": "decal",
+      "group": "Lettering"
+    },
+    {
+      "id": "decal/lettering/letter-g",
+      "label": "Letter G",
+      "kind": "decal",
+      "group": "Lettering"
+    },
+    {
+      "id": "decal/lettering/letter-h",
+      "label": "Letter H",
+      "kind": "decal",
+      "group": "Lettering"
+    },
+    {
+      "id": "decal/lettering/letter-i",
+      "label": "Letter I",
+      "kind": "decal",
+      "group": "Lettering"
+    },
+    {
+      "id": "decal/lettering/letter-j",
+      "label": "Letter J",
+      "kind": "decal",
+      "group": "Lettering"
+    },
+    {
+      "id": "decal/lettering/letter-k",
+      "label": "Letter K",
+      "kind": "decal",
+      "group": "Lettering"
+    },
+    {
+      "id": "decal/lettering/letter-l",
+      "label": "Letter L",
+      "kind": "decal",
+      "group": "Lettering"
+    },
+    {
+      "id": "decal/lettering/letter-m",
+      "label": "Letter M",
+      "kind": "decal",
+      "group": "Lettering"
+    },
+    {
+      "id": "decal/lettering/letter-n",
+      "label": "Letter N",
+      "kind": "decal",
+      "group": "Lettering"
+    },
+    {
+      "id": "decal/lettering/letter-o",
+      "label": "Letter O",
+      "kind": "decal",
+      "group": "Lettering"
+    },
+    {
+      "id": "decal/lettering/letter-p",
+      "label": "Letter P",
+      "kind": "decal",
+      "group": "Lettering"
+    },
+    {
+      "id": "decal/lettering/letter-q",
+      "label": "Letter Q",
+      "kind": "decal",
+      "group": "Lettering"
+    },
+    {
+      "id": "decal/lettering/letter-r",
+      "label": "Letter R",
+      "kind": "decal",
+      "group": "Lettering"
+    },
+    {
+      "id": "decal/lettering/letter-s",
+      "label": "Letter S",
+      "kind": "decal",
+      "group": "Lettering"
+    },
+    {
+      "id": "decal/lettering/letter-t",
+      "label": "Letter T",
+      "kind": "decal",
+      "group": "Lettering"
+    },
+    {
+      "id": "decal/lettering/letter-u",
+      "label": "Letter U",
+      "kind": "decal",
+      "group": "Lettering"
+    },
+    {
+      "id": "decal/lettering/letter-v",
+      "label": "Letter V",
+      "kind": "decal",
+      "group": "Lettering"
+    },
+    {
+      "id": "decal/lettering/letter-w",
+      "label": "Letter W",
+      "kind": "decal",
+      "group": "Lettering"
+    },
+    {
+      "id": "decal/lettering/letter-x",
+      "label": "Letter X",
+      "kind": "decal",
+      "group": "Lettering"
+    },
+    {
+      "id": "decal/lettering/letter-y",
+      "label": "Letter Y",
+      "kind": "decal",
+      "group": "Lettering"
+    },
+    {
+      "id": "decal/lettering/letter-z",
+      "label": "Letter Z",
+      "kind": "decal",
+      "group": "Lettering"
+    },
+    {
+      "id": "decal/lettering/digit-0",
+      "label": "Digit 0",
+      "kind": "decal",
+      "group": "Lettering"
+    },
+    {
+      "id": "decal/lettering/digit-1",
+      "label": "Digit 1",
+      "kind": "decal",
+      "group": "Lettering"
+    },
+    {
+      "id": "decal/lettering/digit-2",
+      "label": "Digit 2",
+      "kind": "decal",
+      "group": "Lettering"
+    },
+    {
+      "id": "decal/lettering/digit-3",
+      "label": "Digit 3",
+      "kind": "decal",
+      "group": "Lettering"
+    },
+    {
+      "id": "decal/lettering/digit-4",
+      "label": "Digit 4",
+      "kind": "decal",
+      "group": "Lettering"
+    },
+    {
+      "id": "decal/lettering/digit-5",
+      "label": "Digit 5",
+      "kind": "decal",
+      "group": "Lettering"
+    },
+    {
+      "id": "decal/lettering/digit-6",
+      "label": "Digit 6",
+      "kind": "decal",
+      "group": "Lettering"
+    },
+    {
+      "id": "decal/lettering/digit-7",
+      "label": "Digit 7",
+      "kind": "decal",
+      "group": "Lettering"
+    },
+    {
+      "id": "decal/lettering/digit-8",
+      "label": "Digit 8",
+      "kind": "decal",
+      "group": "Lettering"
+    },
+    {
+      "id": "decal/lettering/digit-9",
+      "label": "Digit 9",
+      "kind": "decal",
+      "group": "Lettering"
+    },
+    {
+      "id": "decal/sport/tennis-court-green",
+      "label": "Tennis court, green",
+      "kind": "decal",
+      "group": "Sport and pools"
+    },
+    {
+      "id": "decal/sport/tennis-court-blue",
+      "label": "Tennis court, blue",
+      "kind": "decal",
+      "group": "Sport and pools"
+    },
+    {
+      "id": "decal/sport/basketball-court-green",
+      "label": "Basketball court, green",
+      "kind": "decal",
+      "group": "Sport and pools"
+    },
+    {
+      "id": "decal/sport/basketball-court-blue",
+      "label": "Basketball court, blue",
+      "kind": "decal",
+      "group": "Sport and pools"
     }
   ]
 }

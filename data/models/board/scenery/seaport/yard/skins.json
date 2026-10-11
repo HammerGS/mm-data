@@ -1,0 +1,251 @@
+{
+  "foliage-rows": [
+    {
+      "asset": "scenery/seaport/yard/foliage-rows",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0
+    }
+  ],
+  "foliage-scattered": [
+    {
+      "asset": "scenery/seaport/yard/foliage-scattered",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0
+    },
+    {
+      "asset": "scenery/seaport/yard/reach-stacker",
+      "position": [
+        -9.5,
+        -6.0,
+        0.0
+      ],
+      "rotation": 60.0,
+      "scale": 1.0
+    }
+  ],
+  "light-rows": [
+    {
+      "asset": "scenery/seaport/yard/light-rows",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0
+    },
+    {
+      "asset": "scenery/seaport/yard/yard-truck",
+      "position": [
+        10.15,
+        -4.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0,
+      "colours": [
+        "#306b52"
+      ]
+    }
+  ],
+  "light-quay-crane": [
+    {
+      "asset": "scenery/seaport/yard/light-quay-crane",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0
+    },
+    {
+      "asset": "scenery/seaport/yard/quay-crane",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": -60.0,
+      "scale": 1.0
+    },
+    {
+      "asset": "scenery/seaport/yard/crane-boom",
+      "position": [
+        62.3538,
+        36.0,
+        0.0
+      ],
+      "rotation": -60.0,
+      "scale": 1.0
+    },
+    {
+      "asset": "scenery/seaport/yard/yard-truck",
+      "position": [
+        27.1638,
+        13.951,
+        0.0
+      ],
+      "rotation": -150.0,
+      "scale": 1.0,
+      "colours": [
+        "#996b47"
+      ]
+    }
+  ],
+  "light-quay-crane-mirrored": [
+    {
+      "asset": "scenery/seaport/yard/light-quay-crane-mirrored",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0
+    },
+    {
+      "asset": "scenery/seaport/yard/quay-crane",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": -120.0,
+      "scale": 1.0
+    },
+    {
+      "asset": "scenery/seaport/yard/crane-boom",
+      "position": [
+        62.3538,
+        -36.0,
+        0.0
+      ],
+      "rotation": -120.0,
+      "scale": 1.0
+    },
+    {
+      "asset": "scenery/seaport/yard/yard-truck",
+      "position": [
+        25.6638,
+        -16.549,
+        0.0
+      ],
+      "rotation": -210.0,
+      "scale": 1.0,
+      "colours": [
+        "#996b47"
+      ]
+    }
+  ],
+  "light-yard-gantry": [
+    {
+      "asset": "scenery/seaport/yard/light-yard-gantry",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0
+    },
+    {
+      "asset": "scenery/seaport/yard/yard-gantry",
+      "position": [
+        0,
+        -6.6,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0
+    },
+    {
+      "asset": "scenery/seaport/yard/yard-truck",
+      "position": [
+        -21.0,
+        14.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0
+    }
+  ],
+  "heavy-rows": [
+    {
+      "asset": "scenery/seaport/yard/heavy-rows",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0
+    }
+  ],
+  "heavy-yard-gantry": [
+    {
+      "asset": "scenery/seaport/yard/heavy-yard-gantry",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0
+    },
+    {
+      "asset": "scenery/seaport/yard/yard-gantry",
+      "position": [
+        0,
+        6.6,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0
+    }
+  ],
+  "ultra-rows": [
+    {
+      "asset": "scenery/seaport/yard/ultra-rows",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0
+    }
+  ],
+  "ultra-yard-gantry": [
+    {
+      "asset": "scenery/seaport/yard/ultra-yard-gantry",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0
+    },
+    {
+      "asset": "scenery/seaport/yard/yard-gantry-tall",
+      "position": [
+        0,
+        -6.6,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0
+    }
+  ]
+}

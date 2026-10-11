@@ -506,9 +506,981 @@
         84,
         72
       ]
+    },
+    "decal/urban/crosswalk-worn": {
+      "size": [
+        18.0,
+        18.0
+      ]
+    },
+    "decal/urban/lane-arrow-straight": {
+      "size": [
+        14.0,
+        14.0
+      ]
+    },
+    "decal/urban/lane-arrow-left": {
+      "size": [
+        14.0,
+        14.0
+      ]
+    },
+    "decal/urban/lane-arrow-right": {
+      "size": [
+        14.0,
+        14.0
+      ]
+    },
+    "decal/urban/lane-arrow-straight-left": {
+      "size": [
+        16.0,
+        16.0
+      ]
+    },
+    "decal/urban/stop-line-worn": {
+      "size": [
+        18.0,
+        18.0
+      ]
+    },
+    "decal/urban/keep-clear-box": {
+      "size": [
+        24.0,
+        24.0
+      ]
+    },
+    "decal/urban/loading-bay": {
+      "size": [
+        26.0,
+        13.0
+      ]
+    },
+    "decal/industrial/hazard-chevron-strip": {
+      "size": [
+        24.0,
+        8.0
+      ]
+    },
+    "decal/industrial/mech-service-bay": {
+      "size": [
+        44.0,
+        44.0
+      ]
+    },
+    "decal/industrial/coolant-service-zone": {
+      "size": [
+        22.0,
+        22.0
+      ]
+    },
+    "decal/industrial/cargo-drop-zone": {
+      "size": [
+        30.0,
+        30.0
+      ]
+    },
+    "decal/industrial/maintenance-hatch": {
+      "size": [
+        12.0,
+        12.0
+      ]
+    },
+    "decal/industrial/drain-grate": {
+      "size": [
+        12.0,
+        4.0
+      ]
+    },
+    "decal/industrial/oil-spill": {
+      "size": [
+        18.0,
+        18.0
+      ]
+    },
+    "decal/industrial/coolant-spill": {
+      "size": [
+        20.0,
+        20.0
+      ]
+    },
+    "decal/spaceport/vtol-landing-pad": {
+      "size": [
+        68.0,
+        68.0
+      ]
+    },
+    "decal/spaceport/approach-chevrons": {
+      "size": [
+        42.0,
+        42.0
+      ]
+    },
+    "decal/spaceport/cargo-pad": {
+      "size": [
+        52.0,
+        52.0
+      ]
+    },
+    "decal/spaceport/blast-exclusion-ring": {
+      "size": [
+        76.0,
+        76.0
+      ]
+    },
+    "decal/damage/blast-scorch": {
+      "size": [
+        48.0,
+        48.0
+      ]
+    },
+    "decal/damage/laser-scoring": {
+      "size": [
+        36.0,
+        36.0
+      ]
+    },
+    "decal/damage/autocannon-pockmarks": {
+      "size": [
+        28.0,
+        28.0
+      ]
+    },
+    "decal/damage/shattered-concrete": {
+      "size": [
+        34.0,
+        34.0
+      ]
+    },
+    "decal/damage/rubble-scatter": {
+      "size": [
+        40.0,
+        40.0
+      ]
+    },
+    "decal/damage/glass-scatter": {
+      "size": [
+        22.0,
+        22.0
+      ]
+    },
+    "decal/damage/cleared-rubble-gravel": {
+      "size": [
+        84,
+        72
+      ]
+    },
+    "decal/runway/centreline": {
+      "size": [
+        6,
+        64
+      ]
+    },
+    "decal/runway/threshold": {
+      "size": [
+        64,
+        28
+      ]
+    },
+    "decal/runway/number-36": {
+      "size": [
+        56,
+        72
+      ]
+    },
+    "decal/runway/number-36l": {
+      "size": [
+        56,
+        72
+      ]
+    },
+    "decal/runway/number-36c": {
+      "size": [
+        56,
+        72
+      ]
+    },
+    "decal/runway/number-36r": {
+      "size": [
+        56,
+        72
+      ]
+    },
+    "decal/runway/number-06": {
+      "size": [
+        56,
+        72
+      ]
+    },
+    "decal/runway/number-06l": {
+      "size": [
+        56,
+        72
+      ]
+    },
+    "decal/runway/number-06c": {
+      "size": [
+        56,
+        72
+      ]
+    },
+    "decal/runway/number-06r": {
+      "size": [
+        56,
+        72
+      ]
+    },
+    "decal/runway/number-12": {
+      "size": [
+        56,
+        72
+      ]
+    },
+    "decal/runway/number-12l": {
+      "size": [
+        56,
+        72
+      ]
+    },
+    "decal/runway/number-12c": {
+      "size": [
+        56,
+        72
+      ]
+    },
+    "decal/runway/number-12r": {
+      "size": [
+        56,
+        72
+      ]
+    },
+    "decal/runway/number-18": {
+      "size": [
+        56,
+        72
+      ]
+    },
+    "decal/runway/number-18l": {
+      "size": [
+        56,
+        72
+      ]
+    },
+    "decal/runway/number-18c": {
+      "size": [
+        56,
+        72
+      ]
+    },
+    "decal/runway/number-18r": {
+      "size": [
+        56,
+        72
+      ]
+    },
+    "decal/runway/number-24": {
+      "size": [
+        56,
+        72
+      ]
+    },
+    "decal/runway/number-24l": {
+      "size": [
+        56,
+        72
+      ]
+    },
+    "decal/runway/number-24c": {
+      "size": [
+        56,
+        72
+      ]
+    },
+    "decal/runway/number-24r": {
+      "size": [
+        56,
+        72
+      ]
+    },
+    "decal/runway/number-30": {
+      "size": [
+        56,
+        72
+      ]
+    },
+    "decal/runway/number-30l": {
+      "size": [
+        56,
+        72
+      ]
+    },
+    "decal/runway/number-30c": {
+      "size": [
+        56,
+        72
+      ]
+    },
+    "decal/runway/number-30r": {
+      "size": [
+        56,
+        72
+      ]
+    },
+    "decal/landing-pads/vtol-concrete": {
+      "size": [
+        72,
+        72
+      ]
+    },
+    "decal/landing-pads/vtol-asphalt": {
+      "size": [
+        72,
+        72
+      ]
+    },
+    "decal/landing-pads/medic-concrete": {
+      "size": [
+        72,
+        72
+      ]
+    },
+    "decal/landing-pads/medic-asphalt": {
+      "size": [
+        72,
+        72
+      ]
+    },
+    "decal/landing-pads/aero-concrete": {
+      "size": [
+        72,
+        72
+      ]
+    },
+    "decal/landing-pads/aero-asphalt": {
+      "size": [
+        72,
+        72
+      ]
+    },
+    "decal/landing-pads/aero-lit-concrete": {
+      "size": [
+        72,
+        72
+      ]
+    },
+    "decal/landing-pads/aero-lit-asphalt": {
+      "size": [
+        72,
+        72
+      ]
+    },
+    "decal/landing-pads/dropship-concrete": {
+      "size": [
+        144,
+        144
+      ]
+    },
+    "decal/landing-pads/dropship-asphalt": {
+      "size": [
+        144,
+        144
+      ]
+    },
+    "decal/landing-pads/dropship-ring-concrete": {
+      "size": [
+        144,
+        144
+      ]
+    },
+    "decal/landing-pads/dropship-ring-asphalt": {
+      "size": [
+        144,
+        144
+      ]
+    },
+    "decal/landing-pads/heli-pad": {
+      "size": [
+        60,
+        60
+      ]
+    },
+    "decal/lettering/letter-a": {
+      "size": [
+        40,
+        40
+      ],
+      "colour": "#ffffff"
+    },
+    "decal/lettering/letter-b": {
+      "size": [
+        40,
+        40
+      ],
+      "colour": "#ffffff"
+    },
+    "decal/lettering/letter-c": {
+      "size": [
+        40,
+        40
+      ],
+      "colour": "#ffffff"
+    },
+    "decal/lettering/letter-d": {
+      "size": [
+        40,
+        40
+      ],
+      "colour": "#ffffff"
+    },
+    "decal/lettering/letter-e": {
+      "size": [
+        40,
+        40
+      ],
+      "colour": "#ffffff"
+    },
+    "decal/lettering/letter-f": {
+      "size": [
+        40,
+        40
+      ],
+      "colour": "#ffffff"
+    },
+    "decal/lettering/letter-g": {
+      "size": [
+        40,
+        40
+      ],
+      "colour": "#ffffff"
+    },
+    "decal/lettering/letter-h": {
+      "size": [
+        40,
+        40
+      ],
+      "colour": "#ffffff"
+    },
+    "decal/lettering/letter-i": {
+      "size": [
+        40,
+        40
+      ],
+      "colour": "#ffffff"
+    },
+    "decal/lettering/letter-j": {
+      "size": [
+        40,
+        40
+      ],
+      "colour": "#ffffff"
+    },
+    "decal/lettering/letter-k": {
+      "size": [
+        40,
+        40
+      ],
+      "colour": "#ffffff"
+    },
+    "decal/lettering/letter-l": {
+      "size": [
+        40,
+        40
+      ],
+      "colour": "#ffffff"
+    },
+    "decal/lettering/letter-m": {
+      "size": [
+        40,
+        40
+      ],
+      "colour": "#ffffff"
+    },
+    "decal/lettering/letter-n": {
+      "size": [
+        40,
+        40
+      ],
+      "colour": "#ffffff"
+    },
+    "decal/lettering/letter-o": {
+      "size": [
+        40,
+        40
+      ],
+      "colour": "#ffffff"
+    },
+    "decal/lettering/letter-p": {
+      "size": [
+        40,
+        40
+      ],
+      "colour": "#ffffff"
+    },
+    "decal/lettering/letter-q": {
+      "size": [
+        40,
+        40
+      ],
+      "colour": "#ffffff"
+    },
+    "decal/lettering/letter-r": {
+      "size": [
+        40,
+        40
+      ],
+      "colour": "#ffffff"
+    },
+    "decal/lettering/letter-s": {
+      "size": [
+        40,
+        40
+      ],
+      "colour": "#ffffff"
+    },
+    "decal/lettering/letter-t": {
+      "size": [
+        40,
+        40
+      ],
+      "colour": "#ffffff"
+    },
+    "decal/lettering/letter-u": {
+      "size": [
+        40,
+        40
+      ],
+      "colour": "#ffffff"
+    },
+    "decal/lettering/letter-v": {
+      "size": [
+        40,
+        40
+      ],
+      "colour": "#ffffff"
+    },
+    "decal/lettering/letter-w": {
+      "size": [
+        40,
+        40
+      ],
+      "colour": "#ffffff"
+    },
+    "decal/lettering/letter-x": {
+      "size": [
+        40,
+        40
+      ],
+      "colour": "#ffffff"
+    },
+    "decal/lettering/letter-y": {
+      "size": [
+        40,
+        40
+      ],
+      "colour": "#ffffff"
+    },
+    "decal/lettering/letter-z": {
+      "size": [
+        40,
+        40
+      ],
+      "colour": "#ffffff"
+    },
+    "decal/lettering/digit-1": {
+      "size": [
+        40,
+        40
+      ],
+      "colour": "#ffffff"
+    },
+    "decal/lettering/digit-2": {
+      "size": [
+        40,
+        40
+      ],
+      "colour": "#ffffff"
+    },
+    "decal/lettering/digit-3": {
+      "size": [
+        40,
+        40
+      ],
+      "colour": "#ffffff"
+    },
+    "decal/lettering/digit-4": {
+      "size": [
+        40,
+        40
+      ],
+      "colour": "#ffffff"
+    },
+    "decal/lettering/digit-5": {
+      "size": [
+        40,
+        40
+      ],
+      "colour": "#ffffff"
+    },
+    "decal/lettering/digit-6": {
+      "size": [
+        40,
+        40
+      ],
+      "colour": "#ffffff"
+    },
+    "decal/lettering/digit-7": {
+      "size": [
+        40,
+        40
+      ],
+      "colour": "#ffffff"
+    },
+    "decal/lettering/digit-8": {
+      "size": [
+        40,
+        40
+      ],
+      "colour": "#ffffff"
+    },
+    "decal/lettering/digit-9": {
+      "size": [
+        40,
+        40
+      ],
+      "colour": "#ffffff"
+    },
+    "decal/lettering/digit-0": {
+      "size": [
+        40,
+        40
+      ],
+      "colour": "#ffffff"
+    },
+    "decal/sport/tennis-court-green": {
+      "size": [
+        33,
+        63
+      ]
+    },
+    "decal/sport/tennis-court-blue": {
+      "size": [
+        33,
+        63
+      ]
+    },
+    "decal/sport/basketball-court-green": {
+      "size": [
+        39,
+        71
+      ]
+    },
+    "decal/sport/basketball-court-blue": {
+      "size": [
+        39,
+        71
+      ]
+    },
+    "decal/elevator/level-minus-10": {
+      "size": [
+        84,
+        72
+      ]
+    },
+    "decal/elevator/level-minus-9": {
+      "size": [
+        84,
+        72
+      ]
+    },
+    "decal/elevator/level-minus-8": {
+      "size": [
+        84,
+        72
+      ]
+    },
+    "decal/elevator/level-minus-7": {
+      "size": [
+        84,
+        72
+      ]
+    },
+    "decal/elevator/level-minus-6": {
+      "size": [
+        84,
+        72
+      ]
+    },
+    "decal/elevator/level-minus-5": {
+      "size": [
+        84,
+        72
+      ]
+    },
+    "decal/elevator/level-minus-4": {
+      "size": [
+        84,
+        72
+      ]
+    },
+    "decal/elevator/level-minus-3": {
+      "size": [
+        84,
+        72
+      ]
+    },
+    "decal/elevator/level-minus-2": {
+      "size": [
+        84,
+        72
+      ]
+    },
+    "decal/elevator/level-minus-1": {
+      "size": [
+        84,
+        72
+      ]
+    },
+    "decal/elevator/level-0": {
+      "size": [
+        84,
+        72
+      ]
+    },
+    "decal/elevator/level-1": {
+      "size": [
+        84,
+        72
+      ]
+    },
+    "decal/elevator/level-2": {
+      "size": [
+        84,
+        72
+      ]
+    },
+    "decal/elevator/level-3": {
+      "size": [
+        84,
+        72
+      ]
+    },
+    "decal/elevator/level-4": {
+      "size": [
+        84,
+        72
+      ]
+    },
+    "decal/elevator/level-5": {
+      "size": [
+        84,
+        72
+      ]
+    },
+    "decal/elevator/level-6": {
+      "size": [
+        84,
+        72
+      ]
+    },
+    "decal/elevator/level-7": {
+      "size": [
+        84,
+        72
+      ]
+    },
+    "decal/elevator/level-8": {
+      "size": [
+        84,
+        72
+      ]
+    },
+    "decal/elevator/level-9": {
+      "size": [
+        84,
+        72
+      ]
+    },
+    "decal/elevator/level-10": {
+      "size": [
+        84,
+        72
+      ]
+    },
+    "decal/rail/level-crossing": {
+      "size": [
+        16,
+        27
+      ]
     }
   },
   "legacy": {
+    "decal/runway/runway_middle_1": {
+      "decal": "decal/runway/centreline",
+      "rotation": 0
+    },
+    "decal/runway/runway_middle_2": {
+      "decal": "decal/runway/centreline",
+      "rotation": 60
+    },
+    "decal/runway/runway_middle_3": {
+      "decal": "decal/runway/centreline",
+      "rotation": -60
+    },
+    "decal/runway/runway_number_06": {
+      "decal": "decal/runway/number-06",
+      "rotation": -60
+    },
+    "decal/runway/runway_number_06c": {
+      "decal": "decal/runway/number-06c",
+      "rotation": -60
+    },
+    "decal/runway/runway_number_06l": {
+      "decal": "decal/runway/number-06l",
+      "rotation": -60
+    },
+    "decal/runway/runway_number_06r": {
+      "decal": "decal/runway/number-06r",
+      "rotation": -60
+    },
+    "decal/runway/runway_number_12": {
+      "decal": "decal/runway/number-12",
+      "rotation": -120
+    },
+    "decal/runway/runway_number_12c": {
+      "decal": "decal/runway/number-12c",
+      "rotation": -120
+    },
+    "decal/runway/runway_number_12l": {
+      "decal": "decal/runway/number-12l",
+      "rotation": -120
+    },
+    "decal/runway/runway_number_12r": {
+      "decal": "decal/runway/number-12r",
+      "rotation": -120
+    },
+    "decal/runway/runway_number_18": {
+      "decal": "decal/runway/number-18",
+      "rotation": 180
+    },
+    "decal/runway/runway_number_18c": {
+      "decal": "decal/runway/number-18c",
+      "rotation": 180
+    },
+    "decal/runway/runway_number_18l": {
+      "decal": "decal/runway/number-18l",
+      "rotation": 180
+    },
+    "decal/runway/runway_number_18r": {
+      "decal": "decal/runway/number-18r",
+      "rotation": 180
+    },
+    "decal/runway/runway_number_24": {
+      "decal": "decal/runway/number-24",
+      "rotation": 120
+    },
+    "decal/runway/runway_number_24c": {
+      "decal": "decal/runway/number-24c",
+      "rotation": 120
+    },
+    "decal/runway/runway_number_24l": {
+      "decal": "decal/runway/number-24l",
+      "rotation": 120
+    },
+    "decal/runway/runway_number_24r": {
+      "decal": "decal/runway/number-24r",
+      "rotation": 120
+    },
+    "decal/runway/runway_number_30": {
+      "decal": "decal/runway/number-30",
+      "rotation": 60
+    },
+    "decal/runway/runway_number_30c": {
+      "decal": "decal/runway/number-30c",
+      "rotation": 60
+    },
+    "decal/runway/runway_number_30l": {
+      "decal": "decal/runway/number-30l",
+      "rotation": 60
+    },
+    "decal/runway/runway_number_30r": {
+      "decal": "decal/runway/number-30r",
+      "rotation": 60
+    },
+    "decal/runway/runway_number_36": {
+      "decal": "decal/runway/number-36",
+      "rotation": 0
+    },
+    "decal/runway/runway_number_36c": {
+      "decal": "decal/runway/number-36c",
+      "rotation": 0
+    },
+    "decal/runway/runway_number_36l": {
+      "decal": "decal/runway/number-36l",
+      "rotation": 0
+    },
+    "decal/runway/runway_number_36r": {
+      "decal": "decal/runway/number-36r",
+      "rotation": 0
+    },
+    "decal/runway/runway_start_1": {
+      "decal": "decal/runway/threshold",
+      "rotation": 0
+    },
+    "decal/runway/runway_start_2": {
+      "decal": "decal/runway/threshold",
+      "rotation": 60
+    },
+    "decal/runway/runway_start_3": {
+      "decal": "decal/runway/threshold",
+      "rotation": -60
+    },
+    "decal/saxarba/SMV_Fluff/FluffSystem-02-Sport-01-TennisCourt-1-01": {
+      "decal": "decal/sport/tennis-court-green",
+      "rotation": 0
+    },
+    "decal/saxarba/SMV_Fluff/FluffSystem-02-Sport-01-TennisCourt-1-02": {
+      "decal": "decal/sport/tennis-court-green",
+      "rotation": -60
+    },
+    "decal/saxarba/SMV_Fluff/FluffSystem-02-Sport-01-TennisCourt-1-03": {
+      "decal": "decal/sport/tennis-court-green",
+      "rotation": 60
+    },
+    "decal/saxarba/SMV_Fluff/FluffSystem-02-Sport-01-TennisCourt-2-01": {
+      "decal": "decal/sport/tennis-court-blue",
+      "rotation": 0
+    },
+    "decal/saxarba/SMV_Fluff/FluffSystem-02-Sport-01-TennisCourt-2-02": {
+      "decal": "decal/sport/tennis-court-blue",
+      "rotation": -60
+    },
+    "decal/saxarba/SMV_Fluff/FluffSystem-02-Sport-01-TennisCourt-2-03": {
+      "decal": "decal/sport/tennis-court-blue",
+      "rotation": 60
+    },
+    "decal/saxarba/SMV_Fluff/FluffSystem-02-Sport-02-BasketBallCourt-1-01": {
+      "decal": "decal/sport/basketball-court-green",
+      "rotation": 0
+    },
+    "decal/saxarba/SMV_Fluff/FluffSystem-02-Sport-02-BasketBallCourt-1-02": {
+      "decal": "decal/sport/basketball-court-green",
+      "rotation": -60
+    },
+    "decal/saxarba/SMV_Fluff/FluffSystem-02-Sport-02-BasketBallCourt-1-03": {
+      "decal": "decal/sport/basketball-court-green",
+      "rotation": 60
+    },
+    "decal/saxarba/SMV_Fluff/FluffSystem-02-Sport-02-BasketBallCourt-2-01": {
+      "decal": "decal/sport/basketball-court-blue",
+      "rotation": 0
+    },
+    "decal/saxarba/SMV_Fluff/FluffSystem-02-Sport-02-BasketBallCourt-2-02": {
+      "decal": "decal/sport/basketball-court-blue",
+      "rotation": -60
+    },
+    "decal/saxarba/SMV_Fluff/FluffSystem-02-Sport-02-BasketBallCourt-2-03": {
+      "decal": "decal/sport/basketball-court-blue",
+      "rotation": 60
+    },
     "decal/saxarba/SMV_GroundSymbols/FluffSystem-05-Symbol-01-RedCross-1-01": {
       "decal": "decal/emblems/red-cross",
       "scale": 0.263,
@@ -1340,6 +2312,1210 @@
       "decal": "decal/emblems/comstar",
       "set": true,
       "direction": 3
+    },
+    "decal/saxarba/SMV_LandingPads/SpaceportSystem-01-LandingPad-01-VTOL-1-01": {
+      "decal": "decal/landing-pads/vtol-concrete",
+      "rotation": 0
+    },
+    "decal/saxarba/SMV_LandingPads/SpaceportSystem-01-LandingPad-01-VTOL-1-02": {
+      "decal": "decal/landing-pads/vtol-concrete",
+      "rotation": -60
+    },
+    "decal/saxarba/SMV_LandingPads/SpaceportSystem-01-LandingPad-01-VTOL-1-03": {
+      "decal": "decal/landing-pads/vtol-concrete",
+      "rotation": 60
+    },
+    "decal/saxarba/SMV_LandingPads/SpaceportSystem-01-LandingPad-01-VTOL-2-01": {
+      "decal": "decal/landing-pads/vtol-asphalt",
+      "rotation": 0
+    },
+    "decal/saxarba/SMV_LandingPads/SpaceportSystem-01-LandingPad-01-VTOL-2-02": {
+      "decal": "decal/landing-pads/vtol-asphalt",
+      "rotation": -60
+    },
+    "decal/saxarba/SMV_LandingPads/SpaceportSystem-01-LandingPad-01-VTOL-2-03": {
+      "decal": "decal/landing-pads/vtol-asphalt",
+      "rotation": 60
+    },
+    "decal/saxarba/SMV_LandingPads/SpaceportSystem-01-LandingPad-02-Medic-1-01": {
+      "decal": "decal/landing-pads/medic-concrete",
+      "rotation": 0
+    },
+    "decal/saxarba/SMV_LandingPads/SpaceportSystem-01-LandingPad-02-Medic-1-02": {
+      "decal": "decal/landing-pads/medic-concrete",
+      "rotation": -60
+    },
+    "decal/saxarba/SMV_LandingPads/SpaceportSystem-01-LandingPad-02-Medic-1-03": {
+      "decal": "decal/landing-pads/medic-concrete",
+      "rotation": 60
+    },
+    "decal/saxarba/SMV_LandingPads/SpaceportSystem-01-LandingPad-02-Medic-2-01": {
+      "decal": "decal/landing-pads/medic-asphalt",
+      "rotation": 0
+    },
+    "decal/saxarba/SMV_LandingPads/SpaceportSystem-01-LandingPad-02-Medic-2-02": {
+      "decal": "decal/landing-pads/medic-asphalt",
+      "rotation": -60
+    },
+    "decal/saxarba/SMV_LandingPads/SpaceportSystem-01-LandingPad-02-Medic-2-03": {
+      "decal": "decal/landing-pads/medic-asphalt",
+      "rotation": 60
+    },
+    "decal/saxarba/SMV_LandingPads/SpaceportSystem-01-LandingPad-03-Aero-1-01": {
+      "decal": "decal/landing-pads/aero-concrete",
+      "rotation": 0
+    },
+    "decal/saxarba/SMV_LandingPads/SpaceportSystem-01-LandingPad-03-Aero-1-02": {
+      "decal": "decal/landing-pads/aero-concrete",
+      "rotation": -60
+    },
+    "decal/saxarba/SMV_LandingPads/SpaceportSystem-01-LandingPad-03-Aero-1-03": {
+      "decal": "decal/landing-pads/aero-concrete",
+      "rotation": 60
+    },
+    "decal/saxarba/SMV_LandingPads/SpaceportSystem-01-LandingPad-03-Aero-2-01": {
+      "decal": "decal/landing-pads/aero-asphalt",
+      "rotation": 0
+    },
+    "decal/saxarba/SMV_LandingPads/SpaceportSystem-01-LandingPad-03-Aero-2-02": {
+      "decal": "decal/landing-pads/aero-asphalt",
+      "rotation": -60
+    },
+    "decal/saxarba/SMV_LandingPads/SpaceportSystem-01-LandingPad-03-Aero-2-03": {
+      "decal": "decal/landing-pads/aero-asphalt",
+      "rotation": 60
+    },
+    "decal/saxarba/SMV_LandingPads/SpaceportSystem-01-LandingPad-03-Aero-3-01": {
+      "decal": "decal/landing-pads/aero-lit-concrete",
+      "rotation": 0
+    },
+    "decal/saxarba/SMV_LandingPads/SpaceportSystem-01-LandingPad-03-Aero-3-02": {
+      "decal": "decal/landing-pads/aero-lit-concrete",
+      "rotation": -60
+    },
+    "decal/saxarba/SMV_LandingPads/SpaceportSystem-01-LandingPad-03-Aero-3-03": {
+      "decal": "decal/landing-pads/aero-lit-concrete",
+      "rotation": 60
+    },
+    "decal/saxarba/SMV_LandingPads/SpaceportSystem-01-LandingPad-03-Aero-4-01": {
+      "decal": "decal/landing-pads/aero-lit-asphalt",
+      "rotation": 0
+    },
+    "decal/saxarba/SMV_LandingPads/SpaceportSystem-01-LandingPad-03-Aero-4-02": {
+      "decal": "decal/landing-pads/aero-lit-asphalt",
+      "rotation": -60
+    },
+    "decal/saxarba/SMV_LandingPads/SpaceportSystem-01-LandingPad-03-Aero-4-03": {
+      "decal": "decal/landing-pads/aero-lit-asphalt",
+      "rotation": 60
+    },
+    "decal/saxarba/SMV_LandingPads/SpaceportSystem-01-LandingPad-04-Dropship-1-01": {
+      "decal": "decal/landing-pads/dropship-concrete",
+      "set": true,
+      "direction": 0
+    },
+    "decal/saxarba/SMV_LandingPads/SpaceportSystem-01-LandingPad-04-Dropship-1-02": {
+      "decal": "decal/landing-pads/dropship-concrete",
+      "set": true,
+      "direction": 5
+    },
+    "decal/saxarba/SMV_LandingPads/SpaceportSystem-01-LandingPad-04-Dropship-1-03": {
+      "decal": "decal/landing-pads/dropship-concrete",
+      "set": true,
+      "direction": 1
+    },
+    "decal/saxarba/SMV_LandingPads/SpaceportSystem-01-LandingPad-04-Dropship-1-04": {
+      "decal": "decal/landing-pads/dropship-concrete",
+      "set": true
+    },
+    "decal/saxarba/SMV_LandingPads/SpaceportSystem-01-LandingPad-04-Dropship-1-05": {
+      "decal": "decal/landing-pads/dropship-concrete",
+      "set": true,
+      "direction": 4
+    },
+    "decal/saxarba/SMV_LandingPads/SpaceportSystem-01-LandingPad-04-Dropship-1-06": {
+      "decal": "decal/landing-pads/dropship-concrete",
+      "set": true,
+      "direction": 2
+    },
+    "decal/saxarba/SMV_LandingPads/SpaceportSystem-01-LandingPad-04-Dropship-1-07": {
+      "decal": "decal/landing-pads/dropship-concrete",
+      "set": true,
+      "direction": 3
+    },
+    "decal/saxarba/SMV_LandingPads/SpaceportSystem-01-LandingPad-04-Dropship-2-01": {
+      "decal": "decal/landing-pads/dropship-asphalt",
+      "set": true,
+      "direction": 0
+    },
+    "decal/saxarba/SMV_LandingPads/SpaceportSystem-01-LandingPad-04-Dropship-2-02": {
+      "decal": "decal/landing-pads/dropship-asphalt",
+      "set": true,
+      "direction": 5
+    },
+    "decal/saxarba/SMV_LandingPads/SpaceportSystem-01-LandingPad-04-Dropship-2-03": {
+      "decal": "decal/landing-pads/dropship-asphalt",
+      "set": true,
+      "direction": 1
+    },
+    "decal/saxarba/SMV_LandingPads/SpaceportSystem-01-LandingPad-04-Dropship-2-04": {
+      "decal": "decal/landing-pads/dropship-asphalt",
+      "set": true
+    },
+    "decal/saxarba/SMV_LandingPads/SpaceportSystem-01-LandingPad-04-Dropship-2-05": {
+      "decal": "decal/landing-pads/dropship-asphalt",
+      "set": true,
+      "direction": 4
+    },
+    "decal/saxarba/SMV_LandingPads/SpaceportSystem-01-LandingPad-04-Dropship-2-06": {
+      "decal": "decal/landing-pads/dropship-asphalt",
+      "set": true,
+      "direction": 2
+    },
+    "decal/saxarba/SMV_LandingPads/SpaceportSystem-01-LandingPad-04-Dropship-2-07": {
+      "decal": "decal/landing-pads/dropship-asphalt",
+      "set": true,
+      "direction": 3
+    },
+    "decal/saxarba/SMV_LandingPads/SpaceportSystem-01-LandingPad-04-Dropship-3-01": {
+      "decal": "decal/landing-pads/dropship-ring-concrete",
+      "set": true,
+      "direction": 0
+    },
+    "decal/saxarba/SMV_LandingPads/SpaceportSystem-01-LandingPad-04-Dropship-3-02": {
+      "decal": "decal/landing-pads/dropship-ring-concrete",
+      "set": true,
+      "direction": 5
+    },
+    "decal/saxarba/SMV_LandingPads/SpaceportSystem-01-LandingPad-04-Dropship-3-03": {
+      "decal": "decal/landing-pads/dropship-ring-concrete",
+      "set": true,
+      "direction": 1
+    },
+    "decal/saxarba/SMV_LandingPads/SpaceportSystem-01-LandingPad-04-Dropship-3-04": {
+      "decal": "decal/landing-pads/dropship-ring-concrete",
+      "set": true
+    },
+    "decal/saxarba/SMV_LandingPads/SpaceportSystem-01-LandingPad-04-Dropship-3-05": {
+      "decal": "decal/landing-pads/dropship-ring-concrete",
+      "set": true,
+      "direction": 4
+    },
+    "decal/saxarba/SMV_LandingPads/SpaceportSystem-01-LandingPad-04-Dropship-3-06": {
+      "decal": "decal/landing-pads/dropship-ring-concrete",
+      "set": true,
+      "direction": 2
+    },
+    "decal/saxarba/SMV_LandingPads/SpaceportSystem-01-LandingPad-04-Dropship-3-07": {
+      "decal": "decal/landing-pads/dropship-ring-concrete",
+      "set": true,
+      "direction": 3
+    },
+    "decal/saxarba/SMV_LandingPads/SpaceportSystem-01-LandingPad-04-Dropship-4-01": {
+      "decal": "decal/landing-pads/dropship-ring-asphalt",
+      "set": true,
+      "direction": 0
+    },
+    "decal/saxarba/SMV_LandingPads/SpaceportSystem-01-LandingPad-04-Dropship-4-02": {
+      "decal": "decal/landing-pads/dropship-ring-asphalt",
+      "set": true,
+      "direction": 5
+    },
+    "decal/saxarba/SMV_LandingPads/SpaceportSystem-01-LandingPad-04-Dropship-4-03": {
+      "decal": "decal/landing-pads/dropship-ring-asphalt",
+      "set": true,
+      "direction": 1
+    },
+    "decal/saxarba/SMV_LandingPads/SpaceportSystem-01-LandingPad-04-Dropship-4-04": {
+      "decal": "decal/landing-pads/dropship-ring-asphalt",
+      "set": true
+    },
+    "decal/saxarba/SMV_LandingPads/SpaceportSystem-01-LandingPad-04-Dropship-4-05": {
+      "decal": "decal/landing-pads/dropship-ring-asphalt",
+      "set": true,
+      "direction": 4
+    },
+    "decal/saxarba/SMV_LandingPads/SpaceportSystem-01-LandingPad-04-Dropship-4-06": {
+      "decal": "decal/landing-pads/dropship-ring-asphalt",
+      "set": true,
+      "direction": 2
+    },
+    "decal/saxarba/SMV_LandingPads/SpaceportSystem-01-LandingPad-04-Dropship-4-07": {
+      "decal": "decal/landing-pads/dropship-ring-asphalt",
+      "set": true,
+      "direction": 3
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-1-01": {
+      "decal": "decal/lettering/letter-a",
+      "rotation": 0,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-1-02": {
+      "decal": "decal/lettering/letter-b",
+      "rotation": 0,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-1-03": {
+      "decal": "decal/lettering/letter-c",
+      "rotation": 0,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-1-04": {
+      "decal": "decal/lettering/letter-d",
+      "rotation": 0,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-1-05": {
+      "decal": "decal/lettering/letter-e",
+      "rotation": 0,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-1-06": {
+      "decal": "decal/lettering/letter-f",
+      "rotation": 0,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-1-07": {
+      "decal": "decal/lettering/letter-g",
+      "rotation": 0,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-1-08": {
+      "decal": "decal/lettering/letter-h",
+      "rotation": 0,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-1-09": {
+      "decal": "decal/lettering/letter-i",
+      "rotation": 0,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-1-10": {
+      "decal": "decal/lettering/letter-j",
+      "rotation": 0,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-1-11": {
+      "decal": "decal/lettering/letter-k",
+      "rotation": 0,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-1-12": {
+      "decal": "decal/lettering/letter-l",
+      "rotation": 0,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-1-13": {
+      "decal": "decal/lettering/letter-m",
+      "rotation": 0,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-1-14": {
+      "decal": "decal/lettering/letter-n",
+      "rotation": 0,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-1-15": {
+      "decal": "decal/lettering/letter-o",
+      "rotation": 0,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-1-16": {
+      "decal": "decal/lettering/letter-p",
+      "rotation": 0,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-1-17": {
+      "decal": "decal/lettering/letter-q",
+      "rotation": 0,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-1-18": {
+      "decal": "decal/lettering/letter-r",
+      "rotation": 0,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-1-19": {
+      "decal": "decal/lettering/letter-s",
+      "rotation": 0,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-1-20": {
+      "decal": "decal/lettering/letter-t",
+      "rotation": 0,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-1-21": {
+      "decal": "decal/lettering/letter-u",
+      "rotation": 0,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-1-22": {
+      "decal": "decal/lettering/letter-v",
+      "rotation": 0,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-1-23": {
+      "decal": "decal/lettering/letter-w",
+      "rotation": 0,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-1-24": {
+      "decal": "decal/lettering/letter-x",
+      "rotation": 0,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-1-25": {
+      "decal": "decal/lettering/letter-y",
+      "rotation": 0,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-1-26": {
+      "decal": "decal/lettering/letter-z",
+      "rotation": 0,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-2-01": {
+      "decal": "decal/lettering/letter-a",
+      "rotation": -30,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-2-02": {
+      "decal": "decal/lettering/letter-b",
+      "rotation": -30,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-2-03": {
+      "decal": "decal/lettering/letter-c",
+      "rotation": -30,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-2-04": {
+      "decal": "decal/lettering/letter-d",
+      "rotation": -30,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-2-05": {
+      "decal": "decal/lettering/letter-e",
+      "rotation": -30,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-2-06": {
+      "decal": "decal/lettering/letter-f",
+      "rotation": -30,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-2-07": {
+      "decal": "decal/lettering/letter-g",
+      "rotation": -30,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-2-08": {
+      "decal": "decal/lettering/letter-h",
+      "rotation": -30,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-2-09": {
+      "decal": "decal/lettering/letter-i",
+      "rotation": -30,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-2-10": {
+      "decal": "decal/lettering/letter-j",
+      "rotation": -30,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-2-11": {
+      "decal": "decal/lettering/letter-k",
+      "rotation": -30,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-2-12": {
+      "decal": "decal/lettering/letter-l",
+      "rotation": -30,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-2-13": {
+      "decal": "decal/lettering/letter-m",
+      "rotation": -30,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-2-14": {
+      "decal": "decal/lettering/letter-n",
+      "rotation": -30,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-2-15": {
+      "decal": "decal/lettering/letter-o",
+      "rotation": -30,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-2-16": {
+      "decal": "decal/lettering/letter-p",
+      "rotation": -30,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-2-17": {
+      "decal": "decal/lettering/letter-q",
+      "rotation": -30,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-2-18": {
+      "decal": "decal/lettering/letter-r",
+      "rotation": -30,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-2-19": {
+      "decal": "decal/lettering/letter-s",
+      "rotation": -30,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-2-20": {
+      "decal": "decal/lettering/letter-t",
+      "rotation": -30,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-2-21": {
+      "decal": "decal/lettering/letter-u",
+      "rotation": -30,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-2-22": {
+      "decal": "decal/lettering/letter-v",
+      "rotation": -30,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-2-23": {
+      "decal": "decal/lettering/letter-w",
+      "rotation": -30,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-2-24": {
+      "decal": "decal/lettering/letter-x",
+      "rotation": -30,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-2-25": {
+      "decal": "decal/lettering/letter-y",
+      "rotation": -30,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-2-26": {
+      "decal": "decal/lettering/letter-z",
+      "rotation": -30,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-3-01": {
+      "decal": "decal/lettering/letter-a",
+      "rotation": 30,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-3-02": {
+      "decal": "decal/lettering/letter-b",
+      "rotation": 30,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-3-03": {
+      "decal": "decal/lettering/letter-c",
+      "rotation": 30,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-3-04": {
+      "decal": "decal/lettering/letter-d",
+      "rotation": 30,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-3-05": {
+      "decal": "decal/lettering/letter-e",
+      "rotation": 30,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-3-06": {
+      "decal": "decal/lettering/letter-f",
+      "rotation": 30,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-3-07": {
+      "decal": "decal/lettering/letter-g",
+      "rotation": 30,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-3-08": {
+      "decal": "decal/lettering/letter-h",
+      "rotation": 30,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-3-09": {
+      "decal": "decal/lettering/letter-i",
+      "rotation": 30,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-3-10": {
+      "decal": "decal/lettering/letter-j",
+      "rotation": 30,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-3-11": {
+      "decal": "decal/lettering/letter-k",
+      "rotation": 30,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-3-12": {
+      "decal": "decal/lettering/letter-l",
+      "rotation": 30,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-3-13": {
+      "decal": "decal/lettering/letter-m",
+      "rotation": 30,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-3-14": {
+      "decal": "decal/lettering/letter-n",
+      "rotation": 30,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-3-15": {
+      "decal": "decal/lettering/letter-o",
+      "rotation": 30,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-3-16": {
+      "decal": "decal/lettering/letter-p",
+      "rotation": 30,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-3-17": {
+      "decal": "decal/lettering/letter-q",
+      "rotation": 30,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-3-18": {
+      "decal": "decal/lettering/letter-r",
+      "rotation": 30,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-3-19": {
+      "decal": "decal/lettering/letter-s",
+      "rotation": 30,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-3-20": {
+      "decal": "decal/lettering/letter-t",
+      "rotation": 30,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-3-21": {
+      "decal": "decal/lettering/letter-u",
+      "rotation": 30,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-3-22": {
+      "decal": "decal/lettering/letter-v",
+      "rotation": 30,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-3-23": {
+      "decal": "decal/lettering/letter-w",
+      "rotation": 30,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-3-24": {
+      "decal": "decal/lettering/letter-x",
+      "rotation": 30,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-3-25": {
+      "decal": "decal/lettering/letter-y",
+      "rotation": 30,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-3-26": {
+      "decal": "decal/lettering/letter-z",
+      "rotation": 30,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-4-01": {
+      "decal": "decal/lettering/letter-a",
+      "rotation": 0
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-4-02": {
+      "decal": "decal/lettering/letter-b",
+      "rotation": 0
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-4-03": {
+      "decal": "decal/lettering/letter-c",
+      "rotation": 0
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-4-04": {
+      "decal": "decal/lettering/letter-d",
+      "rotation": 0
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-4-05": {
+      "decal": "decal/lettering/letter-e",
+      "rotation": 0
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-4-06": {
+      "decal": "decal/lettering/letter-f",
+      "rotation": 0
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-4-07": {
+      "decal": "decal/lettering/letter-g",
+      "rotation": 0
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-4-08": {
+      "decal": "decal/lettering/letter-h",
+      "rotation": 0
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-4-09": {
+      "decal": "decal/lettering/letter-i",
+      "rotation": 0
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-4-10": {
+      "decal": "decal/lettering/letter-j",
+      "rotation": 0
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-4-11": {
+      "decal": "decal/lettering/letter-k",
+      "rotation": 0
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-4-12": {
+      "decal": "decal/lettering/letter-l",
+      "rotation": 0
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-4-13": {
+      "decal": "decal/lettering/letter-m",
+      "rotation": 0
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-4-14": {
+      "decal": "decal/lettering/letter-n",
+      "rotation": 0
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-4-15": {
+      "decal": "decal/lettering/letter-o",
+      "rotation": 0
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-4-16": {
+      "decal": "decal/lettering/letter-p",
+      "rotation": 0
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-4-17": {
+      "decal": "decal/lettering/letter-q",
+      "rotation": 0
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-4-18": {
+      "decal": "decal/lettering/letter-r",
+      "rotation": 0
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-4-19": {
+      "decal": "decal/lettering/letter-s",
+      "rotation": 0
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-4-20": {
+      "decal": "decal/lettering/letter-t",
+      "rotation": 0
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-4-21": {
+      "decal": "decal/lettering/letter-u",
+      "rotation": 0
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-4-22": {
+      "decal": "decal/lettering/letter-v",
+      "rotation": 0
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-4-23": {
+      "decal": "decal/lettering/letter-w",
+      "rotation": 0
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-4-24": {
+      "decal": "decal/lettering/letter-x",
+      "rotation": 0
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-4-25": {
+      "decal": "decal/lettering/letter-y",
+      "rotation": 0
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-4-26": {
+      "decal": "decal/lettering/letter-z",
+      "rotation": 0
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-5-01": {
+      "decal": "decal/lettering/letter-a",
+      "rotation": -30
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-5-02": {
+      "decal": "decal/lettering/letter-b",
+      "rotation": -30
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-5-03": {
+      "decal": "decal/lettering/letter-c",
+      "rotation": -30
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-5-04": {
+      "decal": "decal/lettering/letter-d",
+      "rotation": -30
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-5-05": {
+      "decal": "decal/lettering/letter-e",
+      "rotation": -30
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-5-06": {
+      "decal": "decal/lettering/letter-f",
+      "rotation": -30
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-5-07": {
+      "decal": "decal/lettering/letter-g",
+      "rotation": -30
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-5-08": {
+      "decal": "decal/lettering/letter-h",
+      "rotation": -30
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-5-09": {
+      "decal": "decal/lettering/letter-i",
+      "rotation": -30
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-5-10": {
+      "decal": "decal/lettering/letter-j",
+      "rotation": -30
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-5-11": {
+      "decal": "decal/lettering/letter-k",
+      "rotation": -30
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-5-12": {
+      "decal": "decal/lettering/letter-l",
+      "rotation": -30
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-5-13": {
+      "decal": "decal/lettering/letter-m",
+      "rotation": -30
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-5-14": {
+      "decal": "decal/lettering/letter-n",
+      "rotation": -30
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-5-15": {
+      "decal": "decal/lettering/letter-o",
+      "rotation": -30
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-5-16": {
+      "decal": "decal/lettering/letter-p",
+      "rotation": -30
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-5-17": {
+      "decal": "decal/lettering/letter-q",
+      "rotation": -30
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-5-18": {
+      "decal": "decal/lettering/letter-r",
+      "rotation": -30
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-5-19": {
+      "decal": "decal/lettering/letter-s",
+      "rotation": -30
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-5-20": {
+      "decal": "decal/lettering/letter-t",
+      "rotation": -30
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-5-21": {
+      "decal": "decal/lettering/letter-u",
+      "rotation": -30
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-5-22": {
+      "decal": "decal/lettering/letter-v",
+      "rotation": -30
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-5-23": {
+      "decal": "decal/lettering/letter-w",
+      "rotation": -30
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-5-24": {
+      "decal": "decal/lettering/letter-x",
+      "rotation": -30
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-5-25": {
+      "decal": "decal/lettering/letter-y",
+      "rotation": -30
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-5-26": {
+      "decal": "decal/lettering/letter-z",
+      "rotation": -30
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-6-01": {
+      "decal": "decal/lettering/letter-a",
+      "rotation": 30
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-6-02": {
+      "decal": "decal/lettering/letter-b",
+      "rotation": 30
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-6-03": {
+      "decal": "decal/lettering/letter-c",
+      "rotation": 30
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-6-04": {
+      "decal": "decal/lettering/letter-d",
+      "rotation": 30
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-6-05": {
+      "decal": "decal/lettering/letter-e",
+      "rotation": 30
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-6-06": {
+      "decal": "decal/lettering/letter-f",
+      "rotation": 30
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-6-07": {
+      "decal": "decal/lettering/letter-g",
+      "rotation": 30
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-6-08": {
+      "decal": "decal/lettering/letter-h",
+      "rotation": 30
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-6-09": {
+      "decal": "decal/lettering/letter-i",
+      "rotation": 30
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-6-10": {
+      "decal": "decal/lettering/letter-j",
+      "rotation": 30
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-6-11": {
+      "decal": "decal/lettering/letter-k",
+      "rotation": 30
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-6-12": {
+      "decal": "decal/lettering/letter-l",
+      "rotation": 30
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-6-13": {
+      "decal": "decal/lettering/letter-m",
+      "rotation": 30
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-6-14": {
+      "decal": "decal/lettering/letter-n",
+      "rotation": 30
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-6-15": {
+      "decal": "decal/lettering/letter-o",
+      "rotation": 30
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-6-16": {
+      "decal": "decal/lettering/letter-p",
+      "rotation": 30
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-6-17": {
+      "decal": "decal/lettering/letter-q",
+      "rotation": 30
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-6-18": {
+      "decal": "decal/lettering/letter-r",
+      "rotation": 30
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-6-19": {
+      "decal": "decal/lettering/letter-s",
+      "rotation": 30
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-6-20": {
+      "decal": "decal/lettering/letter-t",
+      "rotation": 30
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-6-21": {
+      "decal": "decal/lettering/letter-u",
+      "rotation": 30
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-6-22": {
+      "decal": "decal/lettering/letter-v",
+      "rotation": 30
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-6-23": {
+      "decal": "decal/lettering/letter-w",
+      "rotation": 30
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-6-24": {
+      "decal": "decal/lettering/letter-x",
+      "rotation": 30
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-6-25": {
+      "decal": "decal/lettering/letter-y",
+      "rotation": 30
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-01-Character-6-26": {
+      "decal": "decal/lettering/letter-z",
+      "rotation": 30
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-02-Number-1-01": {
+      "decal": "decal/lettering/digit-1",
+      "rotation": 0,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-02-Number-1-02": {
+      "decal": "decal/lettering/digit-2",
+      "rotation": 0,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-02-Number-1-03": {
+      "decal": "decal/lettering/digit-3",
+      "rotation": 0,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-02-Number-1-04": {
+      "decal": "decal/lettering/digit-4",
+      "rotation": 0,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-02-Number-1-05": {
+      "decal": "decal/lettering/digit-5",
+      "rotation": 0,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-02-Number-1-06": {
+      "decal": "decal/lettering/digit-6",
+      "rotation": 0,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-02-Number-1-07": {
+      "decal": "decal/lettering/digit-7",
+      "rotation": 0,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-02-Number-1-08": {
+      "decal": "decal/lettering/digit-8",
+      "rotation": 0,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-02-Number-1-09": {
+      "decal": "decal/lettering/digit-9",
+      "rotation": 0,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-02-Number-1-10": {
+      "decal": "decal/lettering/digit-0",
+      "rotation": 0,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-02-Number-2-01": {
+      "decal": "decal/lettering/digit-1",
+      "rotation": -30,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-02-Number-2-02": {
+      "decal": "decal/lettering/digit-2",
+      "rotation": -30,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-02-Number-2-03": {
+      "decal": "decal/lettering/digit-3",
+      "rotation": -30,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-02-Number-2-04": {
+      "decal": "decal/lettering/digit-4",
+      "rotation": -30,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-02-Number-2-05": {
+      "decal": "decal/lettering/digit-5",
+      "rotation": -30,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-02-Number-2-06": {
+      "decal": "decal/lettering/digit-6",
+      "rotation": -30,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-02-Number-2-07": {
+      "decal": "decal/lettering/digit-7",
+      "rotation": -30,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-02-Number-2-08": {
+      "decal": "decal/lettering/digit-8",
+      "rotation": -30,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-02-Number-2-09": {
+      "decal": "decal/lettering/digit-9",
+      "rotation": -30,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-02-Number-2-10": {
+      "decal": "decal/lettering/digit-0",
+      "rotation": -30,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-02-Number-3-01": {
+      "decal": "decal/lettering/digit-1",
+      "rotation": 30,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-02-Number-3-02": {
+      "decal": "decal/lettering/digit-2",
+      "rotation": 30,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-02-Number-3-03": {
+      "decal": "decal/lettering/digit-3",
+      "rotation": 30,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-02-Number-3-04": {
+      "decal": "decal/lettering/digit-4",
+      "rotation": 30,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-02-Number-3-05": {
+      "decal": "decal/lettering/digit-5",
+      "rotation": 30,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-02-Number-3-06": {
+      "decal": "decal/lettering/digit-6",
+      "rotation": 30,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-02-Number-3-07": {
+      "decal": "decal/lettering/digit-7",
+      "rotation": 30,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-02-Number-3-08": {
+      "decal": "decal/lettering/digit-8",
+      "rotation": 30,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-02-Number-3-09": {
+      "decal": "decal/lettering/digit-9",
+      "rotation": 30,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-02-Number-3-10": {
+      "decal": "decal/lettering/digit-0",
+      "rotation": 30,
+      "colour": "#000000"
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-02-Number-4-01": {
+      "decal": "decal/lettering/digit-1",
+      "rotation": 0
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-02-Number-4-02": {
+      "decal": "decal/lettering/digit-2",
+      "rotation": 0
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-02-Number-4-03": {
+      "decal": "decal/lettering/digit-3",
+      "rotation": 0
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-02-Number-4-04": {
+      "decal": "decal/lettering/digit-4",
+      "rotation": 0
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-02-Number-4-05": {
+      "decal": "decal/lettering/digit-5",
+      "rotation": 0
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-02-Number-4-06": {
+      "decal": "decal/lettering/digit-6",
+      "rotation": 0
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-02-Number-4-07": {
+      "decal": "decal/lettering/digit-7",
+      "rotation": 0
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-02-Number-4-08": {
+      "decal": "decal/lettering/digit-8",
+      "rotation": 0
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-02-Number-4-09": {
+      "decal": "decal/lettering/digit-9",
+      "rotation": 0
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-02-Number-4-10": {
+      "decal": "decal/lettering/digit-0",
+      "rotation": 0
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-02-Number-5-01": {
+      "decal": "decal/lettering/digit-1",
+      "rotation": -30
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-02-Number-5-02": {
+      "decal": "decal/lettering/digit-2",
+      "rotation": -30
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-02-Number-5-03": {
+      "decal": "decal/lettering/digit-3",
+      "rotation": -30
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-02-Number-5-04": {
+      "decal": "decal/lettering/digit-4",
+      "rotation": -30
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-02-Number-5-05": {
+      "decal": "decal/lettering/digit-5",
+      "rotation": -30
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-02-Number-5-06": {
+      "decal": "decal/lettering/digit-6",
+      "rotation": -30
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-02-Number-5-07": {
+      "decal": "decal/lettering/digit-7",
+      "rotation": -30
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-02-Number-5-08": {
+      "decal": "decal/lettering/digit-8",
+      "rotation": -30
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-02-Number-5-09": {
+      "decal": "decal/lettering/digit-9",
+      "rotation": -30
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-02-Number-5-10": {
+      "decal": "decal/lettering/digit-0",
+      "rotation": -30
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-02-Number-6-01": {
+      "decal": "decal/lettering/digit-1",
+      "rotation": 30
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-02-Number-6-02": {
+      "decal": "decal/lettering/digit-2",
+      "rotation": 30
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-02-Number-6-03": {
+      "decal": "decal/lettering/digit-3",
+      "rotation": 30
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-02-Number-6-04": {
+      "decal": "decal/lettering/digit-4",
+      "rotation": 30
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-02-Number-6-05": {
+      "decal": "decal/lettering/digit-5",
+      "rotation": 30
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-02-Number-6-06": {
+      "decal": "decal/lettering/digit-6",
+      "rotation": 30
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-02-Number-6-07": {
+      "decal": "decal/lettering/digit-7",
+      "rotation": 30
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-02-Number-6-08": {
+      "decal": "decal/lettering/digit-8",
+      "rotation": 30
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-02-Number-6-09": {
+      "decal": "decal/lettering/digit-9",
+      "rotation": 30
+    },
+    "decal/saxarba/SMV_Letters/FluffSystem-04-Alphanumeric-02-Number-6-10": {
+      "decal": "decal/lettering/digit-0",
+      "rotation": 30
     },
     "decal/saxarba/rubble_light_path": {
       "decal": "decal/damage/rubble-light-path"

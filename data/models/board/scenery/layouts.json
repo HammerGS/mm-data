@@ -10436,5 +10436,1763 @@
         "#3b2e24"
       ]
     }
+  ],
+  "scenery/saxarba/misc/elevator_-10": [
+    {
+      "asset": "decal/elevator/level-minus-10",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0
+    }
+  ],
+  "scenery/saxarba/misc/elevator_-9": [
+    {
+      "asset": "decal/elevator/level-minus-9",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0
+    }
+  ],
+  "scenery/saxarba/misc/elevator_-8": [
+    {
+      "asset": "decal/elevator/level-minus-8",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0
+    }
+  ],
+  "scenery/saxarba/misc/elevator_-7": [
+    {
+      "asset": "decal/elevator/level-minus-7",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0
+    }
+  ],
+  "scenery/saxarba/misc/elevator_-6": [
+    {
+      "asset": "decal/elevator/level-minus-6",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0
+    }
+  ],
+  "scenery/saxarba/misc/elevator_-5": [
+    {
+      "asset": "decal/elevator/level-minus-5",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0
+    }
+  ],
+  "scenery/saxarba/misc/elevator_-4": [
+    {
+      "asset": "decal/elevator/level-minus-4",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0
+    }
+  ],
+  "scenery/saxarba/misc/elevator_-3": [
+    {
+      "asset": "decal/elevator/level-minus-3",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0
+    }
+  ],
+  "scenery/saxarba/misc/elevator_-2": [
+    {
+      "asset": "decal/elevator/level-minus-2",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0
+    }
+  ],
+  "scenery/saxarba/misc/elevator_-1": [
+    {
+      "asset": "decal/elevator/level-minus-1",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0
+    }
+  ],
+  "scenery/saxarba/misc/elevator_0": [
+    {
+      "asset": "decal/elevator/level-0",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0
+    }
+  ],
+  "scenery/saxarba/misc/elevator_1": [
+    {
+      "asset": "decal/elevator/level-1",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0
+    }
+  ],
+  "scenery/saxarba/misc/elevator_2": [
+    {
+      "asset": "decal/elevator/level-2",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0
+    }
+  ],
+  "scenery/saxarba/misc/elevator_3": [
+    {
+      "asset": "decal/elevator/level-3",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0
+    }
+  ],
+  "scenery/saxarba/misc/elevator_4": [
+    {
+      "asset": "decal/elevator/level-4",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0
+    }
+  ],
+  "scenery/saxarba/misc/elevator_5": [
+    {
+      "asset": "decal/elevator/level-5",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0
+    }
+  ],
+  "scenery/saxarba/misc/elevator_6": [
+    {
+      "asset": "decal/elevator/level-6",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0
+    }
+  ],
+  "scenery/saxarba/misc/elevator_7": [
+    {
+      "asset": "decal/elevator/level-7",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0
+    }
+  ],
+  "scenery/saxarba/misc/elevator_8": [
+    {
+      "asset": "decal/elevator/level-8",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0
+    }
+  ],
+  "scenery/saxarba/misc/elevator_9": [
+    {
+      "asset": "decal/elevator/level-9",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0
+    }
+  ],
+  "scenery/saxarba/misc/elevator_10": [
+    {
+      "asset": "decal/elevator/level-10",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0
+    }
+  ],
+  "scenery/saxarba/cleared_rubble_gravel": [
+    {
+      "asset": "decal/damage/cleared-rubble-gravel",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0
+    }
+  ],
+  "scenery/fluff/heli1": [
+    {
+      "asset": "scenery/roofs/landing-light",
+      "position": [
+        14.0,
+        24.444864,
+        0.0
+      ],
+      "rotation": 60.000002,
+      "scale": 1.0
+    },
+    {
+      "asset": "decal/landing-pads/heli-pad",
+      "position": [
+        -3.0,
+        -5.0,
+        0.0
+      ],
+      "rotation": 60.0,
+      "scale": 1.0
+    }
+  ],
+  "scenery/fluff/heli2": [
+    {
+      "asset": "scenery/roofs/landing-light",
+      "position": [
+        34.0,
+        -0.5,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0
+    },
+    {
+      "asset": "scenery/roofs/landing-light",
+      "position": [
+        17.0,
+        28.944864,
+        0.0
+      ],
+      "rotation": 60.000002,
+      "scale": 1.0
+    },
+    {
+      "asset": "scenery/roofs/landing-light",
+      "position": [
+        -17.0,
+        28.944864,
+        0.0
+      ],
+      "rotation": 119.99999,
+      "scale": 1.0
+    },
+    {
+      "asset": "scenery/roofs/landing-light",
+      "position": [
+        -34.0,
+        -0.5,
+        0.0
+      ],
+      "rotation": 179.999991,
+      "scale": 1.0
+    },
+    {
+      "asset": "scenery/roofs/landing-light",
+      "position": [
+        -17.0,
+        -29.944864,
+        0.0
+      ],
+      "rotation": -119.99999,
+      "scale": 1.0
+    },
+    {
+      "asset": "scenery/roofs/landing-light",
+      "position": [
+        17.0,
+        -29.944864,
+        0.0
+      ],
+      "rotation": -60.000002,
+      "scale": 1.0
+    },
+    {
+      "asset": "decal/landing-pads/heli-pad",
+      "position": [
+        0.0,
+        -0.5,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0
+    }
+  ],
+  "scenery/fluff/heli3": [
+    {
+      "asset": "scenery/roofs/landing-light",
+      "position": [
+        14.0,
+        -24.444864,
+        0.0
+      ],
+      "rotation": -60.000002,
+      "scale": 1.0
+    },
+    {
+      "asset": "decal/landing-pads/heli-pad",
+      "position": [
+        -3.0,
+        5.0,
+        0.0
+      ],
+      "rotation": -60.0,
+      "scale": 1.0
+    }
+  ],
+  "scenery/rail/train": [
+    {
+      "asset": "scenery/rail/locomotive",
+      "position": [
+        0.0,
+        68.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0
+    },
+    {
+      "asset": "scenery/rail/box-car",
+      "position": [
+        0.0,
+        17.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0
+    },
+    {
+      "asset": "scenery/rail/tank-car",
+      "position": [
+        0.0,
+        -27.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0
+    },
+    {
+      "asset": "scenery/rail/heavy-flatbed",
+      "position": [
+        0.0,
+        -72.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0
+    }
+  ],
+  "scenery/hq_fluff/rail00": [
+    {
+      "asset": "scenery/rail/route",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0,
+      "connections": 0
+    }
+  ],
+  "scenery/hq_fluff/rail01": [
+    {
+      "asset": "scenery/rail/route",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0,
+      "connections": 1
+    }
+  ],
+  "scenery/hq_fluff/rail02": [
+    {
+      "asset": "scenery/rail/route",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0,
+      "connections": 2
+    }
+  ],
+  "scenery/hq_fluff/rail03": [
+    {
+      "asset": "scenery/rail/route",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0,
+      "connections": 3
+    }
+  ],
+  "scenery/hq_fluff/rail04": [
+    {
+      "asset": "scenery/rail/route",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0,
+      "connections": 4
+    }
+  ],
+  "scenery/hq_fluff/rail05": [
+    {
+      "asset": "scenery/rail/route",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0,
+      "connections": 5
+    }
+  ],
+  "scenery/hq_fluff/rail06": [
+    {
+      "asset": "scenery/rail/route",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0,
+      "connections": 6
+    }
+  ],
+  "scenery/hq_fluff/rail07": [
+    {
+      "asset": "scenery/rail/route",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0,
+      "connections": 7
+    }
+  ],
+  "scenery/hq_fluff/rail08": [
+    {
+      "asset": "scenery/rail/route",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0,
+      "connections": 8
+    }
+  ],
+  "scenery/hq_fluff/rail09": [
+    {
+      "asset": "scenery/rail/route",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0,
+      "connections": 9
+    }
+  ],
+  "scenery/hq_fluff/rail10": [
+    {
+      "asset": "scenery/rail/route",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0,
+      "connections": 10
+    }
+  ],
+  "scenery/hq_fluff/rail11": [
+    {
+      "asset": "scenery/rail/route",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0,
+      "connections": 11
+    }
+  ],
+  "scenery/hq_fluff/rail12": [
+    {
+      "asset": "scenery/rail/route",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0,
+      "connections": 12
+    }
+  ],
+  "scenery/hq_fluff/rail13": [
+    {
+      "asset": "scenery/rail/route",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0,
+      "connections": 13
+    }
+  ],
+  "scenery/hq_fluff/rail14": [
+    {
+      "asset": "scenery/rail/route",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0,
+      "connections": 14
+    }
+  ],
+  "scenery/hq_fluff/rail15": [
+    {
+      "asset": "scenery/rail/route",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0,
+      "connections": 15
+    }
+  ],
+  "scenery/hq_fluff/rail16": [
+    {
+      "asset": "scenery/rail/route",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0,
+      "connections": 16
+    }
+  ],
+  "scenery/hq_fluff/rail17": [
+    {
+      "asset": "scenery/rail/route",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0,
+      "connections": 17
+    }
+  ],
+  "scenery/hq_fluff/rail18": [
+    {
+      "asset": "scenery/rail/route",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0,
+      "connections": 18
+    }
+  ],
+  "scenery/hq_fluff/rail19": [
+    {
+      "asset": "scenery/rail/route",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0,
+      "connections": 19
+    }
+  ],
+  "scenery/hq_fluff/rail20": [
+    {
+      "asset": "scenery/rail/route",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0,
+      "connections": 20
+    }
+  ],
+  "scenery/hq_fluff/rail21": [
+    {
+      "asset": "scenery/rail/route",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0,
+      "connections": 21
+    }
+  ],
+  "scenery/hq_fluff/rail22": [
+    {
+      "asset": "scenery/rail/route",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0,
+      "connections": 22
+    }
+  ],
+  "scenery/hq_fluff/rail23": [
+    {
+      "asset": "scenery/rail/route",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0,
+      "connections": 23
+    }
+  ],
+  "scenery/hq_fluff/rail24": [
+    {
+      "asset": "scenery/rail/route",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0,
+      "connections": 24
+    }
+  ],
+  "scenery/hq_fluff/rail25": [
+    {
+      "asset": "scenery/rail/route",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0,
+      "connections": 25
+    }
+  ],
+  "scenery/hq_fluff/rail26": [
+    {
+      "asset": "scenery/rail/route",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0,
+      "connections": 26
+    }
+  ],
+  "scenery/hq_fluff/rail27": [
+    {
+      "asset": "scenery/rail/route",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0,
+      "connections": 27
+    }
+  ],
+  "scenery/hq_fluff/rail28": [
+    {
+      "asset": "scenery/rail/route",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0,
+      "connections": 28
+    }
+  ],
+  "scenery/hq_fluff/rail29": [
+    {
+      "asset": "scenery/rail/route",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0,
+      "connections": 29
+    }
+  ],
+  "scenery/hq_fluff/rail30": [
+    {
+      "asset": "scenery/rail/route",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0,
+      "connections": 30
+    }
+  ],
+  "scenery/hq_fluff/rail31": [
+    {
+      "asset": "scenery/rail/route",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0,
+      "connections": 31
+    }
+  ],
+  "scenery/hq_fluff/rail32": [
+    {
+      "asset": "scenery/rail/route",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0,
+      "connections": 32
+    }
+  ],
+  "scenery/hq_fluff/rail33": [
+    {
+      "asset": "scenery/rail/route",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0,
+      "connections": 33
+    }
+  ],
+  "scenery/hq_fluff/rail34": [
+    {
+      "asset": "scenery/rail/route",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0,
+      "connections": 34
+    }
+  ],
+  "scenery/hq_fluff/rail35": [
+    {
+      "asset": "scenery/rail/route",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0,
+      "connections": 35
+    }
+  ],
+  "scenery/hq_fluff/rail36": [
+    {
+      "asset": "scenery/rail/route",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0,
+      "connections": 36
+    }
+  ],
+  "scenery/hq_fluff/rail37": [
+    {
+      "asset": "scenery/rail/route",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0,
+      "connections": 37
+    }
+  ],
+  "scenery/hq_fluff/rail38": [
+    {
+      "asset": "scenery/rail/route",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0,
+      "connections": 38
+    }
+  ],
+  "scenery/hq_fluff/rail39": [
+    {
+      "asset": "scenery/rail/route",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0,
+      "connections": 39
+    }
+  ],
+  "scenery/hq_fluff/rail40": [
+    {
+      "asset": "scenery/rail/route",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0,
+      "connections": 40
+    }
+  ],
+  "scenery/hq_fluff/rail41": [
+    {
+      "asset": "scenery/rail/route",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0,
+      "connections": 41
+    }
+  ],
+  "scenery/hq_fluff/rail42": [
+    {
+      "asset": "scenery/rail/route",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0,
+      "connections": 42
+    }
+  ],
+  "scenery/hq_fluff/rail43": [
+    {
+      "asset": "scenery/rail/route",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0,
+      "connections": 43
+    }
+  ],
+  "scenery/hq_fluff/rail44": [
+    {
+      "asset": "scenery/rail/route",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0,
+      "connections": 44
+    }
+  ],
+  "scenery/hq_fluff/rail45": [
+    {
+      "asset": "scenery/rail/route",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0,
+      "connections": 45
+    }
+  ],
+  "scenery/hq_fluff/rail46": [
+    {
+      "asset": "scenery/rail/route",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0,
+      "connections": 46
+    }
+  ],
+  "scenery/hq_fluff/rail47": [
+    {
+      "asset": "scenery/rail/route",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0,
+      "connections": 47
+    }
+  ],
+  "scenery/hq_fluff/rail48": [
+    {
+      "asset": "scenery/rail/route",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0,
+      "connections": 48
+    }
+  ],
+  "scenery/hq_fluff/rail49": [
+    {
+      "asset": "scenery/rail/route",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0,
+      "connections": 49
+    }
+  ],
+  "scenery/hq_fluff/rail50": [
+    {
+      "asset": "scenery/rail/route",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0,
+      "connections": 50
+    }
+  ],
+  "scenery/hq_fluff/rail51": [
+    {
+      "asset": "scenery/rail/route",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0,
+      "connections": 51
+    }
+  ],
+  "scenery/hq_fluff/rail52": [
+    {
+      "asset": "scenery/rail/route",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0,
+      "connections": 52
+    }
+  ],
+  "scenery/hq_fluff/rail53": [
+    {
+      "asset": "scenery/rail/route",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0,
+      "connections": 53
+    }
+  ],
+  "scenery/hq_fluff/rail54": [
+    {
+      "asset": "scenery/rail/route",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0,
+      "connections": 54
+    }
+  ],
+  "scenery/hq_fluff/rail55": [
+    {
+      "asset": "scenery/rail/route",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0,
+      "connections": 55
+    }
+  ],
+  "scenery/hq_fluff/rail56": [
+    {
+      "asset": "scenery/rail/route",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0,
+      "connections": 56
+    }
+  ],
+  "scenery/hq_fluff/rail57": [
+    {
+      "asset": "scenery/rail/route",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0,
+      "connections": 57
+    }
+  ],
+  "scenery/hq_fluff/rail58": [
+    {
+      "asset": "scenery/rail/route",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0,
+      "connections": 58
+    }
+  ],
+  "scenery/hq_fluff/rail59": [
+    {
+      "asset": "scenery/rail/route",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0,
+      "connections": 59
+    }
+  ],
+  "scenery/hq_fluff/rail60": [
+    {
+      "asset": "scenery/rail/route",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0,
+      "connections": 60
+    }
+  ],
+  "scenery/hq_fluff/rail61": [
+    {
+      "asset": "scenery/rail/route",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0,
+      "connections": 61
+    }
+  ],
+  "scenery/hq_fluff/rail62": [
+    {
+      "asset": "scenery/rail/route",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0,
+      "connections": 62
+    }
+  ],
+  "scenery/hq_fluff/rail63": [
+    {
+      "asset": "scenery/rail/route",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0,
+      "connections": 63
+    }
+  ],
+  "scenery/hq_fluff/rail_road01": [
+    {
+      "asset": "scenery/rail/route",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0,
+      "connections": 9
+    },
+    {
+      "asset": "decal/rail/level-crossing",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0
+    },
+    {
+      "asset": "scenery/rail/crossing-signal",
+      "position": [
+        -8.5,
+        -6.639527,
+        0.0
+      ],
+      "rotation": 60.000002,
+      "scale": 1.0
+    },
+    {
+      "asset": "scenery/rail/crossing-signal",
+      "position": [
+        8.5,
+        -16.454483,
+        0.0
+      ],
+      "rotation": -119.99999,
+      "scale": 1.0
+    },
+    {
+      "asset": "scenery/rail/crossing-signal",
+      "position": [
+        -8.5,
+        16.454483,
+        0.0
+      ],
+      "rotation": 60.000002,
+      "scale": 1.0
+    },
+    {
+      "asset": "scenery/rail/crossing-signal",
+      "position": [
+        8.5,
+        6.639527,
+        0.0
+      ],
+      "rotation": -119.99999,
+      "scale": 1.0
+    }
+  ],
+  "scenery/hq_fluff/rail_road02": [
+    {
+      "asset": "scenery/rail/route",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0,
+      "connections": 9
+    },
+    {
+      "asset": "decal/rail/level-crossing",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": -60.000002,
+      "scale": 1.0
+    },
+    {
+      "asset": "scenery/rail/crossing-signal",
+      "position": [
+        -8.5,
+        6.639527,
+        0.0
+      ],
+      "rotation": 119.99999,
+      "scale": 1.0
+    },
+    {
+      "asset": "scenery/rail/crossing-signal",
+      "position": [
+        8.5,
+        16.454483,
+        0.0
+      ],
+      "rotation": -60.000002,
+      "scale": 1.0
+    },
+    {
+      "asset": "scenery/rail/crossing-signal",
+      "position": [
+        -8.5,
+        -16.454483,
+        0.0
+      ],
+      "rotation": 119.99999,
+      "scale": 1.0
+    },
+    {
+      "asset": "scenery/rail/crossing-signal",
+      "position": [
+        8.5,
+        -6.639527,
+        0.0
+      ],
+      "rotation": -60.000002,
+      "scale": 1.0
+    }
+  ],
+  "scenery/hq_fluff/rail_road03": [
+    {
+      "asset": "scenery/rail/route",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0,
+      "connections": 18
+    },
+    {
+      "asset": "decal/rail/level-crossing",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": -60.000002,
+      "scale": 1.0
+    },
+    {
+      "asset": "scenery/rail/crossing-signal",
+      "position": [
+        -10.0,
+        4.041452,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0
+    },
+    {
+      "asset": "scenery/rail/crossing-signal",
+      "position": [
+        -10.0,
+        -15.588457,
+        0.0
+      ],
+      "rotation": 179.999991,
+      "scale": 1.0
+    },
+    {
+      "asset": "scenery/rail/crossing-signal",
+      "position": [
+        10.0,
+        15.588457,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0
+    },
+    {
+      "asset": "scenery/rail/crossing-signal",
+      "position": [
+        10.0,
+        -4.041452,
+        0.0
+      ],
+      "rotation": 179.999991,
+      "scale": 1.0
+    }
+  ],
+  "scenery/hq_fluff/rail_road04": [
+    {
+      "asset": "scenery/rail/route",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0,
+      "connections": 36
+    },
+    {
+      "asset": "decal/rail/level-crossing",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0
+    },
+    {
+      "asset": "scenery/rail/crossing-signal",
+      "position": [
+        -10.0,
+        -4.041452,
+        0.0
+      ],
+      "rotation": 179.999991,
+      "scale": 1.0
+    },
+    {
+      "asset": "scenery/rail/crossing-signal",
+      "position": [
+        -10.0,
+        15.588457,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0
+    },
+    {
+      "asset": "scenery/rail/crossing-signal",
+      "position": [
+        10.0,
+        -15.588457,
+        0.0
+      ],
+      "rotation": 179.999991,
+      "scale": 1.0
+    },
+    {
+      "asset": "scenery/rail/crossing-signal",
+      "position": [
+        10.0,
+        4.041452,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0
+    }
+  ],
+  "scenery/hq_fluff/rail_road05": [
+    {
+      "asset": "scenery/rail/route",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0,
+      "connections": 36
+    },
+    {
+      "asset": "decal/rail/level-crossing",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 60.000002,
+      "scale": 1.0
+    },
+    {
+      "asset": "scenery/rail/crossing-signal",
+      "position": [
+        -18.5,
+        0.866025,
+        0.0
+      ],
+      "rotation": 119.99999,
+      "scale": 1.0
+    },
+    {
+      "asset": "scenery/rail/crossing-signal",
+      "position": [
+        -1.5,
+        10.68098,
+        0.0
+      ],
+      "rotation": -60.000002,
+      "scale": 1.0
+    },
+    {
+      "asset": "scenery/rail/crossing-signal",
+      "position": [
+        1.5,
+        -10.68098,
+        0.0
+      ],
+      "rotation": 119.99999,
+      "scale": 1.0
+    },
+    {
+      "asset": "scenery/rail/crossing-signal",
+      "position": [
+        18.5,
+        -0.866025,
+        0.0
+      ],
+      "rotation": -60.000002,
+      "scale": 1.0
+    }
+  ],
+  "scenery/hq_fluff/rail_road06": [
+    {
+      "asset": "scenery/rail/route",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0,
+      "connections": 18
+    },
+    {
+      "asset": "decal/rail/level-crossing",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 60.000002,
+      "scale": 1.0
+    },
+    {
+      "asset": "scenery/rail/crossing-signal",
+      "position": [
+        -18.5,
+        -0.866025,
+        0.0
+      ],
+      "rotation": 60.000002,
+      "scale": 1.0
+    },
+    {
+      "asset": "scenery/rail/crossing-signal",
+      "position": [
+        -1.5,
+        -10.68098,
+        0.0
+      ],
+      "rotation": -119.99999,
+      "scale": 1.0
+    },
+    {
+      "asset": "scenery/rail/crossing-signal",
+      "position": [
+        1.5,
+        10.68098,
+        0.0
+      ],
+      "rotation": 60.000002,
+      "scale": 1.0
+    },
+    {
+      "asset": "scenery/rail/crossing-signal",
+      "position": [
+        18.5,
+        0.866025,
+        0.0
+      ],
+      "rotation": -119.99999,
+      "scale": 1.0
+    }
+  ],
+  "scenery/rail/express-train": [
+    {
+      "asset": "scenery/rail/express-power-car",
+      "position": [
+        0.0,
+        94.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0
+    },
+    {
+      "asset": "scenery/rail/express-car",
+      "position": [
+        0.0,
+        31.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0
+    },
+    {
+      "asset": "scenery/rail/express-car",
+      "position": [
+        0.0,
+        -31.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0
+    },
+    {
+      "asset": "scenery/rail/express-power-car",
+      "position": [
+        0.0,
+        -94.0,
+        0.0
+      ],
+      "rotation": 180.0,
+      "scale": 1.0
+    }
+  ],
+  "scenery/rail/colony-train": [
+    {
+      "asset": "scenery/rail/colony-locomotive",
+      "position": [
+        0.0,
+        66.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0
+    },
+    {
+      "asset": "scenery/rail/heavy-hopper",
+      "position": [
+        0.0,
+        17.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0
+    },
+    {
+      "asset": "scenery/rail/insulated-tanker",
+      "position": [
+        0.0,
+        -25.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0
+    },
+    {
+      "asset": "scenery/rail/equipment-carrier",
+      "position": [
+        0.0,
+        -70.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0
+    }
+  ],
+  "scenery/maglev/colony-train": [
+    {
+      "asset": "scenery/maglev/colony-cab",
+      "position": [
+        0.0,
+        51.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0
+    },
+    {
+      "asset": "scenery/maglev/colony-cargo",
+      "position": [
+        0.0,
+        17.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0
+    },
+    {
+      "asset": "scenery/maglev/colony-tanker",
+      "position": [
+        0.0,
+        -17.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0
+    },
+    {
+      "asset": "scenery/maglev/colony-heavy",
+      "position": [
+        0.0,
+        -51.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0
+    }
   ]
 }

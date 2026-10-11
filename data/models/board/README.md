@@ -17,7 +17,7 @@ Scenery meshes live in topic folders under `scenery/`, with kebab-case names:
 | `construction/` | crawler crane, bulldozer, concrete debris, excavation site, concrete pipe |
 | `farm/` | one mesh per animal and pose: cow, pig, horse, bison, hen and rooster; coats are colour slots |
 | `seaport/` | container rows and gantry cranes by row axis (`n-s`, `ne-sw`, `nw-se`, `e-w`), crane tips |
-| `maglev/` | route marker (the only rail mesh), platform, wagon, cab, coupler; `train.png` is the train stamp's thumbnail |
+| `maglev/` | route marker (the only rail mesh), station platform, city and colony vehicles, the city gangway coupler; `train.png` and `colony-train.png` are the stamps' thumbnails |
 | `military/` | orbital gun, fortification |
 | `rubble/` | rubble by structure type, and the cleared paths through it |
 | `geysers/` | dormant and erupting water geysers, magma geyser |
@@ -28,14 +28,15 @@ file is the complete legacy-to-mesh mapping. A key that used to be one GLB is a
 one-row entry at the origin on its renamed mesh. Every mesh stands on Z=0 and
 every row has Z=0. Two kinds of mesh stand above Z=0 by design: a seaport crane
 tip hangs from the gantry boom, so its mesh keeps the boom height and its grabber
-is 10.28 px up, and the maglev wagon and cab (3.5 px) and coupler (4 px) ride the
-route's rail. Blueprint IDs are the new mesh paths; stamps still name legacy keys.
+is 10.28 px up, and the maglev vehicles ride the route's beam (their suspension shoes
+1.3 px up, the coupler's shoe links 2.3 px; see Maglev). Blueprint IDs are the new mesh
+paths; stamps still name legacy keys.
 Decal rows (`decal/...`) name painted decals, not meshes (see Decals): each
 car-park key `fluff/cars_*` places standard car-park decals, and its car rows
-carry `"seat"`. Only import uses them; the legacy render paves the lane itself
-and draws the cars where their rows stand, and import makes the lane a real
-`road:1` with the lane's exits on a car park on plain ground without a road. The
-rows stand beside that road; import folds them back to back where no road is drawn.
+carry `"seat"`. The conversion (`BoardSceneryLayouts.convert`, run wherever a
+legacy board is loaded) makes the lane a real `road:1` with the lane's exits on a
+car park on plain ground without a road. The rows stand beside that road; the
+conversion folds them back to back where no road is drawn.
 A row may carry `"stretch": [x, y, z]`, positive factors on the mesh's own axes
 before its turn (the narrow glass roof is `roofs/glass-roof-wide` stretched to
 29/36 of its width), and `"colours": ["#rrggbb", null, ...]`, replacements for the
@@ -246,8 +247,7 @@ to a route marker row and the artwork's pieces: platform, passenger wagons,
 driver cab, coupler and parked road cars (`scenery/vehicles/`). The marker row
 (`scenery/maglev/route`) carries the route's sides as `connections`
 (N=1, NE=2, SE=4, S=8, SW=16, NW=32): 9 for N/S, 18 for NE/SW and 36 for NW/SE.
-The client draws the rail from the stored sides; the legacy render shows the
-same straight route mesh. Facts measured on the 84x72 sprites (`MAGLEV` in
+The client draws the rail from the stored sides. Facts measured on the 84x72 sprites (`MAGLEV` in
 `tools/build_scenery_assets.py`):
 
 | Keys | Route | Platform | Train piece | Parked cars |
@@ -260,18 +260,83 @@ same straight route mesh. Facts measured on the 84x72 sprites (`MAGLEV` in
 A three-hex train is a cab hex, a middle hex and a tail hex: maglevtrain1-3 from
 north to south, maglevtrain4-6 from south-west to north-east (every shipped
 maglevtrain4 has a maglevtrain5 to its north-east, every maglevtrain6 one to its
-south-west). The wagon and cab meshes include their 3.5 px ride above the
-route's ground and the coupler its 4 px, so every row has Z=0; a vehicle sits
-0.5 px into the route's 4 px rail. `scenery/maglev/train` is the train stamp's
-layout (a wagon, a cab and their coupler); `train.png` is its thumbnail. No baked
-composite and no second rail mesh remain.
+south-west). No baked composite and no second rail mesh remain.
 
-`tools/build_scenery_assets.py` (with the `fluff/maglev` argument) writes the five
-maglev meshes and the thirteen maglev layouts; afterwards `blender --background
---factory-startup --python tools/build_maglev_assets.py`, from the data repository
-root, renders the thumbnail from the stamp's rows. The Java
-`BoardSceneryMaglevTest` checks the decoded rows against the sprite facts above,
-the palette and the import of two shipped boards.
+The pieces ride the client's generated guideway (a concrete beam 4 px wide to Z 2.4 and a steel guide rail
+1.4 px wide to Z 4): each has its origin on the beam's centre line at the marker's level, the track along Y and
+the nose at +Y, and carries its ride height, so every row has Z=0. A body hovers 0.4 px over the guide rail
+(underside at Z 4.4); a black suspension shoe near each end bridges the rail and wraps the beam's sides 0.4 px
+off the concrete, down to Z 1.3, clear of the maglev pier cap. Every vehicle is 30 px long over its ends, so two
+cars and their 4 px gap fill a hex as the legacy rows place them (y -17 and +17). Two families, each car with
+Body and Trim colour slots (the car's colour convention: every livery colour is a preset of both):
+
+- City ("Civitas", Body cream, Trim teal, a fixed orange stripe): `cab` (control car with a wraparound
+  windscreen and destination sign), `wagon` (passenger car), `service-car`, `city-freight` (two boxes on a
+  flat), and `coupler`, their gangway with the bars that link the two cars' shoes.
+- Colony ("Vector", Body navy, Trim cream, amber lamps): `colony-cab` (armoured wedge nose), `colony-cargo`,
+  `colony-tanker`, `colony-containers` and `colony-heavy` (a construction walker strapped to a flatbed). Each
+  carries its own drawbars, so no coupler row is needed.
+
+`platform` is a raised station deck at the cars' floor (Z 5.2) with edge lights, stairs at both ends and a
+lens-shaped canopy on Y columns; it is symmetric across the track, so it serves either side, and its edge lights,
+canopy fascia and pylon signs are a Trim slot. The stamps (`scenery/layouts.json`): `scenery/maglev/train`
+("City maglev": a wagon, a cab and their coupler, the legacy pair) and `scenery/maglev/colony-train` ("Colony
+maglev": cab, cargo car, tanker and heavy transport at 34 px); `train.png` and `colony-train.png` are their
+thumbnails. Placed objects draw only their near mesh (LOD0), so each piece is one mesh of 140 to 740 triangles.
+A platform on a fixed-level (elevated) route floats at the route's level; it has no supports of its own.
+
+`tools/build_scenery_assets.py` (with the `fluff/maglev` argument) writes the route marker mesh and the twelve
+legacy maglev layouts, whose rows name the pieces; `blender --background --factory-startup --python
+tools/build_maglev_assets.py`, from the data repository root, writes the pieces, both stamps' rows and their
+thumbnails, and checks that no vehicle enters the beam or reaches the pier cap. The Java
+`BoardSceneryMaglevTest` checks the decoded rows against the sprite facts above, the palette and the import of
+two shipped boards.
+
+## Rail pieces
+
+The rail track (ballast, sleepers, rails) is generated by the client's route builder, shared with the maglev
+beam. The pieces that never bend are GLBs under `scenery/rail/`, at real scale (2.8 px per metre): the
+`buffer-stop` at dead ends, the level-crossing `crossing-signal` and the rolling stock of three families:
+- Frontier Rail, armoured military-industrial (olive Body, orange Trim): `locomotive` (armoured freight
+  locomotive, 56 px), `coach` (armoured transit coach, 62), `box-car` (cargo wagon, 46), `tank-car` (tanker, 42),
+  `ore-hopper` (40) and `heavy-flatbed` (48, with a power unit as its load);
+- the Express, a high-speed passenger train (white Body, blue Trim): `express-power-car` (64, nose tip included)
+  and `express-car` (62);
+- Ironline, colony mining freight (oxide red Body, cream Trim): `colony-locomotive` (56), `container-wagon` (46,
+  two of the seaport's containers at real scale), `heavy-hopper` (42), `insulated-tanker` (42) and
+  `equipment-carrier` (48, with an excavator chained down).
+
+The track's rail top lies 1.4 px above its carrier plane (ballast top 0.6, sleepers 0.3, rails 0.5; gauge 4.2).
+Every rail piece has its origin on the track centre line at rail-top height, the track along Y: a piece placed
+1.4 px above the carrier plane rides the rails. Locomotive and power car noses and the buffer stop's buffers face
++Y; the signal faces +Y from its footing's base. Vehicles are measured over their coupler faces (a power car over
+its nose tip) and carry their own couplers, so coupled vehicles stand half their lengths apart and need no coupler
+piece. Each vehicle has two colour slots, Body and Trim, in the parked car's convention (`mmColourSlots`), with the
+same twelve livery presets; warning stripes, lamps, glass, ore and running gear are fixed colours. Placed objects
+draw only a GLB's level 0, so every vehicle is one mesh of about 650 to 1,150 triangles. Three stamps, each in its
+family's default livery with the lead nose at +Y: `scenery/rail/train` ("Freight train": locomotive, cargo wagon,
+tanker, heavy flatbed), `scenery/rail/express-train` (power car, two cars, the second power car turned 180 degrees)
+and `scenery/rail/colony-train` (colony locomotive, heavy hopper, insulated tanker, equipment carrier), with
+`train.png`, `express-train.png` and `colony-train.png` as thumbnails.
+`blender --background --factory-startup --python tools/build_rail_assets.py` writes the fourteen GLBs, the
+stamps' rows and the thumbnails; the crossing signal is a palette object of `tools/build_scenery_assets.py`.
+
+The 64 legacy rail keys `scenery/hq_fluff/rail00`-`rail63` (FLUFF 10:0-63) decode to one route marker row,
+`scenery/rail/route`, whose `connections` is the token value: the sprite's side mask. The client builds the track
+from those sides. `rail00` has no sides; the conversion takes them from its neighbours, and an isolated one places
+nothing. The six level crossings `rail_road01`-`06` (FLUFF 10:64-69) add three things: the marker on the rail's
+axis, the `decal/rail/level-crossing` panel turned to the two axes, and four crossing signals. Each signal stands
+beside the road, 10 px from its centre line and 8.5 px from the track's, and faces the road traffic that comes
+towards it. `RAIL_CROSSINGS` in `tools/build_scenery_assets.py` holds the measured axes, and the `hq_fluff/rail`
+argument rebuilds these keys.
+
+How the client uses them (MegaMek `docs/3d-board-editor.md`, rails): a hex lays only gentle pieces, straights
+between opposite sides and 60-degree arcs between sides two apart. A side without a gentle partner (two adjacent
+sides, or the middle of three) ends in a short stub, and every dead end and stub gets a `buffer-stop`, placed by the
+route builder and never stored. A legacy sprite always draws its sides' default pieces; the editor stores other
+pieces only for the 18 side masks with a choice (`tracks`). A rail marker lies on the ground (`surface ground/top`)
+and follows it and its ramps as a road does, or on a bridge deck (`bridge/deck`), whose drawn top it rides; a
+vehicle row stands on the rail top. The Rail and Maglev routes are two palette choices in Transport.
 
 ## Legacy scenery decode
 
@@ -292,29 +357,44 @@ row names its own key. Rows carry no `kind`: `tree-broad` is the only tree.
 Maglev decodes to a route marker and its pieces (see Maglev). Herds decode to one row per animal;
 each seaport key stays one baked mesh.
 
+The conversion takes every legacy art token (FLUFF and GROUND_FLUFF below the server values 2000+,
+ROAD_FLUFF, WATER_FLUFF, BLDG_FLUFF), so a `.board2` holds none. A token becomes objects (these rows, or a legacy
+decal id of `decals/decals.json`: runway, landing pads, letters, courts, rails), a hex design that draws exactly
+its art (the blueprint variant whose `selectors` equal the token: `ground/blend/*` transitions at strength
+exits/6, `road/rounded`, `road/horizontal`, `woods/orchard`, `rough/obstacles`, `rough/felled-trees`, the 55
+`building/legacy-art-N` building art designs, or the asset variant of the building model chosen beside the art),
+or nothing (the transparent wildcard `saxarba/misc/blank.png`, `bldg_fluff:0`, quay art the fitted quay wall
+replaces). Elevator plates and the cleared-rubble gravel stay rows of their rule terrain (below).
+
 The generator owns both the meshes and the rows. Rebuild every generated family
 from the data repository root with
 `blender --background --factory-startup --python tools/build_scenery_assets.py --
 fluff/skylight GlassRoof fluff/ledge fluff/stack fluff/bevel fluff/construction
 fluff/cars fluff/square fluff/pillars fluff/garden fluff/pool fluff/suburb
-fluff/beacon fluff/maglev SMV_Seaport road_trees SMV_Fluff/ orbitalguns rubble
+fluff/beacon fluff/heli fluff/maglev hq_fluff/rail SMV_Seaport road_trees SMV_Fluff/ orbitalguns rubble
 fortified geyser fluff/bison fluff/cattle fluff/chickens fluff/horses fluff/pigs`,
-then `tools/build_maglev_assets.py` for the train stamp's thumbnail and
+then `tools/build_maglev_assets.py` for the maglev pieces, stamps and thumbnails, `tools/build_rail_assets.py` for the
+rail pieces (see Rail pieces), and
 `python tools/build_board_decals.py` for the decals and the car-park decal rows and seats
 (the scenery build writes the car-park keys without them). The arguments select
 image names, as `build(only)` does. The herd rows need the animal meshes of
-`tools/extract_herd_animals.py`. Each build also writes the palette-only bench
-and rectangular pool, and overwrites `tools/board-scenery-compositions.blend` and
-`tools/board-models/scenery/model-inventory.json` with the selected families.
+`tools/extract_herd_animals.py`. The heli pads (`fluff/heli1`-`3`) decode to their landing lights
+(`roofs/landing-light`, rows only) and the pad decal that `tools/build_board_decals.py` adds. Each build also
+writes the palette objects (bench, rectangular pool, landing light, crossing signal; `-- --palette` writes
+only them), and overwrites `tools/board-scenery-compositions.blend` and
+`tools/board-models/scenery/model-inventory.json` with the selected families. The build and
+`tools/verify_scenery_assets.py` read the sprite measurements that `python tools/prepare_scenery_layouts.py`
+writes to `tools/board-models/scenery/layouts.json`.
 
 `python tools/verify_legacy_decode.py` checks the rows against the baked GLBs of
 commit `0d5b47e5d0`, the last commit that has them at their legacy keys. A
 replaced key must match its old GLB after grounding, because that runtime
 grounded a whole legacy SCENERY mesh but placed rows as authored. A key that
 already had rows must match its old composition, trees included; the maglev keys
-are re-authored from their sprites (see Maglev) and skip that comparison. Every tileset
+are re-authored from their sprites (see Maglev) and skip that comparison, as do the keys whose art the base
+only painted (rails, heli pads, elevator plates, the cleared-rubble gravel), which have no 3D reference. Every tileset
 key that resolved to 3D at the base must still resolve through layouts.json, on
-existing meshes. Every mesh reached by a decodable tileset token (`fluff` below
+existing meshes; the rail route marker has none, because the client generates its track. Every mesh reached by a decodable tileset token (`fluff` below
 2000, `road_fluff:3`, `road:2`) must be grounded and have a
 blueprint entry, and the rows of decoded keys must have Z=0. No layout may
 z-fight: within one mesh, and between the rows of a layout, no two upward faces
@@ -325,7 +405,8 @@ colours and materials): a rotated or mirrored copy is a row on the other mesh.
 That check does not catch stretched or regenerated near-copies, which need a
 scan with fitted transforms. Decals (see Decals) must have their image by path
 convention and every image an entry; palette decals and legacy ids must name
-existing decals; every ground-symbol tile must decode, each set with its centre
+existing decals; every ground-symbol, landing-pad, letter, runway and court tile must decode to a decal, and
+every elevator plate and the cleared-rubble gravel to a decal row; each set must have its centre
 and six directions once; each one-hex variant must match its emblem at its decode
 transform (blurred mean difference at most 8/255, coverage overlap at least
 0.75); and every car of a car-park key must have its own slot on one of the
@@ -401,7 +482,7 @@ sets, in model px:
 - Every row has Z=0.
 - Decals: 22 in `decals/decals.json`, each with its image by path convention; 170 legacy decal ids decode to them.
 - Emblems: 13 full emblems; all 169 ground-symbol tiles decode (13 sets of 7 pieces, 78 one-hex variants). The variants match their emblem at the decode transform: blurred mean |difference| at most 5.5/255 (the -04 variants at most 4.4), coverage overlap at least 0.77.
-- Car parks: 10 legacy car-park keys place 20 standard decal rows and seat all 72 cars in distinct slots (the legacy render draws neither the decal nor the seats).
+- Car parks: 10 legacy car-park keys place 20 standard decal rows and seat all 72 cars in distinct slots (only the conversion places them; no 3D view draws the legacy sprite).
 - 4 keys stretch a row (01-Building-07-GlassRoof-#).
 - Colours: 25 keys recolour a shared mesh; 25 keep the base's vertex order and match its colours, by family within 07-Garden-04-Lake-# 0.6, bison# 2.6, cars_# 0.5, cars_2b 0.5, cars_3b 0.4, cattle# 0.4, chickens# 2.9, horses# 3.9, pigs# 1.1, suburb# 0.5 (of 255).
 - Copy check: 256 meshes reached by rows, palette props and the scatter kit; accepted `water-dormant`: GpuGeysers takes the eruption from the asset name (water-erupting).
@@ -452,10 +533,17 @@ mipmaps do not darken edges. `tools/build_board_decals.py` writes every image an
 |---|---|---|
 | `emblems/` | `red-cross`, `capellan-confederation`, `draconis-combine`, `federated-suns`, `free-worlds-league`, `lyran-commonwealth`, `terran-hegemony`, `magistracy-of-canopus`, `outworlds-alliance`, `rim-worlds-republic`, `taurian-concordat`, `star-league`, `comstar` | the seven pieces of the Saxarba 7-hex set stitched at their hex offsets: 144 x 144 px, 1 image px per model px, identical to the unused `-Medium` images |
 | `car-park/` | `straight-4`, `-8`, `-12`; `parallel-3`, `-6`; `diagonal-3`, `-6`, `-9` | painted: 8 image px per model px |
-| `damage/` | `rubble-light-path` | copy of `images/hexes/saxarba/rubble_light_path.png` |
+| `damage/` | `rubble-light-path`, `cleared-rubble-gravel` | copies of `images/hexes/saxarba/rubble_light_path.png` and `cleared_rubble_gravel.png` (84 x 72) |
+| `runway/` | `centreline` (6 x 64), `threshold` (64 x 28), `number-36`, `-06`, `-12`, `-18`, `-24`, `-30`, each also with `l`, `c`, `r` (56 x 72) | redrawn from the legacy runway geometry at 8 image px per model px; designations in Noto Sans Regular (`data/fonts`, OFL); white paint at 95 % |
+| `landing-pads/` | `vtol-`, `medic-`, `aero-`, `aero-lit-` each `concrete` and `asphalt` (72 x 72); `dropship-`, `dropship-ring-` each `concrete` and `asphalt` (144 x 144); `heli-pad` (60 x 60) | one-hex pads cut 1:1 from the -01 sprites; DropShip pads stitched from their 7 pieces as the emblems; the heli pad redrawn flat |
+| `lettering/` | `letter-a` ... `letter-z`, `digit-0` ... `digit-9` (40 x 40) | the upright black sprite's shape, 4x bicubic, blurred and re-sharpened, white: the object's paint colour (`size` entry `"colour": "#ffffff"`) multiplies it |
+| `sport/` | `tennis-court-green`, `-blue` (33 x 63); `basketball-court-green`, `-blue` (39 x 71) | redrawn at 8 image px per model px, 0.75 px lines |
+| `elevator/` | `level-minus-10` ... `level-minus-1`, `level-0` ... `level-10` (84 x 72) | copies of `images/hexes/saxarba/misc/elevator_<n>.png`; rows of the elevator's rule terrain, not palette decals |
+| `rail/` | `level-crossing` (16 x 27) | redrawn: two 15 px strips (road and rail) at 60 degrees, concrete, yellow dashed edges; placed by the level-crossing rows |
 
 The 2D tileset's ground-symbol pieces and their copies under `tileset/` stay for
-the legacy render and the Tactical View; only the palette moved here.
+the 2D board, which draws a converted board's kept tokens, and for the conversion,
+which matches the `tileset/` copy; only the palette moved here.
 
 `decals/decals.json`:
 
@@ -494,8 +582,13 @@ the legacy render and the Tactical View; only the palette moved here.
   decal at scale 1 and rotation 0 on the set's centre hex, which is the piece's
   own hex for the centre piece (no `direction`) and its neighbour in direction
   `(direction + 3) % 6` otherwise (`direction` is the piece's hex direction from
-  the centre: 0 N, 1 NE, 2 SE, 3 S, 4 SW, 5 NW). A set with missing pieces
-  still gets its full emblem at the inferred centre. The one-hex variants
+  the centre: 0 N, 1 NE, 2 SE, 3 S, 4 SW, 5 NW). A set with
+  pieces missing on the board paints exactly its present pieces: each gets the
+  set's decal on the set centre, clipped to its own hex, one group per set; a set
+  cut by the board edge still gets its full emblem at the inferred centre. The
+  landing pads' DropShip sets follow the same rule. A legacy row may carry a
+  paint `colour` (`"#000000"` on the black letters), which the converted decal
+  object stores as its colour. The one-hex variants
   -01/-04 are upright, -02/-05 turned -30 deg and -03/-06 +30 deg; their scales
   were fitted to the legacy tiles (small 0.204-0.326, large 0.346-0.503 per emblem).
 
@@ -514,29 +607,35 @@ road's gray verge and leaves its carriageway clear), the smallest standard of th
 cars' layout (across the lane: straight; along it: parallel) with room for that
 side's cars. No legacy car park is diagonal. Where no road is drawn (no lane, as
 2b/3b; a roof, deck, industrial top, fuel tank, ice or liquid; a road level the
-renderer does not draw), the editor's import folds the same rows back to back on
+renderer does not draw), the conversion folds the same rows back to back on
 the line through the hex centre, turned and mirrored, their closed sides touching.
-Each car row carries `"seat": [n, slot]`: import places that car on
+Each car row carries `"seat": [n, slot]`: the conversion places that car on
 `slots[slot]` of the key's n-th decal row (the decal row's transform, mirror
 included, applied to the slot; the car keeps its asset, colour and scale). Cars
 keep the order they had along the lane; beside the road they move up to 22.0 px
 (mean 3.7-12.5 px per key) from their legacy spots, back to back up to 23.0 px
-(mean 8.7-13.4 px). The legacy render ignores seats and decal rows.
+(mean 8.7-13.4 px). Seats and decal rows exist only for the conversion.
 
 ## Editor palette, import and stamps
 
-The rows serve two readers. The legacy render of a `.board` expands a scenery
-key into its rows every time it draws. The 3D editor's import (opening a
-`.board`, or saving a game board as `.board2`) turns the same rows into
-separate placed objects once, with the rows of one key in one group. Stamps in
+The rows serve one reader, the conversion (`BoardSceneryLayouts.convert`, 
+wherever a legacy `.board` is loaded (a game's sheets on the server, old
+saves, map previews, the editor) it turns a key's rows into separate placed
+objects once, with the rows of one key in one group. Stamps in
 `data/board-editor/blueprint.json` name a key in their `layout` field and place
 its rows the same way; `{exits}` in a stamp's layout becomes the painted hex's
-road exits. So editing a row changes legacy rendering, future imports and
-stamps, but never objects already saved in a `.board2`.
+road exits. Beside them, the 3D board draws the rows of the terrain-owned keys
+directly: geysers, rubble 1-6, fortified and the cleared-rubble paths (FLUFF
+2001-2005), and the elevator plates (`saxarba/misc/elevator_<n>`,
+following the elevator's level) and the cleared-rubble gravel (GROUND_FLUFF 2000),
+whose decal rows become decals of their hex that are never stored or picked. The
+conversion never takes them, and they change during play. So
+editing a row changes future conversions, stamps and the terrain-owned keys'
+drawing, but never objects already on a converted board or saved in a `.board2`.
 
 Palette rules, checked by `BoardSceneryDecodeDataTest`:
 
-- A visible entry is one real object a user places, or a stamp: 199 props.
+- A visible entry is one real object a user places, or a stamp: 226 props.
 - A mesh that only imported objects use is `palette: false` and keeps its
   label (sport-pool parts, plaza ornaments, the second debris pile, the rooster
   and the other animal poses: one visible animal per species). Coats and paints
@@ -544,17 +643,27 @@ Palette rules, checked by `BoardSceneryDecodeDataTest`:
   three ponds are pools in the pond colours. The five `-snow` trees that keep their
   own GLB are `palette: false` too: a tree takes its winter form on a snow surface,
   and its Snow toggle keeps it bare.
-- No visible ID is a layouts key. Maglev and wagons shows the route, platform,
-  wagon, cab and the Maglev train stamp (a wagon, a cab and their coupler); the coupler is `palette: false`.
+- No visible ID is a layouts key. Transport shows the two routes, Maglev and Rail, the crossing signal and the
+  roadside-trees stamp (and the level crossing among the decals). Maglev and wagons (28) shows the station
+  platform, the city and colony maglev cars, the thirteen rail vehicles and five train stamps: City maglev,
+  Colony maglev, Freight train, Express train and Colony train (see Maglev and Rail pieces); the city gangway
+  coupler is `palette: false`. Airfield shows the landing light.
 - Rotated or baked duplicates are not shipped; terrain-owned scenery (rubble,
   geysers, fortifications) has no prop entry, though its GLBs stay.
 - Every decode row's mesh has a blueprint entry, so imported objects have a
   readable name.
-- Decals: 22 visible entries, all from `decals/`: the 13 full emblems
+- Decals: 102 visible entries, all from `decals/`: the 13 full emblems
   ("Emblems"), the 8 standard car parks ("Car park, straight 12", ... in
-  "Ground details") and the light rubble path ("Damage and debris"). The
+  "Ground details"), the light rubble path ("Damage and debris"), the 26 runway
+  markings and 13 landing pads ("Airfield"), 36 letters and digits ("Lettering"),
+  4 courts ("Sport and pools") and the level crossing ("Transport"). The
   emblem pieces and one-hex variants have no entry; they only decode
-  (`decals/decals.json` `legacy`).
+  (`decals/decals.json` `legacy`). The elevator plates and the cleared-rubble
+  gravel have none either: they belong to their rule terrain.
+- Designs: `rough/felled-trees` ("Felled trees", Designs) and the 55
+  `building/legacy-art-N` variants ("Legacy building art N", 100: "Legacy roof
+  outline"; group "Legacy building art"), each with the `selectors` of the
+  legacy token it stands for.
 
 The 78 seaport pieces are
 visible in the Seaport group (container yards, gantry cranes and the straight and
@@ -803,7 +912,12 @@ corners, unit height Z=0..1, no end faces; stretched between footing and cap) an
 (16 by 13, Z=0 at the floor, a 1-unit lip, buried 6). The runtime (`BoardBridgeFooting`) places one pier under
 each joint of a bridge whose Pillars toggle is on: each of the two hexes builds the half on its own side of the
 edge, cut at the kit's mirror plane and closed by its section there, so the pier must stay mirror-symmetric in X
-and Y and each part convex.
+and Y and each part convex. `bridges/maglev-pier.glb` is the same kit for the elevated maglev's pillars, from the
+same generator (`python tools/build_bridge_pier.py --profile maglev`), with parts named `maglev-pier-*`: cap 6 by
+4 under the 4 wide beam (soffit at Z=-2.5), shaft 3.2 square, footing 7 by 7 (a 0.6 lip, buried 4). The same
+runtime code places it: one pier on each shared edge of two hexes of a maglev route whose Pillars toggle is on (the
+marker's `"pillars": true`, set for the whole connected route), from below the floor up to the beam's underside, and
+none where the beam is less than a level up or a road, ground rail or bridge deck crosses the edge beneath.
 
 Rebuild only bridges:
 1. In the MegaMek code checkout run `gradlew :megamek:exportBridgeShapes`.
