@@ -13,6 +13,16 @@ LAYOUTS = json.loads((SCENERY/'layouts.json').read_text())
 # Only an unturned, unstretched row is the mesh's own image: crane tips 03-06 are turned rows on tips 01 and 02.
 LEGACY = {rows[0]['asset']: key for key, rows in LAYOUTS.items()
           if len(rows) == 1 and rows[0]['rotation'] == 0 and 'stretch' not in rows[0]}
+# Batch 10 pieces under scenery/: (lowest Z, size X, Y, Z) in model px (data/models/board/README.md, Rail pieces). Rail
+# pieces have their origin at rail top, track along Y.
+PIECES = {'roofs/landing-light': (0, (7, 7, 4)), 'rail/crossing-signal': (0, (2.83, 1.54, 10.91)),
+          'rail/buffer-stop': (-.5, (6.6, 8.29, 7.1)), 'rail/locomotive': (0, (8.88, 56, 13.95)),
+          'rail/coach': (0, (8.76, 62, 12.25)), 'rail/box-car': (0, (9.5, 46, 13.15)),
+          'rail/tank-car': (0, (8.81, 42, 13.33)), 'rail/ore-hopper': (0, (9.3, 40, 12.97)),
+          'rail/heavy-flatbed': (0, (8.8, 48, 13.1)), 'rail/express-power-car': (0, (8.5, 64, 13.23)),
+          'rail/express-car': (0, (8.58, 62, 11.95)), 'rail/colony-locomotive': (0, (9.22, 56, 12.5)),
+          'rail/container-wagon': (0, (8.8, 46, 12.72)), 'rail/heavy-hopper': (0, (9.49, 42, 14.11)),
+          'rail/insulated-tanker': (0, (8.77, 42, 13.83)), 'rail/equipment-carrier': (0, (8.8, 48, 13.74))}
 
 
 def image(file):
@@ -213,6 +223,15 @@ def main():
                         debris_errors.append({'file':file.name,'error':'cleared lane obstructed'});break
         if file.stem=='fortification' and any(math.hypot(p[0],p[1])<21 for p in points):
             debris_errors.append({'file':file.name,'error':'sandbags cover open center'})
+    # Batch 10 pieces: the lowest point (the buffer stop's posts reach the sleeper tops below its rail-top origin) and
+    # the designed size; a vehicle's length is over its couplers, so coupled vehicles stand half their lengths apart.
+    pieces,piece_errors={},[]
+    for name,(floor,size) in PIECES.items():
+        data=read_glb(SCENERY/(name+'.glb'),0)
+        points=[m['vertices'][i:i+3] for m in data['meshes'] for i in range(0,len(m['vertices']),12)]
+        low,high=[min(p[k] for p in points) for k in range(3)],[max(p[k] for p in points) for k in range(3)]
+        pieces[name]={'min_z':round(low[2],5),'size':[round(b-a,3) for a,b in zip(low,high)]}
+        if abs(low[2]-floor)>.0001 or any(abs(b-a-s)>.01 for a,b,s in zip(low,high,size)):piece_errors.append(name)
     result = {'seaport_assets': len(files), 'container_roof_triangles': checked, 'coplanar_overlaps': overlaps,
               'pool_assets': pools, 'pool_nonmanifold_shells': bad_edges, 'pool_coping_overlaps': coping_overlaps,
               'square_assets':squares,'square_fill_outside_border':outside,
@@ -222,12 +241,13 @@ def main():
               'animals':animals,'animal_budget_or_ground_errors':animal_errors,
               'crane_join_or_container_collisions':crane_errors,'container_grabber_errors':grabber_errors,
               'geysers':geysers,'geyser_geometry_errors':geyser_errors,
-              'demolition':debris,'demolition_geometry_errors':debris_errors}
+              'demolition':debris,'demolition_geometry_errors':debris_errors,
+              'pieces':pieces,'piece_floor_or_size_errors':piece_errors}
     print(json.dumps(result))
     (ROOT/'tools/board-models/scenery/geometry-check.json').write_text(json.dumps(result, indent=2)+'\n')
     if (overlaps or bad_edges or coping_overlaps or outside or platforms or construction_overlaps
             or any(z<-.0001 for z in construction_min_z.values()) or animal_errors or crane_errors or grabber_errors
-            or geyser_errors or debris_errors):
+            or geyser_errors or debris_errors or piece_errors):
         raise AssertionError('Invalid exported scenery geometry')
 
 

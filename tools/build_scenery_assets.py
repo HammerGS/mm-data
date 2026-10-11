@@ -977,41 +977,17 @@ def fortified(g):
     g.smooth('fortified-bags')
 
 
-def maglev_track(g):
-    # A single narrow guide beam, with no bridge-like deck or paired running rails.
-    g.box((0,0,1.2),(4,72,2.4),CONCRETE)
-    g.box((0,0,3),(1.4,72,2),STEEL)
-    g.box((0,0,2.45),(2.8,72,.3),DARK)
-
-
-def maglev_platform(g):
-    g.box((0,0,1.5),(10,42,3),CONCRETE)
-    for y in (-15,15):g.beam((0,y,3),(0,y,11),.7,STEEL,4)
-    g.box((0,0,11),(12,42,1),WHITE)
-
-
-# Vehicles ride RIDE px above the route marker's ground, 0.5 px into the 4 px rail: rows on a route stay at Z=0.
-RIDE=3.5
-
-
-def maglev_wagon(g, cab=False):
-    g.box((0,0,RIDE+3.5),(10,30,7),WHITE)
-    g.box((0,0,RIDE+7.3),(8,27,.5),STEEL)
-    for x in (-5.1,5.1):
-        for y in range(-10,12,4):g.box((x,y,RIDE+4.5),(.2,2.8,2.5),GLASS)
-    if cab:g.box((0,15.1,RIDE+4.5),(7,.2,3),GLASS)
-
-
-def maglev_coupler(g):
-    g.box((0,0,RIDE+2.5),(7,3,4),DARK)
+def maglev_piece(g, name):
+    """A row on a maglev piece: tools/build_maglev_assets.py owns the platform and vehicle meshes, their ride height
+    over the route's rail and the train stamps, so rows on a route stay at Z=0."""
+    g.library_row('scenery/maglev/'+name,Matrix.Identity(4))
 
 
 def maglev_vehicle(g, cab=True):
-    """Two wagons and their coupler; the cab's nose points to +Y."""
-    g.place(maglev_wagon,y=-17)
-    if cab:g.place(maglev_wagon,y=17,cab=True,asset_name='maglev/cab')
-    else:g.place(maglev_wagon,y=17)
-    g.place(maglev_coupler)
+    """Two cars and their gangway coupler; the cab's nose points to +Y."""
+    g.place(maglev_piece,y=-17,name='wagon')
+    g.place(maglev_piece,y=17,name='cab' if cab else 'wagon')
+    g.place(maglev_piece,name='coupler')
 
 
 # The legacy maglev sprites (fluff/maglev*.gif, 84x72 px), measured: the route's heading (0 runs N/S, -60 NE/SW and
@@ -1037,14 +1013,85 @@ MAGLEV_SIDES={0:9,-60:18,60:36}
 
 def maglev(g, stem):
     angle,platform,train,cars=MAGLEV[stem]
-    # The route marker: the client draws its rail from the stored sides; the legacy render shows this straight mesh.
-    g.place(maglev_track,angle=angle)
-    if g.shared is not None:g.components[-1]['connections']=MAGLEV_SIDES[angle]
-    if platform:g.place(maglev_platform,x=15*platform*cos(radians(angle)),y=15*platform*sin(radians(angle)),angle=angle)
+    # The route marker names no mesh: the client draws its rail from the stored sides. The straight beam mesh that
+    # only the legacy render drew (gone since batch 9) is no longer exported.
+    if g.shared is not None:
+        g.component('scenery/maglev/route',g.transform @ Matrix.Rotation(radians(angle),4,'Z'))
+        g.components[-1]['connections']=MAGLEV_SIDES[angle]
+    if platform:g.place(maglev_piece,x=15*platform*cos(radians(angle)),y=15*platform*sin(radians(angle)),angle=angle,
+                        name='platform')
     if train:g.place(maglev_vehicle,angle=angle+(180 if train=='cab-reversed' else 0),cab=train!='wagons')
     for x,y,paint in cars:
         g.place(car,x=x*cos(radians(angle))-y*sin(radians(angle)),y=x*sin(radians(angle))+y*cos(radians(angle)),
                 angle=angle-60,scale=.75,paint=paint)
+
+
+# The red lens of the landing beacons, lights and crossing lamps.
+LAMP=(.85,.07,.025)
+
+
+# The landing lights of the heli pads fluff/heli1-3 (measured on the sprites): the pad centre, where
+# tools/build_board_decals.py places the pad decal (HELI_PADS), and the lights' directions; each light stands
+# HELI_LIGHT_RADIUS px from the centre, turned to its direction.
+HELI_LIGHTS={'heli1':((-3,-5),(60,)),'heli2':((0,-.5),(0,60,120,180,240,300)),'heli3':((-3,5),(-60,))}
+HELI_LIGHT_RADIUS=34
+
+
+def landing_light(g):
+    """A heli pad's landing light (the lamp boxes of fluff/heli1-3): a rust housing on a darker base band and a red
+    lens dome. Origin at the base centre, a side facing +X."""
+    rust=(.56,.25,.20)
+    g.box((0,0,.25),(7,7,.5),tuple(c*.62 for c in rust))
+    g.box((0,0,1.5),(7,7,2),rust)
+    # The lens's lower half stays inside the housing, as the beacons' lens does.
+    g.ellipsoid((0,0,2.5),(2.2,2.2,1.5),LAMP,16,5)
+
+
+def crossing_signal(g):
+    """A level-crossing signal (the lamp marks of hq_fluff/rail_road01-06): a steel mast on a concrete footing, a
+    St Andrew's cross on top and two red lamps under hoods on a black backplate, all facing +Y. Origin at the base."""
+    g.box((0,0,.2),(1.4,1.4,.4),CONCRETE)
+    g.box((0,0,5.2),(.4,.4,9.6),STEEL)
+    g.box((0,.3,7.4),(2.6,.2,1),DARK)
+    for x in (-.75,.75):
+        g.beam((x,.4,7.4),(x,.5,7.4),.7,LAMP,12)
+        g.box((x,.62,7.82),(.9,.44,.08),DARK)
+    # Two boards crossed at 45 degrees, red with a white face, the second just in front of the first.
+    old=g.transform.copy()
+    for i,angle in enumerate((45,-45)):
+        g.transform=old @ Matrix.Translation((0,.26+.1*i,9.5)) @ Matrix.Rotation(radians(angle),4,'Y')
+        g.box((0,0,0),(3.4,.06,.6),(.70,.06,.05))
+        g.box((0,.03,0),(3.0,.04,.34),WHITE)
+    g.transform=old
+
+
+# The legacy rail sprites hq_fluff/rail00-63 (FLUFF 10:0-63): the token is the route's side mask, so each key decodes
+# to one route marker with those sides, and the client builds the track from them (rail00, no sides, takes its sides
+# from the neighbours). The level crossings rail_road01-06 (FLUFF 10:64-69), measured: the rail's and the road's
+# axes as side masks.
+RAIL_CROSSINGS={'rail_road01':(9,36),'rail_road02':(9,18),'rail_road03':(18,9),'rail_road04':(36,9),
+                'rail_road05':(36,18),'rail_road06':(18,36)}
+
+
+def rail(g, stem):
+    """A rail sprite's route marker; a level crossing adds its panel decal and four signals."""
+    sides,road=RAIL_CROSSINGS[stem] if stem in RAIL_CROSSINGS else (int(stem[4:]),None)
+    g.component('scenery/rail/route',g.transform)
+    g.components[-1]['connections']=sides
+    if road is None:return
+    axis={mask:angle for angle,mask in MAGLEV_SIDES.items()}
+    rail_angle,road_angle=axis[sides],axis[road]
+    # The decal's two 15 px strips run at its turn and 60 degrees anticlockwise from it.
+    g.component('decal/rail/level-crossing',g.transform @ Matrix.Rotation(
+        radians(rail_angle if (road_angle-rail_angle)%180==60 else road_angle),4,'Z'))
+    along=Vector((-sin(radians(road_angle)),cos(radians(road_angle))))
+    across=Matrix(((along.y,-along.x),(cos(radians(rail_angle)),sin(radians(rail_angle)))))
+    for road_side in (-1,1):
+        for rail_side in (-1,1):
+            # Beside the road, 10 px from its centre line, and just outside the panel, 8.5 px from the track's; each
+            # signal faces the road traffic that comes towards it.
+            x,y=across.inverted() @ Vector((road_side*10,rail_side*8.5))
+            g.place(crossing_signal,x=x,y=y,angle=road_angle+(0 if along.dot(Vector((x,y)))>0 else 180))
 
 
 def geyser(g, magma=False):
@@ -1104,10 +1151,12 @@ SHARED={bevel:'roofs/bevel', ledge:'roofs/ledge', roof_grille:'roofs/grille', ch
         concrete_pipe:'construction/concrete-pipe', crane:'construction/crawler-crane', bulldozer:'construction/bulldozer',
         site_debris:None,
         car:None, parking_barrier:'vehicles/parking-barrier', shelter:'vehicles/parking-shelter',
-        pool_basin:None, pool_deck:None, maglev_track:'maglev/route', maglev_platform:'maglev/platform',
-        maglev_wagon:'maglev/wagon', maglev_coupler:'maglev/coupler'}
-# Palette objects that no legacy image shows.
-PALETTE={'scenery/parks/bench':bench, 'scenery/pools/rectangular':pool}
+        pool_basin:None, pool_deck:None, landing_light:'roofs/landing-light',
+        crossing_signal:'rail/crossing-signal'}
+# Palette objects, exported whether or not a legacy layout row names them (heli pads name the landing light, level
+# crossings the signal).
+PALETTE={'scenery/parks/bench':bench, 'scenery/pools/rectangular':pool,
+         'scenery/roofs/landing-light':landing_light, 'scenery/rail/crossing-signal':crossing_signal}
 # Legacy images whose artwork is one baked mesh, and that mesh's id under scenery/. No mesh is written
 # at a legacy key: layouts.json decodes the key (scenery/<image path>) to its mesh with one row.
 SEAPORT_AXES={1:'n-s',2:'ne-sw',3:'nw-se',4:'e-w'}
@@ -1216,12 +1265,20 @@ def build_mesh(name, layouts, shared=None):
                     asset_name='pools/rectangular-no-deck')
             for i in range(3):g.place(concrete_pipe,x=10+i*4,y=-7+i*2)
             g.place(car,x=5,y=22,angle=30,scale=.65,paint='red')
+    elif name.startswith('fluff/heli'):
+        # Rows only: tools/build_board_decals.py adds the pad decal row and keeps these.
+        (x,y),angles=HELI_LIGHTS[stem]
+        for angle in angles:
+            g.place(landing_light,x=x+HELI_LIGHT_RADIUS*cos(radians(angle)),y=y+HELI_LIGHT_RADIUS*sin(radians(angle)),
+                    angle=angle)
     elif name.startswith('fluff/beacon'):
         g.cylinder(0,0,0,22,3,DARK,6 if stem[-1]=='1' else 24)
         g.ring(0,0,3,9,6,1.5,STEEL)
-        g.ellipsoid((0,0,4),(6,6,3),(.85,.07,.025),16,5)
+        g.ellipsoid((0,0,4),(6,6,3),LAMP,16,5)
     elif stem in MAGLEV:
         maglev(g,stem)
+    elif name.startswith('hq_fluff/rail'):
+        rail(g,stem)
     elif stem in HERDS_BY_STEM:
         for asset,x,y,angle,scale in HERDS_BY_STEM[stem]:
             asset,colours=COATS.get(asset,(asset,None))
@@ -1358,6 +1415,13 @@ def export_mesh(asset, mesh):
     write_glb(target,levels={0:data},extras={'mmColourSlots':mesh.colour_slots} if any(mesh.slots) else None)
 
 
+def export_palette():
+    """The palette objects alone, without rebuilding the catalogue (the `--palette` argument)."""
+    for asset,function in PALETTE.items():
+        mesh=Mesh();function(mesh);export_mesh(asset,mesh)
+    return sorted(PALETTE)
+
+
 def build(only=None):
     rows,_=declarations();layouts=json.loads((REVIEW/'layouts.json').read_text())
     scene=bpy.data.scenes.new('Board scenery / tileset catalog')
@@ -1386,17 +1450,14 @@ def build(only=None):
             compositions[asset]=[{'asset':mesh_id(name),'position':[0.0,0.0,0.0],'rotation':0.0,'scale':1.0}]
         index=built
         built+=1
-        blender_mesh(scene,name,preview,((index%12)*100,-(index//12)*100,0))
+        # A plain rail key is only its route marker: the client generates the track, so there is nothing to preview.
+        if preview.vertices:blender_mesh(scene,name,preview,((index%12)*100,-(index//12)*100,0))
         stats[name]={'asset':asset,'vertices':len(mesh.vertices)//12,'triangles':sum(len(v)//3 for v in mesh.parts.values()),
-                     'height':round(max(preview.vertices[2::12])-min(preview.vertices[2::12]),3),
+                     'height':round(max(preview.vertices[2::12])-min(preview.vertices[2::12]),3) if preview.vertices else 0,
                      'components':len(mesh.components),
                      'trees':sum(c['asset']=='tree-broad' for c in mesh.components)}
-    if 'scenery/maglev/wagon' in shared:
-        vehicle=Mesh(shared);maglev_vehicle(vehicle)
-        compositions['scenery/maglev/train']=vehicle.components
     for asset,mesh in shared.items():export_mesh(asset,mesh)
-    for asset,function in PALETTE.items():
-        mesh=Mesh();function(mesh);export_mesh(asset,mesh)
+    export_palette()
     REVIEW.mkdir(parents=True,exist_ok=True)
     (REVIEW/'model-inventory.json').write_text(json.dumps(stats,indent=2)+'\n')
     layout_path.write_text(json.dumps(compositions,indent=2)+'\n')
@@ -1414,5 +1475,6 @@ def build(only=None):
 
 
 if __name__=='__main__':
-    # blender --background --factory-startup --python tools/build_scenery_assets.py -- [image name parts]
-    print(build(sys.argv[sys.argv.index('--')+1:] or None if '--' in sys.argv else None))
+    # blender --background --factory-startup --python tools/build_scenery_assets.py -- [--palette | image name parts]
+    args=sys.argv[sys.argv.index('--')+1:] if '--' in sys.argv else []
+    print(export_palette() if args==['--palette'] else build(args or None))

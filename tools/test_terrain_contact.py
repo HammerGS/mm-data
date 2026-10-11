@@ -12,6 +12,42 @@ from prepare_cliff_materials import authored_height
 
 
 class TerrainContactTest(unittest.TestCase):
+    def test_hardpan_bake_removes_bands_without_erasing_shared_detail(self):
+        # The same mineral grain, with and without unwanted horizontal/vertical tone.
+        # Both must produce matching colour, relief and normals, not just hide bands in RGB.
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            y, x = np.mgrid[:contact.SIZE, :contact.SIZE] / contact.SIZE * (2 * np.pi)
+            grain = .025 * np.sin(5 * x + 7 * y) + .018 * np.cos(11 * x - 3 * y)
+            bands = .045 * np.sin(6 * x) + .035 * np.cos(4 * y)
+            colour = np.array([.71, .53, .36])
+            for label, bias in [('clean', 0), ('banded', bands)]:
+                rgb = colour + (grain + bias)[..., None]
+                Image.fromarray(np.rint(rgb * 255).astype('uint8')).save(root / 'desert-hardpan.png')
+                with patch.object(contact, 'SOURCES', root):
+                    contact.bake('desert-hardpan', root / label)
+            for suffix in ('.png', '-normal.png'):
+                with Image.open(root / 'clean' / ('desert-hardpan' + suffix)) as image:
+                    clean = np.asarray(image, dtype=float)
+                with Image.open(root / 'banded' / ('desert-hardpan' + suffix)) as image:
+                    banded = np.asarray(image, dtype=float)
+                self.assertLess(np.abs(clean - banded).mean(), 1.0, suffix)
+                self.assertGreater(clean[..., 0].std(), 2, 'Retain the mineral grain and its light-facing relief')
+
+    def test_shipped_hardpan_has_no_axis_bands_at_texture_mips(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            output = Path(temporary)
+            contact.bake('desert-hardpan', output)
+            with Image.open(output / 'desert-hardpan.png') as image:
+                # Average in floating point as mip filtering does; no per-level image re-encoding.
+                pixels = np.asarray(image, dtype=float)
+            while pixels.shape[0] >= 8:
+                for axis in (0, 1):
+                    self.assertLess(pixels.mean(axis=axis).std(axis=0).max(), .08,
+                                    f'{pixels.shape[0]}-pixel mip, axis {axis}: repeating colour/height bands')
+                size = pixels.shape[0] // 2
+                pixels = pixels.reshape(size, 2, size, 2, 4).mean(axis=(1, 3))
+
     def test_authored_relief_is_independent_of_pigment(self):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
