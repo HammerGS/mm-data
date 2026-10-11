@@ -30001,8 +30001,8 @@
       "group": "Spaceport markings"
     },
     {
-      "id": "decal/spaceport/cargo-pad-03",
-      "label": "Cargo pad 03 markings",
+      "id": "decal/spaceport/cargo-pad",
+      "label": "Cargo pad markings",
       "kind": "decal",
       "group": "Spaceport markings"
     },
