@@ -8,6 +8,13 @@ projectile glows use shaders and need no sphere asset.
 | File | Root group | Geometry |
 |---|---|---|
 | `missile-body.glb` | `missile-body-lod0` | Four triangles; closed missile body with per-face vertex colors |
+| `arrow-iv.glb` | `arrow-iv-lod0` | 328 triangles; Arrow IV round with strakes and tail fins, per-face vertex colors |
+
+The Arrow IV round is authored in metres, not board units: its base is at Y=0
+and its nose tip at Y=4 (4 m long), 0.508 m across, twice its true thickness so
+its band and fins still read at board zoom. The renderer scales it by the
+board's metres and uses it for every Arrow IV shot, including an aircraft's
+Arrow IV homing missile; without it those fly as the plain missile.
 
 The missile has only LOD0. Preserve the group name when editing. Export rigid,
 uncompressed GLB. It currently needs no texture.
