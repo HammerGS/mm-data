@@ -1,0 +1,11 @@
+{
+  "triangles": 289,
+  "vertices": 867,
+  "opening_width": 19.0,
+  "opening_height": 15.5,
+  "depth": 18,
+  "wing_walls": true,
+  "road_width": 15,
+  "road_start": 2.75,
+  "road_end": 18
+}

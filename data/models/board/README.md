@@ -738,9 +738,9 @@ no rock or scatter geometry is generated in-game.
   outline, vertex and triangle counts. The largest has 499 triangles. Fuel tanks
   and industrial structures use their selected Saxarba artwork too; generic
   cylinder/factory substitutes have been removed.
-- `bridge.glb`, `field.glb`, and twenty-two foliage GLB
-  files, plus 63 additional complete bridge exit patterns, all at or below 480 triangles. Counts and
-  the imported Blender source names are in `manifest.json`.
+- `field.glb` and foliage GLB files. Counts and the imported Blender source
+  names are in `manifest.json`. Bridge spans are generated at runtime;
+  reusable terminal and pier kits remain GLBs.
 - Each tree GLB contains `-lod0`, `-lod1`, and `-lod2` groups, with budgets
   of 480, 240 and 96 triangles including explicit back faces. Sixteen leafy
   variants retain their authored trunks and crown envelopes but replace closed
@@ -889,16 +889,15 @@ Z=18: one default board level, visible at useful proportions in ordinary GLB
 viewers. Placement fits their actual bounds to the game's feature height;
 interior floors/columns share the shell's coordinates and placement. Wall UVs
 and facade repetition remain independent of these authored coordinates.
-Crops retain their legacy height-one convention. Each bridge is a complete deck
-for one of the 64 six-bit exit patterns. `bridge.glb` is the north/south straight
-span (mask 09); `bridges/bridge-exits-NN.glb` contains every other pattern.
-Each file contains one named LOD0 group. These are connection patterns, not LODs.
-The carriageway is 15 units wide, slab bottom Z=-1.5, deck Z=0 and rail top Z=2.5.
-Rails follow the outside of the joined deck and leave every connected exit open.
-Turns are curved; three-to-six-exit junctions have one open connected center.
-The runtime places one GLB per bridge hex at the bridge elevation plus the road
-surface clearance. Board scale applies uniformly; terrain-level height affects
-only elevation, never slab thickness or rail height.
+Crops retain their legacy height-one convention. Bridge decks, kerbs and trusses
+are generated and cached at runtime by `BoardBridgeMesh` and `BoardBridgeTruss`.
+Their outlines follow the shared road footprint and the actual railway routes
+on the deck. Kerbs and trusses follow the outside of the joined deck and leave
+connected exits open. Five- and six-way road junctions retain their roundabout
+islands; railway junctions have clear centres. No per-pattern span GLBs are used.
+The runtime places each span at the bridge elevation plus the road surface
+clearance. Board scale applies uniformly; terrain-level height affects only
+elevation, never slab thickness or rail height.
 The deck uses shared road asphalt and the road's normal/surface maps, lighting
 and world-space texture phase. Sides and underside use shared repeating concrete.
 
@@ -919,16 +918,13 @@ runtime code places it: one pier on each shared edge of two hexes of a maglev ro
 marker's `"pillars": true`, set for the whole connected route), from below the floor up to the beam's underside, and
 none where the beam is less than a level up or a road, ground rail or bridge deck crosses the edge beneath.
 
-Rebuild only bridges:
-1. In the MegaMek code checkout run `gradlew :megamek:exportBridgeShapes`.
-2. In mm-data run `blender --background --python tools/build_bridge_assets.py`.
-   It also rebuilds both kits; `python tools/build_bridge_pier.py` (or `build_bridge_terminal.py`) rebuilds
-   one kit alone, and `--check` validates the shipped file.
+Bridge spans need no asset bake. Rebuild the retained detail kits in mm-data with
+`python tools/build_bridge_terminal.py` or `python tools/build_bridge_pier.py`;
+add `--profile maglev` for the maglev pier. Add `--check` to validate a shipped
+kit without changing it. The main board-asset builder also rebuilds the bridge
+terminal and pier kits.
 
-The exported `tools/board-models/bridge-shapes.json` comes from `BoardRoad` curves
-and unioned footprints; the Blender tool triangulates/extrudes it into GLBs.
-The main board-asset builder delegates its bridge rebuild to this same tool.
-No separate bridge path algorithm or runtime mesh generator is used. Textures and meshes are shared;
+Textures and meshes are shared;
 translucency changes instance materials, not the assets. Snow trees have their
 own snow materials, as variants of the bare tree where it shares their shape.
 Rough terrain places the shared GLB rock templates in its terrain mesh.
@@ -1064,12 +1060,11 @@ image. Validation checks the original sibling against its source and the
 embedded roof against the source's opaque pixels. There is no measured
 runtime performance gain claimed from embedding.
 
-`bridge.glb` and `field.glb` also contain a single LOD0 group. No G3DJ remains
+`field.glb` also contains a single LOD0 group. No G3DJ remains
 under deployed `data/` or authoring/reference `tools/`. The 475 former tool
-meshes also use GLB, including seven empty squad references. All 4,056 deployed GLBs pass Khronos validation with zero errors. One
-warning originally came from ancillary metadata in the old external bridge PNG.
-The redesigned bridge uses shared asphalt/concrete instead and now validates
-with zero errors and warnings.
+meshes also use GLB, including seven empty squad references. Before the runtime
+bridge migration, all 4,056 deployed GLBs passed Khronos validation with zero
+errors. The obsolete span files have since been removed.
 
 See the glTF image specification:
 https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html#images
