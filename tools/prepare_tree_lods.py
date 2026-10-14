@@ -20,7 +20,7 @@ from mathutils import Euler, Matrix, Vector
 from mathutils.bvhtree import BVHTree
 
 BOARD = Path(__file__).resolve().parents[1] / 'data/models/board'
-IMPOSTORS = 'textures/foliage/impostors'
+IMPOSTORS = 'textures/vegetation/impostors'
 # Pixels per card face; the game draws the cards only below TreeLod's smallest threshold.
 PANEL = 128
 
@@ -175,7 +175,7 @@ def stem_section(vertices, faces, height):
 
 def cutout_material(role, texture):
     return {'id': role, 'diffuse': [1, 1, 1], 'alphaTest': .5, 'textures': [
-        {'id': role, 'type': kind, 'filename': f'textures/foliage/{texture}{suffix}.png',
+        {'id': role, 'type': kind, 'filename': f'textures/vegetation/{texture}{suffix}.png',
          'wrapS': 33071, 'wrapT': 33071}
         for kind, suffix in (('DIFFUSE', ''), ('NORMAL', '-normal'), ('AMBIENT', '-surface'))]}
 
@@ -323,16 +323,33 @@ def solid(role):
     return role.startswith('bark') or role in ('cactus', 'fruit')
 
 
-def unlit_material(role, filename, images):
-    """The game's albedo before lighting: the raw detail texel times the vertex colour, snow neutral."""
+def material_roles(model):
+    """A split variant can rename a material while retaining the original meshpart ID."""
+    roles = {}
+    def visit(node):
+        for part in node.get('parts', []):
+            roles[part['meshpartid']] = part['materialid']
+        for child in node.get('children', []):
+            visit(child)
+    for node in model['nodes']:
+        visit(node)
+    return roles
+
+
+def unlit_material(role, filename, images, *, linear_colors=False):
+    """Unlit pigment; the impostor bake filters sRGB textures in linear light.
+
+    The default preserves the separate legacy builder-preview input contract.
+    """
     material = bpy.data.materials.new(role)
     material.use_nodes = True
     material.use_backface_culling = True
     nodes, links = material.node_tree.nodes, material.node_tree.links
     nodes.clear()
     if filename not in images:
-        images[filename] = bpy.data.images.load(str(BOARD / filename), check_existing=True)
-        images[filename].colorspace_settings.name = 'Non-Color'
+        # The bake owns its image copies; never change a builder's existing image color space.
+        images[filename] = bpy.data.images.load(str(BOARD / filename), check_existing=not linear_colors)
+        images[filename].colorspace_settings.name = 'sRGB' if linear_colors else 'Non-Color'
     texture = nodes.new('ShaderNodeTexImage')
     texture.image = images[filename]
     texture.interpolation = 'Linear'
@@ -343,14 +360,7 @@ def unlit_material(role, filename, images):
     links.new(texture.outputs['Color'], product.inputs[0])
     links.new(color.outputs['Color'], product.inputs[1])
     albedo = product.outputs[0]
-    if role in ('snow', 'canopy-snow-cutout'):
-        grey = nodes.new('ShaderNodeRGBToBW')
-        links.new(albedo, grey.inputs['Color'])
-        tint = nodes.new('ShaderNodeVectorMath')
-        tint.operation = 'MULTIPLY'
-        tint.inputs[1].default_value = (.97, .98, 1.02)
-        links.new(grey.outputs['Val'], tint.inputs[0])
-        albedo = tint.outputs[0]
+    # Snow uses its authored texture and vertex pigment, just like the runtime foliage shader.
     emission = nodes.new('ShaderNodeEmission')
     links.new(albedo, emission.inputs['Color'])
     output = nodes.new('ShaderNodeOutputMaterial')
@@ -374,21 +384,21 @@ def unlit_material(role, filename, images):
     return material
 
 
-def unlit_mesh(model, name, images):
+def unlit_mesh(model, name, images, *, linear_colors=False):
     """LOD0 with one vertex per corner, so every authored colour and texture coordinate survives."""
     mesh = model['meshes'][0]
     source = mesh['vertices']
     textures = {material['id']: material['textures'][0]['filename'] for material in model['materials']}
+    bound_roles = material_roles(model)
     vertices, faces, colors, uvs, roles = [], [], [], [], []
     for part in mesh['parts']:
         for offset in range(0, len(part['indices']), 3):
             faces.append((len(vertices), len(vertices) + 1, len(vertices) + 2))
-            roles.append(part['id'])
+            roles.append(bound_roles[part['id']])
             for index in part['indices'][offset:offset + 3]:
                 vertex = source[index * 12:index * 12 + 12]
                 vertices.append(vertex[:3])
-                # terrain-foliage.frag multiplies the texel by the display-space colour before converting to linear;
-                # the float attribute and the Raw render pass it through unchanged, so it stays display-space here.
+                # The impostor path reads original linear glTF RGB; builder previews retain their input domain.
                 colors.append(vertex[6:10])
                 uvs.append((vertex[10], 1 - vertex[11]))
     data = bpy.data.meshes.new(name)
@@ -403,7 +413,7 @@ def unlit_mesh(model, name, images):
     for polygon, role in zip(data.polygons, roles):
         if role not in materials:
             materials[role] = len(data.materials)
-            data.materials.append(unlit_material(role, textures[role], images))
+            data.materials.append(unlit_material(role, textures[role], images, linear_colors=linear_colors))
         polygon.material_index = materials[role]
     data.update()
     return data
@@ -457,7 +467,7 @@ def dilate(rgba, passes=8):
 
 def render_faces(scene, model, name, images, panels):
     """One render of LOD0 turned toward the camera three times, each face filling its own square panel."""
-    data = unlit_mesh(model, name, images)
+    data = unlit_mesh(model, name, images, linear_colors=True)
     objects = []
     for panel, (turn, (size, centre)) in enumerate(zip(FACES, panels)):
         obj = bpy.data.objects.new(f'{name}-face{panel}', data)
@@ -469,13 +479,16 @@ def render_faces(scene, model, name, images, panels):
     path = BOARD / IMPOSTORS / (name + '.png')
     path.parent.mkdir(parents=True, exist_ok=True)
     scene.render.filepath = str(path)
-    bpy.ops.render.render(write_still=True)
-    for obj in objects:
-        bpy.data.objects.remove(obj, do_unlink=True)
-    for material in data.materials:
-        bpy.data.materials.remove(material)
-    bpy.data.meshes.remove(data)
-    rendered = bpy.data.images.load(str(path))
+    try:
+        bpy.ops.render.render(write_still=True)
+    finally:
+        for obj in objects:
+            bpy.data.objects.remove(obj, do_unlink=True)
+        for material in list(data.materials):
+            bpy.data.materials.remove(material)
+        bpy.data.meshes.remove(data)
+    # Standard already encoded this PNG once. Dilation only copies encoded texels, never averages them.
+    rendered = bpy.data.images.load(str(path), check_existing=False)
     rendered.colorspace_settings.name = 'Non-Color'
     pixels = numpy.array(rendered.pixels[:], dtype=numpy.float32).reshape(PANEL, 3 * PANEL, 4)
     bpy.data.images.remove(rendered)
@@ -515,6 +528,8 @@ def lighting(model, toward):
     what shows that is bark, cactus or snow, which take light straight on where leaves scatter it around. A card
     standing inside its crown cannot take that shade from the shadow map, which would shade it with its own cards."""
     vertices, faces, corners = geometry(model)
+    bound_roles = material_roles(model)
+    corners = [(bound_roles[part], attributes) for part, attributes in corners]
     tree = BVHTree.FromPolygons(vertices, faces, all_triangles=True)
     cutouts = {}
     for material in model['materials']:
@@ -614,6 +629,7 @@ def impostor(scene, model, name, images):
     asset = f'{name}-lod3'
     return {'id': asset,
             'meshes': [{'attributes': ['POSITION', 'NORMAL', 'COLOR', 'TEXCOORD0'], 'vertices': vertices,
+                        'colorData': True,
                         'parts': [{'id': 'impostor', 'type': 'TRIANGLES', 'indices': indices}]}],
             'nodes': [{'id': asset, 'parts': [{'meshpartid': 'impostor', 'materialid': 'impostor'}]}],
             'materials': [{'id': 'impostor', 'diffuse': [1, 1, 1], 'alphaTest': .5, 'textures': [
@@ -627,6 +643,7 @@ def impostors(only=None):
     old_scene = bpy.context.window.scene
     scene = bpy.data.scenes.new('MegaMek plant impostors')
     bpy.context.window.scene = scene
+    images = {}
     try:
         camera = bpy.data.objects.new('Impostor camera', bpy.data.cameras.new('Impostor camera'))
         scene.collection.objects.link(camera)
@@ -645,27 +662,32 @@ def impostors(only=None):
         scene.render.image_settings.file_format = 'PNG'
         scene.render.image_settings.color_mode = 'RGBA'
         scene.render.image_settings.color_depth = '8'
-        # Texels store what the game's shader multiplies before lighting, so no display transform applies.
-        scene.view_settings.view_transform = 'Raw'
+        # Linear unlit pigment becomes an ordinary sRGB PNG; no tone map, exposure or artistic grade.
+        scene.display_settings.display_device = 'sRGB'
+        scene.view_settings.view_transform = 'Standard'
         scene.view_settings.look = 'None'
+        scene.view_settings.exposure = 0
+        scene.view_settings.gamma = 1
+        scene.view_settings.use_curve_mapping = False
         if hasattr(scene, 'eevee'):
             scene.eevee.taa_render_samples = 16
-        images = {}
         for name, entry in manifest.items():
             if 'lods' not in entry or only is not None and name not in only:
                 continue
             path = BOARD / (name + '.glb')
-            levels = {level: read_glb(path, level) for level in range(min(3, len(entry['lods'])))}
+            levels = {level: read_glb(path, level, linear_colors=True) for level in range(min(3, len(entry['lods'])))}
             for model in levels.values():
                 model['materials'] = [material for material in model['materials'] if material['id'] != 'impostor']
             levels[3] = impostor(scene, levels[0], name, images)
             entry['lods'] = entry['lods'][:3] + [{'node': f'{name}-lod3', **counts(levels[3])}]
-            write_glb(path, levels=levels)
+            write_glb(path, levels=levels, linear_colors=True, extras=levels[0].get('extras'))
             print(name, [lod['triangles'] for lod in entry['lods']], flush=True)
         (BOARD / 'manifest.json').write_text(json.dumps(manifest, indent=2) + '\n')
     finally:
         bpy.context.window.scene = old_scene
         bpy.data.scenes.remove(scene)
+        for image in images.values():
+            bpy.data.images.remove(image)
 
 
 if __name__ == '__main__':

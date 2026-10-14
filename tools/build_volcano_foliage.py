@@ -11,7 +11,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 BOARD = ROOT / 'data/models/board'
 REVIEW = ROOT / 'tools/board-models/volcano'
-TEXTURES = BOARD / 'textures/foliage/volcano'
+TEXTURES = BOARD / 'textures/vegetation/volcano'
 NAMES = ('tree-volcano-crown', 'tree-volcano-forked', 'tree-volcano-spire', 'foliage-volcano')
 sys.path.insert(0, str(ROOT / 'tools'))
 
@@ -25,21 +25,24 @@ def prepare_textures():
     import numpy as np
     from PIL import Image
     from prepare_foliage_cutouts import bake, leaf_maps
-    from prepare_cliff_materials import blur, normal_map, periodic
+    from texture_helpers import blur, display_rgb, normal_map, periodic, resize_linear_rgb
 
     TEXTURES.mkdir(parents=True, exist_ok=True)
     leaves = bake(REVIEW / 'cinder-cutout.png')
-    maps = {'cinder-cutout': leaves, **leaf_maps('cinder-cutout', leaves)}
+    maps = {'cinder-cutout': leaves,
+            **leaf_maps('cinder-cutout', bake(REVIEW / 'cinder-cutout.png', linear_color=False))}
     # Thick dry lichen has little transmission; the source is predominantly red.
     maps['cinder-cutout-surface'][:, :, 1] = 210
     maps['cinder-cutout-surface'][:, :, 2] = 12
     with Image.open(REVIEW / 'cinder-bark.png') as source:
         color = np.asarray(source.convert('RGB').resize((512, 512), Image.Resampling.LANCZOS)) / 255.0
+        pigment = np.clip(periodic(resize_linear_rgb(source, (512, 512))), 0, 1)
+    # Numeric relief/cavity keep their original source estimate; only color filtering changes.
     color = np.clip(periodic(color), 0, 1)
     light = color @ np.array([.2126, .7152, .0722])
     relief = blur(light, 1.5) - blur(light, 12)
     cavity = np.clip(1 - np.maximum(blur(light, 4) - light, 0), .75, 1)
-    maps.update({'cinder-bark': np.rint(color * 255).astype(np.uint8),
+    maps.update({'cinder-bark': np.rint(display_rgb(pigment) * 255).clip(0, 255).astype(np.uint8),
                  'cinder-bark-normal': normal_map(relief, .04),
                  'cinder-bark-surface': np.rint(np.stack(
                      (cavity, np.full_like(light, .92), np.zeros_like(light)), axis=-1) * 255).astype(np.uint8)})
@@ -123,7 +126,11 @@ def smooth_bark(model):
     for index in set(indices):
         offset = index*12
         key = tuple(Vector(data[offset:offset+3]))
-        data[offset+3:offset+6] = list(normals[key].normalized())
+        normal = normals[key]
+        # Opposed decimated faces can cancel at a shared position. Keep each corner's
+        # original oriented face normal instead of replacing it with a zero vector.
+        if normal.length_squared > 0:
+            data[offset+3:offset+6] = list(normal.normalized())
 
 
 def preview_material(role):
@@ -186,7 +193,7 @@ def build():
         source = export_model(obj, 'volcano')
         source['materials'] = [{'id': 'bark-volcano', 'diffuse': [1, 1, 1], 'textures': [
             {'id': 'bark-volcano', 'type': kind,
-             'filename': 'textures/foliage/volcano/cinder-bark' + suffix + '.png'}
+             'filename': 'textures/vegetation/volcano/cinder-bark' + suffix + '.png'}
             for kind, suffix in (('DIFFUSE', ''), ('NORMAL', '-normal'), ('AMBIENT', '-surface'))]}]
         levels = branch_crowns(source, name)
         obj.location = (column*44, 70, 0)

@@ -1,7 +1,8 @@
 """Shared GLB writer for the rigid unit and terrain kits. No Blender dependency.
 
 Authoring uses MegaMek's Z-up coordinates and display-space colors. Files use
-glTF's Y-up coordinates and linear colors; the runtime importer reverses both.
+glTF's Y-up coordinates and linear colors; the runtime keeps those colors linear.
+The explicit linear_colors option preserves original glTF color values in offline processing.
 The small reader is for our offline review tools and migration parity checks.
 """
 import json
@@ -46,9 +47,11 @@ def z_up(value):
     return [value[0], -value[2], value[1]]
 
 
-def write_glb(path, model=None, *, levels=None, embedded_images=None, extras=None):
+def write_glb(path, model=None, *, levels=None, embedded_images=None, extras=None, linear_colors=False):
     """Export existing rigid authoring arrays, preserving node/part/material IDs.
 
+    With `linear_colors=True`, pigment factors and vertex RGB are already linear; alpha is unchanged.
+    A mesh with `colorData=True` stores numeric COLOR_0 channels without any transfer function.
     A mesh may carry `slots`, one colour slot per vertex (0 none, n the model's n-th colour slot), written as the
     `_COLOUR_SLOT` attribute; `extras` become the file's extras (for example its `mmColourSlots` definitions).
     """
@@ -90,7 +93,8 @@ def write_glb(path, model=None, *, levels=None, embedded_images=None, extras=Non
                     and math.isfinite(metallic) and 0 <= metallic <= 1):
                 raise ValueError('Metallic and roughness factors must be finite values in [0, 1]')
             document['materials'].append({'name': material['id'], 'pbrMetallicRoughness': {
-                'baseColorFactor': [*(linear(c) for c in color[:3]), material.get('opacity', 1)],
+                'baseColorFactor': [*(c if linear_colors else linear(c) for c in color[:3]),
+                                    material.get('opacity', 1)],
                 'metallicFactor': metallic, 'roughnessFactor': roughness}})
             if 'alphaTest' in material:
                 document['materials'][-1].update(alphaMode='MASK', alphaCutoff=material['alphaTest'])
@@ -144,7 +148,7 @@ def write_glb(path, model=None, *, levels=None, embedded_images=None, extras=Non
                     value = mesh['vertices'][index * stride + offset:index * stride + offset + size]
                     if name in ('POSITION', 'NORMAL'):
                         value = y_up(value)
-                    elif name == 'COLOR':
+                    elif name == 'COLOR' and not (linear_colors or mesh.get('colorData', False)):
                         value = [*(linear(c) for c in value[:3]), value[3]]
                     if not all(math.isfinite(c) for c in value):
                         raise ValueError('Non-finite vertex')
@@ -163,6 +167,8 @@ def write_glb(path, model=None, *, levels=None, embedded_images=None, extras=Non
                 indices = accessor(part['indices'], 1, 5123 if count <= 65535 else 5125, 34963)
                 parts[part['id']] = {'attributes': attributes, 'indices': indices, 'mode': 4,
                                      'extras': {'mmPart': part['id']}}
+                if mesh.get('colorData', False):
+                    parts[part['id']]['extras']['mmColorData'] = True
 
         def node(source):
             index = len(document['nodes'])
@@ -214,8 +220,8 @@ def write_glb(path, model=None, *, levels=None, embedded_images=None, extras=Non
     path.write_bytes(data)
 
 
-def read_glb(path, level=0):
-    """Read our uncompressed rigid exports into the existing review representation."""
+def read_glb(path, level=0, *, linear_colors=False):
+    """Read rigid exports; opt into original linear pigment values without a transfer roundtrip."""
     raw = Path(path).read_bytes()
     magic, version, length = struct.unpack_from('<III', raw)
     if (magic, version, length) != (0x46546c67, 2, len(raw)):
@@ -260,11 +266,16 @@ def read_glb(path, level=0):
         visit(index)
 
     vertices, slots, parts, layouts, mesh_parts = [], [], [], {}, {}
+    color_domains = set()
 
     for mesh_index in sorted(used):
         mesh = document['meshes'][mesh_index]
         references = []
         for part_index, primitive in enumerate(mesh['primitives']):
+            data_colors = primitive.get('extras', {}).get('mmColorData', False)
+            color_domains.add(data_colors)
+            if len(color_domains) > 1:
+                raise ValueError('The review mesh cannot mix pigment and numeric COLOR_0')
             attrs = primitive['attributes']
             layout = tuple(sorted(attrs.items()))
             if layout not in layouts:
@@ -273,7 +284,7 @@ def read_glb(path, level=0):
                 colors = values(attrs['COLOR_0']) if 'COLOR_0' in attrs else [[1, 1, 1, 1]] * len(position)
                 uvs = values(attrs['TEXCOORD_0']) if 'TEXCOORD_0' in attrs else [[0, 0]] * len(position)
                 for p, n, c, uv in zip(position, normals, colors, uvs):
-                    vertices.extend([*z_up(p), *z_up(n), *(display(v) for v in c[:3]), c[3], *uv])
+                    vertices.extend([*z_up(p), *z_up(n), *(v if linear_colors or data_colors else display(v) for v in c[:3]), c[3], *uv])
                 slot_values = values(attrs['_COLOUR_SLOT']) if '_COLOUR_SLOT' in attrs else [[0]] * len(position)
                 slots.extend(round(v[0]) for v in slot_values)
             part_id = primitive.get('extras', {}).get('mmPart', f'{mesh_index}-{part_index}')
@@ -296,7 +307,7 @@ def read_glb(path, level=0):
 
     def material(source):
         pbr = source['pbrMetallicRoughness']
-        result = {'id': source['name'], 'diffuse': [display(v) for v in pbr['baseColorFactor'][:3]]}
+        result = {'id': source['name'], 'diffuse': [v if linear_colors else display(v) for v in pbr['baseColorFactor'][:3]]}
         result.update(roughness=pbr.get('roughnessFactor', 1), metallic=pbr.get('metallicFactor', 1))
         if source.get('alphaMode') == 'MASK':
             result['alphaTest'] = source.get('alphaCutoff', .5)
@@ -322,6 +333,8 @@ def read_glb(path, level=0):
         return result
 
     mesh = {'attributes': list(STRIDES), 'vertices': vertices, 'parts': parts}
+    if color_domains == {True}:
+        mesh['colorData'] = True
     if any(slots):
         mesh['slots'] = slots
     return {'id': Path(path).stem, 'extras': document.get('extras', {}),

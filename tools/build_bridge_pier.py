@@ -124,7 +124,7 @@ def model(root, profile):
             mesh_parts.append({'id': name, 'type': 'TRIANGLES', 'indices': indices})
             nodes.append({'id': name, 'parts': [{'meshpartid': name, 'materialid': 'bridge-structure'}]})
     out = root / 'data/models/board/bridges'
-    texture = os.path.relpath(root / 'data/models/board/textures/sculpt/concrete.png', out).replace('\\', '/')
+    texture = os.path.relpath(root / 'data/models/board/textures/terrain/surfaces/concrete.png', out).replace('\\', '/')
     return {'id': profile['name'], 'version': [0, 1], 'materials': [{'id': 'bridge-structure', 'diffuse': [1, 1, 1], 'textures': [
         {'id': 'bridge-structure', 'filename': texture, 'type': 'DIFFUSE', 'wrapS': 10497, 'wrapT': 10497}]}],
         'meshes': [{'attributes': ['POSITION', 'NORMAL', 'COLOR', 'TEXCOORD0'], 'vertices': packed, 'parts': mesh_parts}],
@@ -139,7 +139,7 @@ def validate(path, p):
     assert all(not node['children'] and len(node['parts']) == 1 for node in mesh['nodes']), 'Kit shapes are root meshes'
     assert [m['id'] for m in mesh['materials']] == ['bridge-structure'], 'One concrete material'
     texture = mesh['materials'][0]['textures'][0]
-    assert (path.parent / texture['filename']).resolve() == (path.parents[1] / 'textures/sculpt/concrete.png').resolve()
+    assert (path.parent / texture['filename']).resolve() == (path.parents[1] / 'textures/terrain/surfaces/concrete.png').resolve()
     assert texture['wrapS'] == texture['wrapT'] == 10497, 'Concrete repeats'
     geometry = mesh['meshes'][0]
     vertices = geometry['vertices']

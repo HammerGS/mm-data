@@ -24,7 +24,7 @@ ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / 'data/models/board/mars'
 REVIEW = ROOT / 'tools/board-models/mars'
 SOURCE = ROOT / 'tools/board-mars-corals-expanded.blend'
-TEXTURE = ROOT / 'data/models/board/textures/foliage/mars/coral-mineral-atlas.png'
+TEXTURE = ROOT / 'data/models/board/textures/vegetation/mars/coral-mineral-atlas.png'
 FORMS = ('finger-spires', 'fan-scalloped', 'tube-grove',
          'finger-crown', 'fan-folded', 'tube-crown',
          'antler-crown', 'plate-terraces', 'brain-lobes',
@@ -471,7 +471,7 @@ def mesh_model(obj):
     return {'id': obj.name, 'meshes': [{'attributes': ['POSITION', 'NORMAL', 'COLOR', 'TEXCOORD0'],
             'vertices': vertices, 'parts': [{'id': 'coral', 'type': 'TRIANGLES', 'indices': indices}]}],
             'materials': [{'id': 'coral', 'diffuse': [1, 1, 1], 'textures': [{'id': 'mineral-pores',
-                'type': 'DIFFUSE', 'filename': '../textures/foliage/mars/coral-mineral-atlas.png',
+                'type': 'DIFFUSE', 'filename': '../textures/vegetation/mars/coral-mineral-atlas.png',
                 'wrapS': 33071, 'wrapT': 33071}]}],
             'nodes': [{'id': obj.name, 'parts': [{'meshpartid': 'coral', 'materialid': 'coral'}]}]}
 

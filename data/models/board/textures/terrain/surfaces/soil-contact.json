@@ -1,0 +1,8 @@
+{
+  "tile": 4.0,
+  "role": "mantle",
+  "size": 512,
+  "relief_metres": 0.095,
+  "color_filtering": "linear RGB",
+  "color_space": "sRGB"
+}

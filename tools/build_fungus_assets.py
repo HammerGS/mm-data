@@ -24,7 +24,7 @@ ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / 'data/models/board/fungus'
 REVIEW = ROOT / 'tools/board-models/fungus'
 SOURCE = ROOT / 'tools/board-fungus.blend'
-ATLAS = ROOT / 'data/models/board/textures/foliage/fungus/fungus-organic-atlas.png'
+ATLAS = ROOT / 'data/models/board/textures/vegetation/fungus/fungus-organic-atlas.png'
 COLORS = {
     'stem': (.34, .19, .23), 'skin': (.56, .25, .22),
     'rim': (.83, .45, .23), 'rim-dark': (.68, .31, .20),
@@ -320,7 +320,7 @@ def mesh_model(obj):
                 vertices.extend(vertex)
             parts[part].append(shared[vertex])
     texture = {'id':'fungus-atlas', 'type':'DIFFUSE',
-               'filename':'../textures/foliage/fungus/'+ATLAS.name, 'wrapS':33071,'wrapT':33071}
+               'filename':'../textures/vegetation/fungus/'+ATLAS.name, 'wrapS':33071,'wrapT':33071}
     return {'id': obj.name, 'meshes': [{'attributes': ['POSITION', 'NORMAL', 'COLOR', 'TEXCOORD0'],
              'vertices': vertices, 'parts': [{'id':part,'type':'TRIANGLES','indices':indices}
                                             for part,indices in parts.items()]}],
@@ -566,7 +566,7 @@ def build():
         report[name] = {'family':family, 'lod_triangles':counts, 'bounds_z_up':bounds,
                         'attachment':objects[0]['attachment'], 'glb':str((OUT/(name+'.glb')).relative_to(ROOT)),
                         'materials':len(levels[0]['materials']), 'textures':1,
-                        'atlas':'../textures/foliage/fungus/'+ATLAS.name}
+                        'atlas':'../textures/vegetation/fungus/'+ATLAS.name}
         # Offline round trip checks the same writer/reader boundary used by other board kits.
         for lod, count in enumerate(counts):
             imported = read_glb(OUT / (name+'.glb'), lod)

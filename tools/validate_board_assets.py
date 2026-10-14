@@ -100,7 +100,7 @@ for asset in catalog:
         assert {part['id'] for mesh in model['meshes'] for part in mesh['parts']} == roles, asset
         for material in model['materials']:
             texture = material['textures'][0]
-            assert texture['filename'] == f'textures/foliage/shrubs/{family}.png', path
+            assert texture['filename'] == f'textures/vegetation/shrubs/{family}.png', path
             assert texture['wrapS'] == texture['wrapT'] == 33071, path
     elif asset != 'field':
         family = asset.rsplit('-lod', 1)[0]
@@ -115,7 +115,7 @@ for asset in catalog:
         assert roles == expected | ({'snow'} if family.endswith('-snow') else set()), (asset, roles)
         assert {part['id'] for mesh in model['meshes'] for part in mesh['parts']} == roles, asset
         for material in model['materials']:
-            assert material['textures'][0]['filename'] == f"textures/foliage/{material['id']}.png", path
+            assert material['textures'][0]['filename'] == f"textures/vegetation/{material['id']}.png", path
         for mesh in model['meshes']:
             vertices = mesh['vertices']
             for part in mesh['parts']:
@@ -129,18 +129,18 @@ for asset in catalog:
                     assert all(min(vertices[index * 12 + 6:index * 12 + 9]) > .75
                                for index in part['indices']), f'Snow must not inherit foliage tint: {asset}'
 
-for family in ('buildings', 'terrain'):
+for family in ('structures/facades',):
     folder = BOARD / 'textures' / family
-    for original in (folder / 'full-resolution').glob('*.png'):
+    for original in (ROOT / 'tools/building-sources').glob('*.png'):
         assert min(Image.open(original).size) > 128, original
         assert Image.open(folder / original.name).size == (128, 128), original
 
-for path in (BOARD / 'textures/foliage').glob('*.png'):
+for path in (BOARD / 'textures/vegetation').glob('*.png'):
     with Image.open(path) as image:
         assert image.size == (64, 64), path
         assert image.convert('RGBA').getchannel('A').getextrema() == (255, 255), path
 
-for path in (BOARD / 'textures/foliage/shrubs').glob('*.png'):
+for path in (BOARD / 'textures/vegetation/shrubs').glob('*.png'):
     with Image.open(path) as image:
         assert image.width == image.height and image.width >= 1024, path
         assert image.convert('RGBA').getchannel('A').getextrema() == (255, 255), path

@@ -118,7 +118,7 @@ if wanted('field'):
                 faces += [(start,start+1,start+2),(start+2,start+1,start)]
     export('field',[mesh_object('Crop rows',vertices,faces,[crop],[0]*len(faces))])
 
-# Terrain, riverbed and rim textures are authored assets. Model rebuilds preserve them.
+# Board textures are Material Maker exports (tools/materials); model rebuilds never write them.
 
 # Only crops enter the catalog; pier and terminal kits stay private to the renderer.
 manifest = json.loads((OUT/'manifest.json').read_text()) if (OUT/'manifest.json').exists() else {}

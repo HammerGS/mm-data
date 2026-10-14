@@ -1,0 +1,8 @@
+{
+  "tile": 12.0,
+  "role": "ground",
+  "size": 512,
+  "relief_metres": 0.22,
+  "color_filtering": "linear RGB",
+  "color_space": "sRGB"
+}

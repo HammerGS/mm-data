@@ -43,7 +43,7 @@ def textured_material(name, image, vertex_color=False):
 
 facades = {}
 for family in sorted({entry['facade'] for entry in entries}):
-    image = bpy.data.images.load(str(OUT / 'textures/buildings' / (family + '.png')), check_existing=True)
+    image = bpy.data.images.load(str(OUT / 'textures/structures/facades' / (family + '.png')), check_existing=True)
     pixels = list(image.pixels)
     mean = [sum(pixels[channel::4]) / (len(pixels) // 4) for channel in range(3)]
     facades[family] = (textured_material('Board facade ' + family, image, True), mean)
@@ -134,7 +134,7 @@ for entry_index, entry in enumerate(entries):
             distance+=length
     asset=entry['asset']
     file=OUT/(asset+'.glb')
-    facade=os.path.relpath(OUT/'textures/buildings'/(family+'.png'),file.parent).replace('\\','/')
+    facade=os.path.relpath(OUT/'textures/structures/facades'/(family+'.png'),file.parent).replace('\\','/')
     model={'version':[0,1],'id':asset,
            'meshes':[{'attributes':['POSITION','NORMAL','COLOR','TEXCOORD0'],'vertices':packed,
                       'parts':[{'id':'roof','type':'TRIANGLES','indices':roof_indices},
@@ -160,7 +160,7 @@ for entry_index, entry in enumerate(entries):
     scene.collection.objects.link(obj)
     stats[asset]={'source':entry['source'],'triangles':(len(roof_indices)+len(wall_indices))//3,
                   'vertices':len(packed)//12,'outline_vertices':sum(map(len,loops)),
-                  'facade':family,'wall_texture':'textures/buildings/'+family+'.png',
+                  'facade':family,'wall_texture':'textures/structures/facades/'+family+'.png',
                   'full_height_facade':full_height,'wall_tint':tint}
 (OUT/'building-manifest.json').write_text(json.dumps(stats,indent=2))
 # Blender 5.2 can crash copying a newly-created scene's view layer. Export the

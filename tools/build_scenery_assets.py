@@ -337,7 +337,7 @@ def parking_barrier(g):
     # hazard markings are paint on the prism, not separate hovering panels.
     profile=[(-1.4,0),(1.4,0),(1.4,.28),(.55,2.1),(-.55,2.1),(-1.4,.28)]
     role='parking-barrier'
-    g.texture(role,'sculpt/concrete.png')
+    g.texture(role,'terrain/surfaces/concrete.png')
 
     def face(points,color):
         g.face(points,color,role,[((y+x-24)/8,(x-24+z)/3) for x,y,z in points])
@@ -598,7 +598,7 @@ def pool_basin(g, outline, deck=True, plinth=0):
         g.materials.setdefault(role,{'id':role,'diffuse':[1,1,1]})
     # One shared opaque, mipmapped surface in the ordinary prop pass; no animated-water/depth pass.
     g.materials['pool-water']['textures']=[{'id':'pool-water','type':'DIFFUSE',
-        'filename':'textures/pool-water.png','minFilter':9987,'magFilter':9729,'wrapS':10497,'wrapT':10497}]
+        'filename':'textures/scenery/pool-water.png','minFilter':9987,'magFilter':9729,'wrapS':10497,'wrapT':10497}]
     for band,first in enumerate(rings):
         second=rings[(band+1)%len(rings)]
         role='pool-wall' if band==0 else 'pool-coping' if band<4 else 'pool-deck'
@@ -761,13 +761,22 @@ def landscape(g, n):
 # them with the same angles and offsets that baked their rotated legacy variants.
 CANONICAL=(bevel, ledge, roof_grille, chimney_stack, skylight, garden_bed, pillar, picnic_table, hex_plaza, fountain,
            crane, bulldozer, site_debris)
-# Livestock placements of the legacy herd images; the animals are prebuilt meshes (tools/extract_herd_animals.py).
-HERDS_BY_STEM={Path(name).name:rows for name,rows in json.loads((ROOT/'tools/farm-herds.json').read_text()).items()}
+
+
+# The herd rows of layouts.json come from the animal placements in tools/farm-herds.json; the animals are
+# prebuilt meshes in scenery/farm/. Both herd files load on first use, not on import.
+@lru_cache(None)
+def herds():
+    return {Path(name).name:rows for name,rows in json.loads((ROOT/'tools/farm-herds.json').read_text()).items()}
+
+
 # Coats that differ only in colour are one mesh (tools/farm-coats.json): a coat is that mesh and its slot colours, none
 # for the mesh's own coat.
-COATS={coat:(family,None if index==0 else colours)
-       for family,entry in json.loads((ROOT/'tools/farm-coats.json').read_text()).items()
-       for index,(coat,_,colours) in enumerate(entry['coats'])}
+@lru_cache(None)
+def coats():
+    return {coat:(family,None if index==0 else colours)
+            for family,entry in json.loads((ROOT/'tools/farm-coats.json').read_text()).items()
+            for index,(coat,_,colours) in enumerate(entry['coats'])}
 
 
 def orbital_gun(g):
@@ -807,7 +816,7 @@ def rubble(g, variant=0, path=False):
     """Structure-type debris: timber, masonry, reinforced slabs, hardened slabs, wall remnants."""
     rng=random.Random(119+variant)
     for role in ('timber','brick','steel'):g.texture('rubble-'+role,'scenery/demolition-materials.png')
-    g.texture('rubble-concrete','sculpt/concrete.png')
+    g.texture('rubble-concrete','terrain/surfaces/concrete.png')
     for role in ('rubble-fines','rubble-fracture'):g.texture(role,'scenery/demolition-fines.png')
     # Loose fines form irregular shallow heaps, never a hex plinth. Cleared variants
     # have two independent heaps and an actual 18-pixel corridor through every mesh.
@@ -1106,9 +1115,9 @@ def geyser(g, magma=False):
     rings=[[(r*f*cos(a),r*f*sin(a),z*(1+.21*sin(5*a+.8)+.13*sin(11*a)))
             for a,f in zip(angles,uneven)] for r,z in profile]
     g.texture('geyser-mineral','scenery/geyser-travertine.png')
-    g.texture('geyser-rock','sculpt/volcano-basalt.png' if magma else 'sculpt/rock.png')
-    g.texture('geyser-water','pool-water.png')
-    g.texture('geyser-lava','magma/lava.png')
+    g.texture('geyser-rock','terrain/surfaces/volcano-basalt.png' if magma else 'terrain/surfaces/rock.png')
+    g.texture('geyser-water','scenery/pool-water.png')
+    g.texture('geyser-lava','terrain/lava/lava.png')
     for band,(outer,inner) in enumerate(zip(rings,rings[1:])):
         for i in range(count):
             j=(i+1)%count
@@ -1279,9 +1288,9 @@ def build_mesh(name, layouts, shared=None):
         maglev(g,stem)
     elif name.startswith('hq_fluff/rail'):
         rail(g,stem)
-    elif stem in HERDS_BY_STEM:
-        for asset,x,y,angle,scale in HERDS_BY_STEM[stem]:
-            asset,colours=COATS.get(asset,(asset,None))
+    elif stem in herds():
+        for asset,x,y,angle,scale in herds()[stem]:
+            asset,colours=coats().get(asset,(asset,None))
             g.library_row('scenery/'+asset,Matrix.Translation((x,y,0)) @ Matrix.Rotation(radians(angle),4,'Z') @ Matrix.Scale(scale,4),
                           colours)
     elif '/SMV_Seaport/' in name:

@@ -70,7 +70,7 @@ def tree(form, lod, snow):
 
 def materials(name):
     result = {}
-    atlas = bpy.data.images.load(str(BOARD / f'textures/foliage/orchard/{name}.png'), check_existing=True)
+    atlas = bpy.data.images.load(str(BOARD / f'textures/vegetation/orchard/{name}.png'), check_existing=True)
     for role in ('leaves', 'bark', 'fruit', 'snow'):
         material = bpy.data.materials.new(f'{name}-{role}')
         material['role'] = role
@@ -78,7 +78,7 @@ def materials(name):
         shader = material.node_tree.nodes.get('Principled BSDF')
         shader.inputs['Roughness'].default_value = .88
         texture = material.node_tree.nodes.new('ShaderNodeTexImage')
-        texture.image = (bpy.data.images.load(str(BOARD / 'textures/foliage/snow.png'), check_existing=True)
+        texture.image = (bpy.data.images.load(str(BOARD / 'textures/vegetation/snow.png'), check_existing=True)
                          if role == 'snow' else atlas)
         texture.extension = 'EXTEND'
         material.node_tree.links.new(texture.outputs['Color'], shader.inputs['Base Color'])
@@ -109,8 +109,8 @@ def build():
                 obj.data.update()
                 model = export_model(obj, name)
                 for material in model['materials']:
-                    material['textures'][0]['filename'] = ('textures/foliage/snow.png' if material['id'] == 'snow'
-                        else f'textures/foliage/orchard/{name}.png')
+                    material['textures'][0]['filename'] = ('textures/vegetation/snow.png' if material['id'] == 'snow'
+                        else f'textures/vegetation/orchard/{name}.png')
                 levels[lod] = model
                 counts.append({'node': f'{asset}-lod{lod}', 'triangles': len(obj.data.polygons),
                                'vertices': len(model['meshes'][0]['vertices']) // 12})
@@ -122,7 +122,7 @@ def build():
             write_glb(BOARD / f'{asset}.glb', levels=levels)
             manifest[asset] = {'mesh': f'{asset}.glb', 'triangles': counts[0]['triangles'],
                 'vertices': counts[0]['vertices'], 'generator': 'tools/build_orchard_assets.py',
-                'texture': f'textures/foliage/orchard/{name}.png', 'lods': counts}
+                'texture': f'textures/vegetation/orchard/{name}.png', 'lods': counts}
             summary[asset] = [entry['triangles'] for entry in counts]
     manifest_path.write_text(json.dumps(manifest, indent=2) + '\n')
     bpy.context.window.scene = scene

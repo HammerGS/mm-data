@@ -18,11 +18,10 @@ from pathlib import Path
 import numpy as np
 from PIL import Image
 
-from build_terrain_materials import Canvas, smoothstep
-from prepare_cliff_materials import blur, normal_map, periodic, pixels
+from texture_helpers import Canvas, blur, display_rgb, linear_rgb, normal_map, periodic, pixels, smoothstep
 
 ROOT = Path(__file__).resolve().parents[1]
-OUTPUT = ROOT / 'data/models/board/textures/magma'
+OUTPUT = ROOT / 'data/models/board/textures/terrain/lava'
 SOURCES = ROOT / 'tools/magma-reference'
 SIZE = 1024
 REPEAT = 12.0
@@ -96,14 +95,32 @@ def prepare(name, sources=SOURCES):
         f'{name}-surface.png': pixels(surface),
         f'{name}-heat.png': pixels(np.stack((heat, .5 + flow_x * .5, .5 + flow_y * .5, halo), -1)),
     }
+    if molten:
+        finish_lava(maps)
     return maps
+
+
+def finish_lava(maps):
+    """Store the artist-directed matte skin in its intrinsic maps, using their actual quantized inputs."""
+    surface = maps['lava-surface.png']
+    albedo = linear_rgb(maps['lava.png'] / 255.0)
+    exposed = smoothstep(.25, .65, maps['lava-heat.png'][..., 0] / 255.0)
+    basalt = np.maximum(albedo, (.025 * (.7 + .6 * surface[..., 0] / 255.0))[..., None])
+    maps['lava.png'] = pixels(display_rgb(basalt * (1 - exposed[..., None]) + albedo * exposed[..., None]))
+    roughness = surface[..., 1] / 255.0
+    surface[..., 1] = pixels(np.maximum(roughness, .96) * (1 - exposed)
+                            + np.maximum(roughness, .92) * exposed)
 
 
 def validate(name, maps):
     surface = maps[f'{name}-surface.png']
     expected = normal_map(surface[..., 0] / 255, float(surface[0, 0, 3]) / 255 * .1)
     assert np.array_equal(expected, maps[f'{name}-normal.png']), f'{name}: normal/height mismatch'
-    assert np.ptp(surface[..., 1]) > 40 and surface[..., 2].min() < 240
+    assert surface[..., 2].min() < 240
+    if name == 'lava':
+        assert surface[..., 1].min() >= round(.92 * 255) and surface[..., 1].max() <= 250
+    else:
+        assert np.ptp(surface[..., 1]) > 40
     heat = maps[f'{name}-heat.png'][..., 0] / 255
     coverage = np.mean(heat > .2)
     if name == 'lava':
@@ -143,6 +160,14 @@ def main():
                  'surface': 'R height, G roughness, B occlusion, A relief UV / .1',
                  'heat': 'R emission intensity, GB signed flow * .5 + .5, A crack-wall glow'},
         'metalness': 0, 'opacity': 1, 'materials': ['crust', 'lava'],
+        'lava_skin': {
+            'basis': 'artist-directed final intrinsic albedo and roughness; not measured thermal properties',
+            'albedo': 'linear basalt floor .025 * mix(.7, 1.3, stored height), released by smoothstep(.25, .65, stored heat)',
+            'roughness': 'mix(max(source, .96), max(source, .92), smoothstep(.25, .65, stored heat))',
+            'filtering': 'completed albedo and roughness are filtered as material channels before lighting',
+            'distant_roughness': .96,
+            'distant_roughness_basis': 'declared coarse-LOD estimate when the surface map is omitted; crust remains .85',
+        },
     }
     if not args.check:
         args.output_dir.mkdir(parents=True, exist_ok=True)

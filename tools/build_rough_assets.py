@@ -15,9 +15,9 @@ from unit_model_geometry import Geometry, cross, normal, sub
 
 OUT = Path(__file__).resolve().parents[1] / 'data/models/board/rough'
 MATERIALS = {
-    'concrete': ((.86, .84, .78), 'tunnel-concrete.png'),
-    'bark': ((.64, .53, .42), 'foliage/bark.png'),
-    'char': ((.26, .25, .23), 'foliage/bark.png'),
+    'concrete': ((.86, .84, .78), 'scenery/tunnel-concrete.png'),
+    'bark': ((.64, .53, .42), 'vegetation/bark.png'),
+    'char': ((.26, .25, .23), 'vegetation/bark.png'),
     'wood': ((.65, .48, .29), None),
     'heart': ((.40, .29, .17), None),
 }

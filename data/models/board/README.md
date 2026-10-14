@@ -24,7 +24,7 @@ Scenery meshes live in topic folders under `scenery/`, with kebab-case names:
 
 No mesh sits at a legacy key. A legacy key is `scenery/<tileset image path
 without extension>`; it resolves only through `scenery/layouts.json`, so that
-file is the complete legacy-to-mesh mapping. A key that used to be one GLB is a
+file is the complete legacy-to-mesh mapping. A key that was one GLB at the base is a
 one-row entry at the origin on its renamed mesh. Every mesh stands on Z=0 and
 every row has Z=0. Two kinds of mesh stand above Z=0 by design: a seaport crane
 tip hangs from the gantry boom, so its mesh keeps the boom height and its grabber
@@ -47,14 +47,14 @@ mesh's colour slots in slot order (null keeps a slot's own colour).
 A mesh may mark up to four colour slots: each vertex carries its slot in the
 attribute `_COLOUR_SLOT` (0 none), and the file's extras `mmColourSlots` list each
 slot's name, its default colour and preset colours (the colours of the family's
-former meshes). A row's or a placed object's colour replaces a slot's default: each
+meshes at the base). A row's or a placed object's colour replaces a slot's default: each
 channel keeps its ratio to the default in linear light, so shaded parts of a slot
 stay shaded (`tools/glb_geometry.py` `recolour`; the runtime's `RigidGlb.recolour`
 applies the same rule). A slot's base vertices hold its default exactly, to the
 8-bit step, so a replacement reproduces itself exactly there. The colour families
 are one mesh each:
 
-| Mesh (`scenery/...`) | Slots | Former meshes (now colours) |
+| Mesh (`scenery/...`) | Slots | Base meshes (as colours) |
 |---|---|---|
 | `vehicles/car` | Paint | 19 `car-<paint>` (red is the default) |
 | `farm/hen` | Plumage | 6 hens (white is the default) |
@@ -67,9 +67,7 @@ are one mesh each:
 | `pools/*` | Wall, Coping, Deck, Water | `parks/pond-1`, `-2`, `-4` are `pools/freeform`, `sport-2`, `sport-4` in the 'Pond' colours |
 
 Every vertex whose colour differs between a family's coats belongs to the slot
-that reproduces it for every coat; `tools/extract_herd_animals.py` assigns them
-from `tools/farm-coats.json` (slot names and each coat's colours) and reports the
-largest error per family (at most 3.9/255, the resting horse's head), and
+that reproduces it for every coat, and
 `verify_legacy_decode.py` compares the recoloured rows with the base's meshes
 vertex by vertex (see below). The car's paint and the pool slots are marked by
 `tools/build_scenery_assets.py` (`CAR_SLOTS`, `POOL_SLOTS`), which writes each car
@@ -77,14 +75,9 @@ and pond row's colours.
 
 `tools/build_scenery_assets.py` names its output with `SHARED` (shared
 components) and `NAMES` (meshes that legacy images bake); it never writes a GLB
-at a legacy key. The animal meshes are not generated: their pose source was never
-in the repository. `tools/extract_herd_animals.py` split them out of the herd
-meshes of commit `0d5b47e5d0` by undoing each animal's placement from
-`tools/farm-herds.json`, and checks that animals with one name share geometry and
-colour (26 coats and poses from 11 herds). Coats that differ only in colour share
-one mesh with colour slots (`tools/farm-coats.json`, see Colour slots), so 12
-animal meshes remain. The generator writes the herd keys' rows from the same tables,
-each with its coat's colours.
+at a legacy key. The animal meshes are not generated; their pose source is not in
+the repository. Coats that differ only in colour share one mesh with colour slots
+(see Colour slots), so there are 12 animal meshes.
 
 ### Old to new
 
@@ -94,7 +87,7 @@ each with its coat's colours.
 | `construction/bulldozer`, `construction/debris-3` | `fluff/construction3` | yes, two rows |
 | `construction/crawler-crane`, `construction/debris-1` | `fluff/construction1` | yes, two rows |
 | `construction/site-excavation` | `fluff/construction2` | yes, one row |
-| `farm/<animal>` (12 meshes; coats are colours) | `fluff/bison1`, `cattle1`-`3`, `chickens1`-`3`, `horses1`-`2`, `pigs1`-`2` | yes, one row per animal (`tools/farm-herds.json`) |
+| `farm/<animal>` (12 meshes; coats are colours) | `fluff/bison1`, `cattle1`-`3`, `chickens1`-`3`, `horses1`-`2`, `pigs1`-`2` | yes, one row per animal |
 | `geysers/magma` | `saxarba/misc/geyser_magma` | yes, one row |
 | `geysers/water-dormant` | `saxarba/misc/geyser_water_off` | yes, one row |
 | `geysers/water-erupting` | `saxarba/misc/geyser_water_on` | yes, one row |
@@ -377,8 +370,8 @@ then `tools/build_maglev_assets.py` for the maglev pieces, stamps and thumbnails
 rail pieces (see Rail pieces), and
 `python tools/build_board_decals.py` for the decals and the car-park decal rows and seats
 (the scenery build writes the car-park keys without them). The arguments select
-image names, as `build(only)` does. The herd rows need the animal meshes of
-`tools/extract_herd_animals.py`. The heli pads (`fluff/heli1`-`3`) decode to their landing lights
+image names, as `build(only)` does. The scenery build generates the herd rows from `tools/farm-herds.json` and
+`tools/farm-coats.json`. The heli pads (`fluff/heli1`-`3`) decode to their landing lights
 (`roofs/landing-light`, rows only) and the pad decal that `tools/build_board_decals.py` adds. Each build also
 writes the palette objects (bench, rectangular pool, landing light, crossing signal; `-- --palette` writes
 only them), and overwrites `tools/board-scenery-compositions.blend` and
@@ -543,7 +536,7 @@ mipmaps do not darken edges. `tools/build_board_decals.py` writes every image an
 
 The 2D tileset's ground-symbol pieces and their copies under `tileset/` stay for
 the 2D board, which draws a converted board's kept tokens, and for the conversion,
-which matches the `tileset/` copy; only the palette moved here.
+which matches the `tileset/` copy; the palette uses the decals here.
 
 `decals/decals.json`:
 
@@ -736,8 +729,8 @@ no rock or scatter geometry is generated in-game.
   parts and courtyards; no runtime pixel extrusion or generic substitutions.
 - `building-manifest.json`: each structure's source, facade family, wall tint,
   outline, vertex and triangle counts. The largest has 499 triangles. Fuel tanks
-  and industrial structures use their selected Saxarba artwork too; generic
-  cylinder/factory substitutes have been removed.
+  and industrial structures use their selected Saxarba artwork too; there are no
+  generic cylinder/factory substitutes.
 - `field.glb` and foliage GLB files. Counts and the imported Blender source
   names are in `manifest.json`. Bridge spans are generated at runtime;
   reusable terminal and pier kits remain GLBs.
@@ -750,10 +743,10 @@ no rock or scatter geometry is generated in-game.
   cacti retain their stem silhouettes with smooth normals, mapped ribs and
   cutout flowers. Dead trees keep their existing near meshes and decimated or
   component-hull distant meshes. These runtime GLBs are the maintained tree
-  meshes; the legacy low-poly source exports and their importer have been retired.
+  meshes.
   A `-lod3` group holds the plant's impostor: two crossed vertical cards and a
   horizontal cap through the crown, 12 triangles with their backs, textured by
-  `textures/foliage/impostors/<name>.png` (three 128 by 128 unlit renders of
+  `textures/vegetation/impostors/<name>.png` (three 128 by 128 unlit renders of
   LOD0 from the front and the side, both 30 degrees above the plant, and from
   above: the game's raw albedo before lighting, the detail texel times the
   display-space vertex colour, with edge colours dilated for the cutout). Each
@@ -769,36 +762,30 @@ no rock or scatter geometry is generated in-game.
   clears roads for it; a leaning crown (bent palm, willow) overhangs to one side.
   The maintained GLBs keep that origin and their bark projection. Cactus skin
   wraps around each stem, following bent arms.
-- `textures/foliage/*-cutout.png`: six shared 512 by 512 RGBA textures
-  for broadleaf/conifer and their snow variants, palm fronds and cactus flowers. Near, medium and far crowns
+- `textures/vegetation/*-cutout.png`: eight shared 512 by 512 RGBA textures
+  for broadleaf/conifer and their snow variants, palm fronds, cactus flowers, ferns and shrubs. Near, medium and far crowns
   share these clamped images; impostors are baked from the same alpha-tested
-  geometry. Source images, exact ImageGen prompts and reproduction instructions
-  are in `tools/foliage-sources/README.md`. Bark textures remain shared.
-- `textures/foliage/cactus-skin.png` and `cactus-skin-normal.png`: 512-square
+  geometry. Source images are in `tools/foliage-sources/`. Bark textures are shared.
+- `textures/vegetation/cactus-skin.png` and `cactus-skin-normal.png`: 512-square
   albedo and estimated shallow normal relief, shared by both cactus variants
   at all three mesh levels. Standard glTF `normalTexture` supplies the normal
   detail; the instanced foliage shader uses the existing dielectric light model
   for waxy skin. The normal-map tuning switch applies to these maps too.
-- `textures/foliage/`: nine shared 64 by 64 detail albedos for broad leaves,
-  pine needles, hanging willow leaves, palm fronds, ordinary bark, birch bark,
-  ringed palm bark, ribbed cactus stems and snow. Source material boundaries keep snow caps separate
+- `textures/vegetation/`: five shared 64 by 64 detail albedos for palm fronds,
+  ordinary bark, birch bark, ringed palm bark and snow. Source material boundaries keep snow caps separate
   from green foliage and preserve the birch's pale trunk and dark scars. Existing
   vertex colors tint the pale maps; dominant-axis UVs follow the tree's original
-  proportions. Snow variants use their own authored geometry. Texture generation
-  prompts are recorded in `tools/board-foliage-texture-prompts.json`; the cactus
-  old cactus map is procedural (`tools/build_cactus_texture.py`, CC0-1.0).
-  These small legacy leaf/cactus maps remain available to original authoring
-  models; converted runtime plants use the cutouts and skin maps above.
+  proportions. Snow variants use their own authored geometry.
 - `orchard-*.glb`: six fruit-tree forms and their snow variants reuse the shared
   branch-cutout baker. Their authored branch and apple counts stay intact at
   each level; leaf cards use the remaining budget (480/240/84/12 triangles per
   tree). Bark and fruit retain their orchard atlases. Rebuild with
   `tools/build_orchard_assets.py`, then `tools/prepare_tree_lods.py -- impostors`.
-- `textures/foliage/marsh-sedge.png`: the editable 1254 by 1254 RGBA sedge/cattail
+- `textures/vegetation/marsh-sedge.png`: the editable 1254 by 1254 RGBA sedge/cattail
   cutout for marsh vegetation. The renderer filters it to one shared 512 by 512
   texture with mipmaps; all three plant LODs use this same image. Ground peat,
   moss and pools are shaded separately using the existing sculpt earth maps.
-- `textures/buildings/`: 128 by 128 runtime facade maps. Light buildings retain
+- `textures/structures/facades/`: 128 by 128 runtime facade maps. Light buildings retain
   windows; medium uses concrete, hard reinforced concrete, and heavy armored
   panels. Fortresses/gun emplacements use massive sci-fi walls, hangars use
   large shutter bays, fuel tanks use metal courses, and industry uses service
@@ -808,40 +795,20 @@ no rock or scatter geometry is generated in-game.
   fortress buttresses span the full height instead of stacking per story.
   Eight light-building windows span 128 world units; other families have fewer,
   larger structural bays at that width.
-- `textures/terrain/`: 128 by 128 runtime concrete, dirt, rock and sand maps,
-  repeating once per 96 world units. Both texture directories have a
-  `full-resolution/` subdirectory containing the untouched editable originals.
-  Models and materials reference only the small runtime versions. Rebuild those
-  after editing originals with `tools/prepare_board_textures.py`.
-- `textures/sculpt/`: the sculpted terrain's 512 by 512 materials (ground,
+- `textures/terrain/classic/`: Classic mode's 128 by 128 column wall maps (concrete, dirt, rock,
+  sand, snow, lunar, fungus, mars and volcano; each repeats once per 96 world units), the
+  `water_bed` map for liquid banks and beds, and the two 84 by 72 incline rim masks
+  (`incline_dark`, `high_incline_dark`). The Material Maker projects under
+  `tools/materials/structures/facades/` and `tools/materials/terrain/classic/`
+  generate both folders.
+- `textures/terrain/surfaces/`: the sculpted terrain's 512 by 512 materials (ground,
   debris, wall and mantle maps for every surface family): `NAME.png` is sRGB albedo
   with normalized height in alpha, `NAME-normal.png` a tangent normal (U right, V
-  down) with ambient occlusion in alpha, and `manifest.json` the metres each repeat
-  spans. `tools/build_terrain_materials.py` builds the original procedural set
-  (CC0-1.0). Afterward,
-  `tools/prepare_terrain_contact.py` bakes the authored ground, soil, stone and
-  scree sources into those same slots; `--check` verifies pixels and metadata.
-  ImageGen sources and exact prompts are in `tools/terrain-contact-sources/`;
-  their height/normal relief is an artistic estimate, not a measured scan. See
-  `tools/terrain-realism/README.md` for the stone sources and visual references.
-  The former `outcrop-*` formations are replaced by the shared GLB rock kit below.
-- `textures/cliffs/`: the vertical hex sides' 1024 by 1024 color, tangent normal,
-  and packed height/roughness/occlusion maps for rock, sandstone, soil, concrete
-  and snow. These retain full mip resolution and use the board's dedicated
-  parallax material shader. Missing sets fall back to `textures/terrain/`.
-  Rebuild with `tools/prepare_cliff_materials.py`; `--check` verifies all baked
-  pixels. Sources and generation prompts live in `tools/cliff-sources/` and
-  `tools/cliff-texture-prompts.json`. Optional grayscale `NAME-height.png` sources
-  supply authored geometry; otherwise height is an artistic approximation from
-  source luminance. No baking or height estimation runs in the game. These maps
-  are separate from top tiles, upper rims, buildings and water beds.
-- `textures/bed.png`: a 128 by 128 silt, sand and pebble riverbed albedo;
-  water reflections and animation remain in the separate water surface.
-- `textures/*-rim.png`: six 128 by 128 pale material-detail maps for grass,
-  dirt, sand, rock, concrete and snow. Runtime tints them from the selected
-  Saxarba ground artwork, preserving each theme's palette. An irregular mesh
-  edge fades into the geology; fixed world-scale UVs crop the texture on short
-  walls instead of stretching it to fit. Model rebuilds preserve these maps.
+  down) with ambient occlusion in alpha, and `NAME.json` the metres each repeat
+  spans (`tile`) and the family role. The Material Maker projects under
+  `tools/materials/terrain/surfaces/` generate them; their relief is an artistic
+  estimate, not a measured scan. See `tools/terrain-realism/README.md` for the
+  stone sources and visual references.
 - Liquid artwork comes from this directory's own `tileset/saxarba/anim_water_N.gif`,
   `theme_mars/water_anim_mars_N.gif`, `theme_volcano/water_anim_volcano_N.gif`,
   `base/base_magma_anim_N.gif`, and `water/rapids_anim.gif` / `water/torrent_anim.gif`.
@@ -875,8 +842,8 @@ RGB is extended only outside the roof mask to prevent filtering fringes.
 Each `buildings/<name>.png` is an exact copy of the original tile artwork,
 including transparency and shadows, for inspection beside `<name>.glb`.
 The processed RGB roof texture is embedded in the GLB; its offline input is
-under `tools/board-models/roofs`. Edit the facade originals under
-`textures/buildings/full-resolution/` to change windows/walls. Edit
+under `tools/board-models/roofs`. Edit the facade Material Maker projects under
+`tools/materials/structures/facades/` to change windows/walls. Edit
 `tools/building-footprints.json` between preparation
 and export to author a silhouette manually.
 
@@ -955,17 +922,13 @@ and bank slopes, not silhouettes, picking, movement or cast-shadow geometry.
 
 ## Rebuild
 
-Run from the mm-data root (Python requires Pillow and NumPy):
+Run from the mm-data root (Python requires Pillow and NumPy; `tools/materials/export.py`
+requires Material Maker):
 
 ```text
 python tools/copy_board_tileset.py
-python tools/build_terrain_materials.py
-python tools/prepare_terrain_contact.py
-python tools/prepare_terrain_contact.py --check
-python tools/prepare_board_textures.py
-python tools/prepare_cliff_materials.py
-python tools/prepare_cliff_materials.py --check
-python tools/test_cliff_materials.py
+python tools/materials/export.py
+python tools/test_texture_helpers.py
 python tools/prepare_board_normals.py
 python tools/prepare_board_normals.py --check
 python tools/test_board_normals.py
@@ -988,8 +951,7 @@ Use Blender's Append command to load their objects. The source scripts create
 their own scenes and do not replace the user's open scene.
 
 `build_board_assets.py` rebuilds bridges and crops while preserving the other
-manifest entries. It no longer imports or regenerates the legacy low-poly trees.
-Edit the maintained tree GLBs directly. To refresh their impostors, run
+manifest entries. Edit the maintained tree GLBs directly. To refresh their impostors, run
 `python tools/merge_snow_trees.py split`, then
 `blender --background --factory-startup --python tools/prepare_tree_lods.py -- impostors`,
 then `python tools/merge_snow_trees.py merge`. The bake preserves the three mesh
@@ -1017,28 +979,23 @@ in `QUATERNIUS-LICENSE.txt`.
 Bridge models are baked from the shared road outlines; crop models are authored with the Blender script.
 Dirt, sandstone, rock, concrete and windowed facade albedos were generated with
 the built-in image_gen tool; exact prompts are in
-`../../../tools/board-texture-prompts.json`. The seven contextual facade prompts
-are in `../../../tools/building-texture-prompts.json`; these also used built-in
-image_gen. Bed and rim art also use built-in image_gen; their prompts and
-references are in `../../../tools/board-rim-texture-prompts.json`. Only the
-128 by 128 runtime maps are shipped. The rim maps are pale detail albedos;
-their final theme colors come from the hex artwork, and geometry supplies
-their uneven lower silhouette.
+`../../../tools/board-texture-prompts.json`. The seven contextual facade albedos
+also used built-in image_gen. Only the 128 by 128 runtime maps are shipped.
 
 ## Plant GLB packaging
 
 Each of the 22 plant variants has one GLB, for example `pine.glb`, containing
 identity groups `pine-lod0`, `pine-lod1`, `pine-lod2` and the impostor `pine-lod3`. Their authored geometry,
 UVs and material roles are preserved. The runtime chooses one level and resolves
-missing optional levels toward LOD0 once while loading. Foliage PNGs remain
-external under `textures/foliage`, shared by all variants and levels.
+missing optional levels toward LOD0 once while loading. Foliage PNGs are
+external, under `textures/vegetation`, shared by all variants and levels.
 All levels have natural proportions and a base at zero, including when inspected
 in an ordinary GLB viewer. Export and LOD preparation never flatten the height.
 LOD coverage checks compare the shipped near mesh with its coarser levels.
 
 ## Building GLBs and textures
 
-All 3,295 Saxarba buildings now use one GLB each, with an identity
+All 3,295 Saxarba buildings use one GLB each, with an identity
 `<building>-lod0` group. Each embeds its dedicated roof PNG without changing
 the image bytes, and uses a relative URI for one of eight shared facade PNGs.
 Roof and wall are separate material groups, not two layers over the same mesh.
@@ -1060,11 +1017,8 @@ image. Validation checks the original sibling against its source and the
 embedded roof against the source's opaque pixels. There is no measured
 runtime performance gain claimed from embedding.
 
-`field.glb` also contains a single LOD0 group. No G3DJ remains
-under deployed `data/` or authoring/reference `tools/`. The 475 former tool
-meshes also use GLB, including seven empty squad references. Before the runtime
-bridge migration, all 4,056 deployed GLBs passed Khronos validation with zero
-errors. The obsolete span files have since been removed.
+`field.glb` also contains a single LOD0 group. Deployed `data/` and
+authoring/reference `tools/` meshes are GLB; there are no G3DJ files.
 
 See the glTF image specification:
 https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html#images

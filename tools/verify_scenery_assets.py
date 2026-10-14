@@ -157,7 +157,7 @@ def main():
                         [p[:2] for p in first],[p[:2] for p in second])>.001:
                     construction_overlaps.append(file.name)
     animals,animal_errors={},[]
-    # One mesh per animal (tools/extract_herd_animals.py), standing on Z=0 within the livestock budget.
+    # One mesh per animal, standing on Z=0 within the livestock budget.
     for file in sorted((SCENERY/'farm').glob('*.glb')):
         data=read_glb(file,0)
         triangles=sum(len(p['indices'])//3 for m in data['meshes'] for p in m['parts'])

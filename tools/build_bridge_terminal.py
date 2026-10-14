@@ -50,7 +50,7 @@ def model():
         parts.append({'id': name, 'type': 'TRIANGLES', 'indices': indices})
         nodes.append({'id': name, 'parts': [{'meshpartid': name, 'materialid': 'bridge-structure'}]})
     return {'id': NAME, 'materials': [{'id': 'bridge-structure', 'diffuse': [1, 1, 1], 'textures': [
-        {'id': 'bridge-structure', 'filename': 'textures/sculpt/concrete.png', 'type': 'DIFFUSE'}]}],
+        {'id': 'bridge-structure', 'filename': 'textures/terrain/surfaces/concrete.png', 'type': 'DIFFUSE'}]}],
         'meshes': [{'attributes': ['POSITION', 'NORMAL', 'COLOR', 'TEXCOORD0'], 'vertices': packed, 'parts': parts}],
         'nodes': nodes}
 

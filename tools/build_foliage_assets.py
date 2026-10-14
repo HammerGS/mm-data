@@ -323,7 +323,7 @@ def export_model(obj, family):
                 shared[vertex] = len(vertices) // 12
                 vertices.extend(vertex)
             parts[role].append(shared[vertex])
-    path = f'textures/foliage/shrubs/{family}.png'
+    path = f'textures/vegetation/shrubs/{family}.png'
     return {'id': obj.name, 'meshes': [{'attributes': ['POSITION', 'NORMAL', 'COLOR', 'TEXCOORD0'],
              'vertices': vertices, 'parts': [{'id': role, 'type': 'TRIANGLES', 'indices': indices}
                                           for role, indices in parts.items()]}],
@@ -382,7 +382,8 @@ def build(source_path=None):
     manifest = json.loads(manifest_path.read_text())
     summary = {}
     for index, family in enumerate(FAMILIES):
-        image = bpy.data.images.load(str(BOARD / f'textures/foliage/shrubs/{family}.png'), check_existing=True)
+        image = bpy.data.images.load(str(ROOT / 'tools/foliage-sources/shrubs/jungle.png' if family == 'jungle'
+            else BOARD / f'textures/vegetation/shrubs/{family}.png'), check_existing=True)
         materials = {}
         for role in ('leaves', 'bark', 'cactus', 'snow'):
             material = bpy.data.materials.new(f'foliage-{family}-{role}')
@@ -438,7 +439,9 @@ def build(source_path=None):
         write_glb(BOARD / (name + '.glb'), levels=levels)
         manifest[name] = {'mesh': name + '.glb', 'triangles': counts[0]['triangles'],
                           'vertices': counts[0]['vertices'], 'generator': 'tools/build_foliage_assets.py',
-                          'texture': f'textures/foliage/shrubs/{family}.png', 'lods': counts}
+                          'texture': f'textures/vegetation/shrubs/{family}.png', 'lods': counts}
+        if family == 'jungle':
+            manifest[name].pop('texture')  # The exported fern uses its actual cutout material.
         summary[name] = [entry['triangles'] for entry in counts]
     manifest_path.write_text(json.dumps(manifest, indent=2) + '\n')
     bpy.context.window.scene = scene

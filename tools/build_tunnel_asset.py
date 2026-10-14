@@ -44,9 +44,9 @@ def part(name, color, texture):
     PARTS[name] = {'mat': mat, 'texture': texture, 'color': color, 'verts': [], 'faces': [], 'colors': []}
 
 
-part('tunnel-portal', (.94, .94, .92), 'tunnel-concrete.png')
-part('tunnel-wings', (.94, .94, .92), 'tunnel-concrete.png')
-part('tunnel-lining', (.72, .72, .70), 'tunnel-concrete.png')
+part('tunnel-portal', (.94, .94, .92), 'scenery/tunnel-concrete.png')
+part('tunnel-wings', (.94, .94, .92), 'scenery/tunnel-concrete.png')
+part('tunnel-lining', (.72, .72, .70), 'scenery/tunnel-concrete.png')
 part('tunnel-floor', (1, 1, 1), 'roads/asphalt.png')
 
 

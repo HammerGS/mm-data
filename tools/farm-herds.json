@@ -1,0 +1,57 @@
+{
+  "fluff/bison1": [
+    ["farm/bison-light", -17, -5, 70, 0.75],
+    ["farm/bison-dark", 16, 8, 155, 1]
+  ],
+  "fluff/cattle1": [
+    ["farm/cow-brown-patches", -18, 4, -80, 1],
+    ["farm/cow-brown-patches", 18, 6, 40, 1]
+  ],
+  "fluff/cattle2": [
+    ["farm/cow-black-patches", -18, 4, -80, 1],
+    ["farm/cow-black-patches", 18, 6, 40, 1]
+  ],
+  "fluff/cattle3": [
+    ["farm/cow-grazing", -13, 16, -75, 1],
+    ["farm/cow-resting", 15, 0, 85, 1],
+    ["farm/cow-resting", -6, -19, -70, 1]
+  ],
+  "fluff/chickens1": [
+    ["farm/hen-white", -16, -3, 20, 1.3],
+    ["farm/hen-ginger", 16, 10, -45, 1.3]
+  ],
+  "fluff/chickens2": [
+    ["farm/rooster-black", -7, 18, 35, 1.3],
+    ["farm/hen-cream", -19, -1, 85, 1.3],
+    ["farm/hen-red", 16, 0, -55, 1.3],
+    ["farm/hen-black", 2, -21, 155, 1.3]
+  ],
+  "fluff/chickens3": [
+    ["farm/rooster-golden", -16, 12, 50, 1.3],
+    ["farm/hen-buff", 17, 6, -45, 1.3],
+    ["farm/rooster-red", 0, -17, 145, 1.3]
+  ],
+  "fluff/horses1": [
+    ["farm/horse-dun", -17, 15, -85, 1],
+    ["farm/horse-grey-relaxed", 16, 19, 85, 1],
+    ["farm/horse-chestnut", -18, -11, -85, 1],
+    ["farm/horse-sorrel", 1, -16, -65, 0.62],
+    ["farm/horse-bay-relaxed", 23, -10, 90, 1]
+  ],
+  "fluff/horses2": [
+    ["farm/horse-brown-running", -14, 8, -65, 1],
+    ["farm/horse-black-running", 15, -9, 75, 1]
+  ],
+  "fluff/pigs1": [
+    ["farm/pig-pink-spotted", -16, 5, 60, 1],
+    ["farm/pig-brown-resting", 4, 21, -100, 1],
+    ["farm/pig-pink", 20, -6, 70, 1],
+    ["farm/pig-brown-spotted", -8, -20, -65, 1]
+  ],
+  "fluff/pigs2": [
+    ["farm/pig-pink-spotted", -18, 17, 175, 1],
+    ["farm/pig-brown-resting", 17, 11, 110, 1],
+    ["farm/pig-pink", -20, -10, -65, 1],
+    ["farm/pig-brown-spotted", 14, -20, -120, 1]
+  ]
+}

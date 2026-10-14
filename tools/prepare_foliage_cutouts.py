@@ -4,30 +4,53 @@ from pathlib import Path
 
 import numpy as np
 from PIL import Image
-from prepare_cliff_materials import blur, normal_map, periodic
+from texture_helpers import blur, display_rgb, linear_rgb, normal_map, periodic, resize_linear_rgb
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCES = ROOT / 'tools/foliage-sources'
-OUT = ROOT / 'data/models/board/textures/foliage'
+OUT = ROOT / 'data/models/board/textures/vegetation'
 
 
-def bake(source):
-    with Image.open(source) as image:
-        pixels = np.array(image.convert('RGBA').resize((512, 512), Image.Resampling.LANCZOS))
-    alpha = pixels[:, :, 3].copy()
-    valid = alpha > 127
-    assert .15 < valid.mean() < .85, f'{source.name}: expected a branch cutout'
-    # Colour only expands into transparent pixels: alpha and the original silhouette stay intact.
+def resize_cutout_rgb(image, size):
+    """Filter linear premultiplied color; transparent source RGB cannot bleed into the leaf."""
+    rgba = np.asarray(image.convert('RGBA')) / 255.0
+    alpha = rgba[..., 3:]
+    premultiplied = np.concatenate((linear_rgb(rgba[..., :3]) * alpha, alpha), axis=-1)
+    filtered = np.stack([np.asarray(Image.fromarray(premultiplied[..., channel].astype(np.float32))
+                         .resize(size, Image.Resampling.LANCZOS)) for channel in range(4)], axis=-1)
+    rgb = np.divide(filtered[..., :3], filtered[..., 3:], out=np.zeros_like(filtered[..., :3]),
+                    where=filtered[..., 3:] > 1e-8)
+    return np.clip(rgb, 0, 1)
+
+
+def bleed_rgb(rgb, valid):
+    """Fill the existing eight-pixel rim in the supplied color domain; never change alpha."""
+    rgb, valid = rgb.copy(), valid.copy()
     for _ in range(8):
-        total = np.zeros(pixels[:, :, :3].shape, dtype=np.float32)
+        total = np.zeros(rgb.shape, dtype=np.float32)
         count = np.zeros(valid.shape, dtype=np.float32)
         for dy, dx in ((0, 1), (0, -1), (1, 0), (-1, 0)):
             mask = np.roll(valid, (dy, dx), (0, 1))
-            total += np.roll(pixels[:, :, :3], (dy, dx), (0, 1)) * mask[:, :, None]
+            total += np.roll(rgb, (dy, dx), (0, 1)) * mask[:, :, None]
             count += mask
         fill = ~valid & (count > 0)
-        pixels[fill, :3] = np.rint(total[fill] / count[fill, None]).astype(np.uint8)
+        values = total[fill] / count[fill, None]
+        # The legacy byte recipe remains exact for the independently authored numeric maps.
+        rgb[fill] = np.rint(values) if rgb.dtype == np.uint8 else values
         valid |= fill
+    return rgb
+
+
+def bake(source, *, linear_color=True):
+    with Image.open(source) as image:
+        pixels = np.array(image.convert('RGBA').resize((512, 512), Image.Resampling.LANCZOS))
+        rgb = resize_cutout_rgb(image, (512, 512)) if linear_color else pixels[..., :3]
+    # Keep the established silhouette/coverage bytes, including alpha-test boundaries.
+    alpha = pixels[:, :, 3].copy()
+    valid = alpha > 127
+    assert .15 < valid.mean() < .85, f'{source.name}: expected a branch cutout'
+    rgb = bleed_rgb(rgb, valid)
+    pixels[..., :3] = np.rint(display_rgb(rgb) * 255).clip(0, 255).astype(np.uint8) if linear_color else rgb
     pixels[:, :, 3] = alpha
     return pixels
 
@@ -35,10 +58,12 @@ def bake(source):
 def cactus_maps():
     with Image.open(SOURCES / 'cactus-skin.png') as image:
         color = np.asarray(image.convert('RGB').resize((512, 512), Image.Resampling.LANCZOS)) / 255.0
+        pigment = np.clip(periodic(resize_linear_rgb(image, (512, 512))), 0, 1)
+    # Preserve the established encoded source estimate for the independent numeric normal map.
     color = np.clip(periodic(color), 0, 1)
     # Source-aligned estimated shallow rib/areole relief, never extra stem geometry.
     height = blur(color @ np.array([.2126, .7152, .0722]), 1.3)
-    return {'cactus-skin': np.rint(color * 255).astype(np.uint8),
+    return {'cactus-skin': np.rint(display_rgb(pigment) * 255).clip(0, 255).astype(np.uint8),
             'cactus-skin-normal': normal_map(height, .035)}
 
 
@@ -81,9 +106,11 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--check', action='store_true')
     args = parser.parse_args()
-    maps = {source.stem: bake(source) for source in sorted(SOURCES.glob('*-cutout.png'))}
-    for name, pixels in list(maps.items()):
-        maps.update(leaf_maps(name, pixels))
+    maps = {}
+    for source in sorted(SOURCES.glob('*-cutout.png')):
+        maps[source.stem] = bake(source)
+        # Geometry/material estimates retain their original encoded authoring input.
+        maps.update(leaf_maps(source.stem, bake(source, linear_color=False)))
     maps.update(cactus_maps())
     maps.update(shrub_maps())
     for name, pixels in maps.items():

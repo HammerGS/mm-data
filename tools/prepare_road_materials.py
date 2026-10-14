@@ -14,7 +14,7 @@ from pathlib import Path
 import numpy as np
 from PIL import Image
 
-from prepare_cliff_materials import blur, normal_map, periodic, pixels
+from texture_helpers import blur, display_rgb, normal_map, periodic, pixels, resize_linear_rgb
 
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / 'data/models/board/textures/roads'
@@ -25,9 +25,12 @@ PROFILES = {'asphalt': (1.0, .0035, .83), 'dirt': (1.0, .009, .94), 'gravel': (1
 def prepare(name):
     source = ROOT / 'tools/road-sources' / f'{name}.png'
     with Image.open(source) as image:
-        rgb = np.asarray(image.convert('RGB').resize((1024, 1024), Image.Resampling.LANCZOS)) / 255.0
-    rgb = np.clip(periodic(rgb), .015, .985)
-    light = rgb @ np.array([.2126, .7152, .0722])
+        rgb = resize_linear_rgb(image, (1024, 1024))
+        # Retain the authored numeric relief recipe independently of the color filtering correction.
+        geometry = np.asarray(image.convert('RGB').resize((1024, 1024), Image.Resampling.LANCZOS)) / 255.0
+    rgb = np.clip(periodic(rgb), 0, 1)
+    geometry = np.clip(periodic(geometry), .015, .985)
+    light = geometry @ np.array([.2126, .7152, .0722])
     # Avoid turning the broad albedo mottling into a bumpy road. Resolve embedded grain
     # with millimetre relief, rather than interpreting every bright mineral as a tall rock.
     field = .65 * blur(light, 1.2) + .35 * blur(light, 3.5) - blur(light, 24)
@@ -39,11 +42,11 @@ def prepare(name):
     cavity = np.maximum(blur(height, 4) - height, 0)
     surface = np.stack((height, np.clip(roughness + (.5 - height) * .12, .4, .98),
                         np.exp(-cavity * 1.7), np.full_like(height, encoded / 255)), axis=-1)
-    maps = {f'{name}.png': pixels(rgb), f'{name}-normal.png': normal_map(height, depth),
+    maps = {f'{name}.png': pixels(display_rgb(rgb)), f'{name}-normal.png': normal_map(height, depth),
             f'{name}-surface.png': pixels(surface)}
     entry = {'source_sha256': hashlib.sha256(source.read_bytes()).hexdigest(), 'size': 1024,
              'repeat_detail_metres': repeat, 'height_source': 'estimated local material relief',
-             'relief_uv': depth, 'roughness': roughness}
+             'relief_uv': depth, 'roughness': roughness, 'color_filtering': 'linear RGB', 'color_range': [0, 1]}
     return maps, entry
 
 
