@@ -401,11 +401,20 @@ def impostors(only=None):
         for name, entry in manifest.items():
             if 'lods' not in entry or only is not None and name not in only:
                 continue
+            if entry['mesh'] != name + '.glb':
+                # A winter form kept as a material variant has no GLB of its own; its impostor stays in that file.
+                print(name, 'is kept in', entry['mesh'], flush=True)
+                continue
             path = BOARD / (name + '.glb')
             levels = {level: read_glb(path, level, linear_colors=True) for level in range(min(3, len(entry['lods'])))}
+            # The impostor material's extras hold the winter impostor of a material variant (mmVariants.snow).
+            extras = next((material.get('extras') for material in levels[0]['materials']
+                           if material['id'] == 'impostor'), None)
             for model in levels.values():
                 model['materials'] = [material for material in model['materials'] if material['id'] != 'impostor']
             levels[3] = impostor(scene, levels[0], name, images)
+            if extras:
+                levels[3]['materials'][0]['extras'] = extras
             entry['lods'] = entry['lods'][:3] + [{'node': f'{name}-lod3', **counts(levels[3])}]
             write_glb(path, levels=levels, linear_colors=True, extras=levels[0].get('extras'))
             print(name, [lod['triangles'] for lod in entry['lods']], flush=True)

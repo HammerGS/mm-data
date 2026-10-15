@@ -2590,20 +2590,6 @@
       ]
     },
     {
-      "name": "ExportPigment",
-      "type": "export",
-      "parameters": {
-        "size": 10,
-        "format": 0,
-        "suffix": "$project"
-      },
-      "seed_int": 0,
-      "node_position": {
-        "x": 1450,
-        "y": 0
-      }
-    },
-    {
       "name": "NormalPNG8",
       "type": "graph",
       "node_position": {
@@ -2775,20 +2761,6 @@
           "to_port": 0
         }
       ]
-    },
-    {
-      "name": "ExportNormal",
-      "type": "export",
-      "parameters": {
-        "size": 10,
-        "format": 0,
-        "suffix": "$project-normal"
-      },
-      "seed_int": 0,
-      "node_position": {
-        "x": 1450,
-        "y": 300
-      }
     },
     {
       "name": "SurfacePNG8",
@@ -3143,20 +3115,6 @@
       ]
     },
     {
-      "name": "ExportSurface",
-      "type": "export",
-      "parameters": {
-        "size": 10,
-        "format": 0,
-        "suffix": "$project-surface"
-      },
-      "seed_int": 0,
-      "node_position": {
-        "x": 1450,
-        "y": 600
-      }
-    },
-    {
       "name": "HeatPNG8",
       "type": "graph",
       "node_position": {
@@ -3507,20 +3465,6 @@
           "to_port": 0
         }
       ]
-    },
-    {
-      "name": "ExportHeat",
-      "type": "export",
-      "parameters": {
-        "size": 10,
-        "format": 0,
-        "suffix": "$project-heat"
-      },
-      "seed_int": 0,
-      "node_position": {
-        "x": 1450,
-        "y": 900
-      }
     },
     {
       "export": {},
@@ -3927,6 +3871,290 @@
         "b": 0.28,
         "a": 1
       }
+    },
+    {
+      "name": "ExportPigmentPixels",
+      "type": "buffer",
+      "version": 1,
+      "node_position": {
+        "x": 2350,
+        "y": 0
+      },
+      "parameters": {
+        "size": 10,
+        "f32": false
+      },
+      "seed": 0,
+      "seed_locked": true
+    },
+    {
+      "name": "ExportPigment",
+      "type": "material_export",
+      "label": "Material.png",
+      "node_position": {
+        "x": 2650,
+        "y": 0
+      },
+      "parameters": {},
+      "export": {},
+      "seed_int": 0,
+      "shader_model": {
+        "shortdesc": "PNG buffer export",
+        "longdesc": "Exports the connected finished map at its saved Buffer dimensions.",
+        "code": "",
+        "global": "",
+        "inputs": [
+          {
+            "name": "albedo_tex",
+            "type": "rgb",
+            "default": "vec3(0.0)",
+            "label": "Finished map"
+          }
+        ],
+        "outputs": [
+          {
+            "type": "rgb",
+            "rgb": "$albedo_tex($uv)"
+          }
+        ],
+        "parameters": [],
+        "preview_shader": [
+          "shader_type spatial;",
+          "render_mode unshaded;",
+          "$definitions",
+          "void fragment() {",
+          "  float _seed_variation_ = 0.0;",
+          "  vec4 _controlled_variation_ = vec4(0.0);",
+          "$begin_generate",
+          "  ALBEDO = $albedo_tex(UV);",
+          "$end_generate",
+          "}"
+        ],
+        "exports": {
+          "MegaMek/Maps": {
+            "export_extension": "",
+            "files": [
+              {
+                "type": "buffers",
+                "file_name": "$(path_prefix).png"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "ExportNormalPixels",
+      "type": "buffer",
+      "version": 1,
+      "node_position": {
+        "x": 2350,
+        "y": 350
+      },
+      "parameters": {
+        "size": 10,
+        "f32": false
+      },
+      "seed": 0,
+      "seed_locked": true
+    },
+    {
+      "name": "ExportNormal",
+      "type": "material_export",
+      "label": "Material-normal.png",
+      "node_position": {
+        "x": 2650,
+        "y": 350
+      },
+      "parameters": {},
+      "export": {},
+      "seed_int": 0,
+      "shader_model": {
+        "shortdesc": "PNG buffer export",
+        "longdesc": "Exports the connected finished map at its saved Buffer dimensions.",
+        "code": "",
+        "global": "",
+        "inputs": [
+          {
+            "name": "albedo_tex",
+            "type": "rgb",
+            "default": "vec3(0.0)",
+            "label": "Finished map"
+          }
+        ],
+        "outputs": [
+          {
+            "type": "rgb",
+            "rgb": "$albedo_tex($uv)"
+          }
+        ],
+        "parameters": [],
+        "preview_shader": [
+          "shader_type spatial;",
+          "render_mode unshaded;",
+          "$definitions",
+          "void fragment() {",
+          "  float _seed_variation_ = 0.0;",
+          "  vec4 _controlled_variation_ = vec4(0.0);",
+          "$begin_generate",
+          "  ALBEDO = $albedo_tex(UV);",
+          "$end_generate",
+          "}"
+        ],
+        "exports": {
+          "MegaMek/Maps": {
+            "export_extension": "",
+            "files": [
+              {
+                "type": "buffers",
+                "file_name": "$(path_prefix)-normal.png"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "ExportSurfacePixels",
+      "type": "buffer",
+      "version": 1,
+      "node_position": {
+        "x": 2350,
+        "y": 700
+      },
+      "parameters": {
+        "size": 10,
+        "f32": false
+      },
+      "seed": 0,
+      "seed_locked": true
+    },
+    {
+      "name": "ExportSurface",
+      "type": "material_export",
+      "label": "Material-surface.png",
+      "node_position": {
+        "x": 2650,
+        "y": 700
+      },
+      "parameters": {},
+      "export": {},
+      "seed_int": 0,
+      "shader_model": {
+        "shortdesc": "PNG buffer export",
+        "longdesc": "Exports the connected finished map at its saved Buffer dimensions.",
+        "code": "",
+        "global": "",
+        "inputs": [
+          {
+            "name": "albedo_tex",
+            "type": "rgb",
+            "default": "vec3(0.0)",
+            "label": "Finished map"
+          }
+        ],
+        "outputs": [
+          {
+            "type": "rgb",
+            "rgb": "$albedo_tex($uv)"
+          }
+        ],
+        "parameters": [],
+        "preview_shader": [
+          "shader_type spatial;",
+          "render_mode unshaded;",
+          "$definitions",
+          "void fragment() {",
+          "  float _seed_variation_ = 0.0;",
+          "  vec4 _controlled_variation_ = vec4(0.0);",
+          "$begin_generate",
+          "  ALBEDO = $albedo_tex(UV);",
+          "$end_generate",
+          "}"
+        ],
+        "exports": {
+          "MegaMek/Maps": {
+            "export_extension": "",
+            "files": [
+              {
+                "type": "buffers",
+                "file_name": "$(path_prefix)-surface.png"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "ExportHeatPixels",
+      "type": "buffer",
+      "version": 1,
+      "node_position": {
+        "x": 2350,
+        "y": 1050
+      },
+      "parameters": {
+        "size": 10,
+        "f32": false
+      },
+      "seed": 0,
+      "seed_locked": true
+    },
+    {
+      "name": "ExportHeat",
+      "type": "material_export",
+      "label": "Material-heat.png",
+      "node_position": {
+        "x": 2650,
+        "y": 1050
+      },
+      "parameters": {},
+      "export": {},
+      "seed_int": 0,
+      "shader_model": {
+        "shortdesc": "PNG buffer export",
+        "longdesc": "Exports the connected finished map at its saved Buffer dimensions.",
+        "code": "",
+        "global": "",
+        "inputs": [
+          {
+            "name": "albedo_tex",
+            "type": "rgb",
+            "default": "vec3(0.0)",
+            "label": "Finished map"
+          }
+        ],
+        "outputs": [
+          {
+            "type": "rgb",
+            "rgb": "$albedo_tex($uv)"
+          }
+        ],
+        "parameters": [],
+        "preview_shader": [
+          "shader_type spatial;",
+          "render_mode unshaded;",
+          "$definitions",
+          "void fragment() {",
+          "  float _seed_variation_ = 0.0;",
+          "  vec4 _controlled_variation_ = vec4(0.0);",
+          "$begin_generate",
+          "  ALBEDO = $albedo_tex(UV);",
+          "$end_generate",
+          "}"
+        ],
+        "exports": {
+          "MegaMek/Maps": {
+            "export_extension": "",
+            "files": [
+              {
+                "type": "buffers",
+                "file_name": "$(path_prefix)-heat.png"
+              }
+            ]
+          }
+        }
+      }
     }
   ],
   "connections": [
@@ -3961,21 +4189,9 @@
       "to_port": 0
     },
     {
-      "from": "PigmentPNG8",
-      "from_port": 0,
-      "to": "ExportPigment",
-      "to_port": 0
-    },
-    {
       "from": "SurfaceResponse",
       "from_port": 0,
       "to": "NormalPNG8",
-      "to_port": 0
-    },
-    {
-      "from": "NormalPNG8",
-      "from_port": 0,
-      "to": "ExportNormal",
       "to_port": 0
     },
     {
@@ -3985,21 +4201,9 @@
       "to_port": 0
     },
     {
-      "from": "SurfacePNG8",
-      "from_port": 0,
-      "to": "ExportSurface",
-      "to_port": 0
-    },
-    {
       "from": "HeatResponse",
       "from_port": 0,
       "to": "HeatPNG8",
-      "to_port": 0
-    },
-    {
-      "from": "HeatPNG8",
-      "from_port": 0,
-      "to": "ExportHeat",
       "to_port": 0
     },
     {
@@ -4043,6 +4247,54 @@
       "from_port": 0,
       "to": "Material",
       "to_port": 3
+    },
+    {
+      "from": "PigmentPNG8",
+      "from_port": 0,
+      "to": "ExportPigmentPixels",
+      "to_port": 0
+    },
+    {
+      "from": "ExportPigmentPixels",
+      "from_port": 0,
+      "to": "ExportPigment",
+      "to_port": 0
+    },
+    {
+      "from": "NormalPNG8",
+      "from_port": 0,
+      "to": "ExportNormalPixels",
+      "to_port": 0
+    },
+    {
+      "from": "ExportNormalPixels",
+      "from_port": 0,
+      "to": "ExportNormal",
+      "to_port": 0
+    },
+    {
+      "from": "SurfacePNG8",
+      "from_port": 0,
+      "to": "ExportSurfacePixels",
+      "to_port": 0
+    },
+    {
+      "from": "ExportSurfacePixels",
+      "from_port": 0,
+      "to": "ExportSurface",
+      "to_port": 0
+    },
+    {
+      "from": "HeatPNG8",
+      "from_port": 0,
+      "to": "ExportHeatPixels",
+      "to_port": 0
+    },
+    {
+      "from": "ExportHeatPixels",
+      "from_port": 0,
+      "to": "ExportHeat",
+      "to_port": 0
     }
   ]
 }

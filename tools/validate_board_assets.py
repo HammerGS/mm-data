@@ -21,6 +21,8 @@ for asset, entry in features.items():
             catalog[lod['node']] = lod
             lods[lod['node']] = (BOARD / entry['mesh'], level)
 maximum = 0
+# Placement fits a plant's LOD0 height and every level shares that transform: a coarser level stays within it.
+tops = {}
 assert not list(BOARD.rglob('*.g3dj')), 'All deployed board meshes must use GLB'
 for asset in catalog:
     if asset in features and 'lods' in features[asset]:
@@ -35,12 +37,15 @@ for asset in catalog:
     heights = [z for mesh in model['meshes'] for z in mesh['vertices'][2::12]]
     if asset in buildings:
         assert min(heights) == 0 and max(heights) == 18, f'One-level building: {path}'
-    elif asset.startswith('foliage-'):
-        assert abs(min(heights)) < 1e-5, f'Floating understory root: {path}'
-        assert 17 < max(heights) < 18.1, f'Understory LOD silhouette: {path}'
-    elif asset.startswith('orchard-'):
-        assert abs(min(heights)) < 1e-5, f'Floating orchard root: {path}'
-        assert 29 < max(heights) < 31, f'Orchard LOD silhouette: {path}'
+    elif asset.startswith(('foliage-', 'orchard-')):
+        plant = asset.rsplit('-lod', 1)[0]
+        assert abs(min(heights)) < 1e-5, f'Floating plant root: {path}'
+        if level == 0:
+            low, high = (17, 18.1) if asset.startswith('foliage-') else (29, 31)
+            assert low < max(heights) < high, f'Plant height: {path}'
+            tops[plant] = max(heights)
+        else:
+            assert .9 * tops[plant] < max(heights) < 1.01 * tops[plant], f'LOD {level} height: {path}'
     triangles = 0
     for mesh in model['meshes']:
         assert mesh['attributes'] == ['POSITION', 'NORMAL', 'COLOR', 'TEXCOORD0'], path
