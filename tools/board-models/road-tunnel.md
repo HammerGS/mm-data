@@ -1,30 +1,24 @@
 # Road tunnel portal
 
-Rebuild with Blender's Python runtime:
+Two GLBs share the same portal geometry:
 
-    blender --background --python tools/build_tunnel_asset.py
+- `data/models/board/road-tunnel.glb`: wing walls, 289 triangles.
+- `data/models/board/road-tunnel-bridge.glb`: no wing walls, 273 triangles.
 
-The same script can be run through Blender MCP with `runpy.run_path`.
-It creates a separate scene and preserves existing scenes. Editable source:
-`road-tunnel.blend`. The same geometry exports two assets:
-
-- `data/models/board/road-tunnel.glb`: wing walls, 289 triangles, 46,572 bytes.
-- `data/models/board/road-tunnel-bridge.glb`: no wing walls, 273 triangles, 43,740 bytes.
-
-Both use one LOD0. The `tunnel-wings` object in the shared Blender source is
-omitted from the bridge export; the arch, deep shell and lining are identical.
+Both use one LOD0. The bridge portal has no `tunnel-wings` part; the arch, deep
+shell and lining are identical.
 
 The portal and lining use the dedicated repeating
-`data/models/board/textures/tunnel-concrete.png` albedo; the floor uses the shared
-asphalt texture for authoring. At runtime the floor receives its approach's
+`data/models/board/textures/scenery/tunnel-concrete.png` albedo, exported by the
+Material Maker project `tools/materials/scenery/tunnel-concrete/`; the floor uses
+the shared asphalt texture. At runtime the floor receives its approach's
 road material (asphalt, gravel or dirt), including the existing normal/surface
 maps and world-space texture alignment. Concrete repeats every six model units with fine aggregate
 and pores, rather than the terrain material's large blotches.
 The outer side walls and roof extend the full 18-unit tunnel depth, allowing
 the portal to be embedded in a sloping face. The lining and piers do not have
 overlapping inner faces. Four lining bays interpolate vertex colour continuously
-into a dark end cap. The editable Blender source preserves those vertex colours
-and uses the same colour multiplication as the GLB.
+into a dark end cap.
 
 The 15-unit carriageway continues through the entrance to Y=18. Its four floor
 quads retain full material brightness through Y=6 and then fade into darkness;

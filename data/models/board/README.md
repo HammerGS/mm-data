@@ -49,8 +49,7 @@ attribute `_COLOUR_SLOT` (0 none), and the file's extras `mmColourSlots` list ea
 slot's name, its default colour and preset colours (the colours of the family's
 meshes at the base). A row's or a placed object's colour replaces a slot's default: each
 channel keeps its ratio to the default in linear light, so shaded parts of a slot
-stay shaded (`tools/glb_geometry.py` `recolour`; the runtime's `RigidGlb.recolour`
-applies the same rule). A slot's base vertices hold its default exactly, to the
+stay shaded (`RigidGlb.recolour`). A slot's base vertices hold its default exactly, to the
 8-bit step, so a replacement reproduces itself exactly there. The colour families
 are one mesh each:
 
@@ -67,17 +66,9 @@ are one mesh each:
 | `pools/*` | Wall, Coping, Deck, Water | `parks/pond-1`, `-2`, `-4` are `pools/freeform`, `sport-2`, `sport-4` in the 'Pond' colours |
 
 Every vertex whose colour differs between a family's coats belongs to the slot
-that reproduces it for every coat, and
-`verify_legacy_decode.py` compares the recoloured rows with the base's meshes
-vertex by vertex (see below). The car's paint and the pool slots are marked by
-`tools/build_scenery_assets.py` (`CAR_SLOTS`, `POOL_SLOTS`), which writes each car
-and pond row's colours.
-
-`tools/build_scenery_assets.py` names its output with `SHARED` (shared
-components) and `NAMES` (meshes that legacy images bake); it never writes a GLB
-at a legacy key. The animal meshes are not generated; their pose source is not in
-the repository. Coats that differ only in colour share one mesh with colour slots
-(see Colour slots), so there are 12 animal meshes.
+that reproduces it for every coat; each car and pond row names its colours.
+Coats that differ only in colour share one mesh with colour slots, so there are
+12 animal meshes.
 
 ### Old to new
 
@@ -240,8 +231,7 @@ to a route marker row and the artwork's pieces: platform, passenger wagons,
 driver cab, coupler and parked road cars (`scenery/vehicles/`). The marker row
 (`scenery/maglev/route`) carries the route's sides as `connections`
 (N=1, NE=2, SE=4, S=8, SW=16, NW=32): 9 for N/S, 18 for NE/SW and 36 for NW/SE.
-The client draws the rail from the stored sides. Facts measured on the 84x72 sprites (`MAGLEV` in
-`tools/build_scenery_assets.py`):
+The client draws the rail from the stored sides. Facts measured on the 84x72 sprites:
 
 | Keys | Route | Platform | Train piece | Parked cars |
 |---|---|---|---|---|
@@ -278,12 +268,8 @@ maglev": cab, cargo car, tanker and heavy transport at 34 px); `train.png` and `
 thumbnails. Placed objects draw only their near mesh (LOD0), so each piece is one mesh of 140 to 740 triangles.
 A platform on a fixed-level (elevated) route floats at the route's level; it has no supports of its own.
 
-`tools/build_scenery_assets.py` (with the `fluff/maglev` argument) writes the route marker mesh and the twelve
-legacy maglev layouts, whose rows name the pieces; `blender --background --factory-startup --python
-tools/build_maglev_assets.py`, from the data repository root, writes the pieces, both stamps' rows and their
-thumbnails, and checks that no vehicle enters the beam or reaches the pier cap. The Java
-`BoardSceneryMaglevTest` checks the decoded rows against the sprite facts above, the palette and the import of
-two shipped boards.
+The Java `BoardSceneryMaglevTest` checks the decoded rows against the sprite facts above, the palette and the
+import of two shipped boards.
 
 ## Rail pieces
 
@@ -311,8 +297,6 @@ family's default livery with the lead nose at +Y: `scenery/rail/train` ("Freight
 tanker, heavy flatbed), `scenery/rail/express-train` (power car, two cars, the second power car turned 180 degrees)
 and `scenery/rail/colony-train` (colony locomotive, heavy hopper, insulated tanker, equipment carrier), with
 `train.png`, `express-train.png` and `colony-train.png` as thumbnails.
-`blender --background --factory-startup --python tools/build_rail_assets.py` writes the fourteen GLBs, the
-stamps' rows and the thumbnails; the crossing signal is a palette object of `tools/build_scenery_assets.py`.
 
 The 64 legacy rail keys `scenery/hq_fluff/rail00`-`rail63` (FLUFF 10:0-63) decode to one route marker row,
 `scenery/rail/route`, whose `connections` is the token value: the sprite's side mask. The client builds the track
@@ -320,8 +304,7 @@ from those sides. `rail00` has no sides; the conversion takes them from its neig
 nothing. The six level crossings `rail_road01`-`06` (FLUFF 10:64-69) add three things: the marker on the rail's
 axis, the `decal/rail/level-crossing` panel turned to the two axes, and four crossing signals. Each signal stands
 beside the road, 10 px from its centre line and 8.5 px from the track's, and faces the road traffic that comes
-towards it. `RAIL_CROSSINGS` in `tools/build_scenery_assets.py` holds the measured axes, and the `hq_fluff/rail`
-argument rebuilds these keys.
+towards it.
 
 How the client uses them (MegaMek `docs/3d-board-editor.md`, rails): a hex lays only gentle pieces, straights
 between opposite sides and 60-degree arcs between sides two apart. A side without a gentle partner (two adjacent
@@ -359,168 +342,22 @@ exits/6, `road/rounded`, `road/horizontal`, `woods/orchard`, `rough/obstacles`, 
 or nothing (the transparent wildcard `saxarba/misc/blank.png`, `bldg_fluff:0`, quay art the fitted quay wall
 replaces). Elevator plates and the cleared-rubble gravel stay rows of their rule terrain (below).
 
-The generator owns both the meshes and the rows. Rebuild every generated family
-from the data repository root with
-`blender --background --factory-startup --python tools/build_scenery_assets.py --
-fluff/skylight GlassRoof fluff/ledge fluff/stack fluff/bevel fluff/construction
-fluff/cars fluff/square fluff/pillars fluff/garden fluff/pool fluff/suburb
-fluff/beacon fluff/heli fluff/maglev hq_fluff/rail SMV_Seaport road_trees SMV_Fluff/ orbitalguns rubble
-fortified geyser fluff/bison fluff/cattle fluff/chickens fluff/horses fluff/pigs`,
-then `tools/build_maglev_assets.py` for the maglev pieces, stamps and thumbnails, `tools/build_rail_assets.py` for the
-rail pieces (see Rail pieces), and
-`python tools/build_board_decals.py` for the decals and the car-park decal rows and seats
-(the scenery build writes the car-park keys without them). The arguments select
-image names, as `build(only)` does. The scenery build generates the herd rows from `tools/farm-herds.json` and
-`tools/farm-coats.json`. The heli pads (`fluff/heli1`-`3`) decode to their landing lights
-(`roofs/landing-light`, rows only) and the pad decal that `tools/build_board_decals.py` adds. Each build also
-writes the palette objects (bench, rectangular pool, landing light, crossing signal; `-- --palette` writes
-only them), and overwrites `tools/board-scenery-compositions.blend` and
-`tools/board-models/scenery/model-inventory.json` with the selected families. The build and
-`tools/verify_scenery_assets.py` read the sprite measurements that `python tools/prepare_scenery_layouts.py`
-writes to `tools/board-models/scenery/layouts.json`.
-
-`python tools/verify_legacy_decode.py` checks the rows against the baked GLBs of
-commit `0d5b47e5d0`, the last commit that has them at their legacy keys. A
-replaced key must match its old GLB after grounding, because that runtime
-grounded a whole legacy SCENERY mesh but placed rows as authored. A key that
-already had rows must match its old composition, trees included; the maglev keys
-are re-authored from their sprites (see Maglev) and skip that comparison, as do the keys whose art the base
-only painted (rails, heli pads, elevator plates, the cleared-rubble gravel), which have no 3D reference. Every tileset
-key that resolved to 3D at the base must still resolve through layouts.json, on
-existing meshes; the rail route marker has none, because the client generates its track. Every mesh reached by a decodable tileset token (`fluff` below
-2000, `road_fluff:3`, `road:2`) must be grounded and have a
-blueprint entry, and the rows of decoded keys must have Z=0. No layout may
-z-fight: within one mesh, and between the rows of a layout, no two upward faces
-that face the same way and are shaded differently may lie within 0.1 px of each
-other where their outlines overlap. No two meshes that rows, palette props or
-the scatter kit reach may be copies (the same vertex radii about Z, heights,
-colours and materials): a rotated or mirrored copy is a row on the other mesh.
-That check does not catch stretched or regenerated near-copies, which need a
-scan with fitted transforms. Decals (see Decals) must have their image by path
-convention and every image an entry; palette decals and legacy ids must name
-existing decals; every ground-symbol, landing-pad, letter, runway and court tile must decode to a decal, and
-every elevator plate and the cleared-rubble gravel to a decal row; each set must have its centre
-and six directions once; each one-hex variant must match its emblem at its decode
-transform (blurred mean difference at most 8/255, coverage overlap at least
-0.75); and every car of a car-park key must have its own slot on one of the
-key's decal rows. A row's `colours` must be one to four `#rrggbb` values or null,
-no more than its mesh's colour slots, and a key whose rows recolour a shared mesh
-must reproduce the base's colours vertex by vertex within 5/255 (see Colour
-slots). Deliberate geometry changes since the base
-are listed as Fixed. Residuals are symmetric Hausdorff distances between vertex
-sets, in model px:
-
-| Family | Keys | Rows | Canonical meshes | Reference | Mesh residual (px) | Tree residual |
-|---|---:|---:|---|---|---:|---:|
-| 01-Building-07-GlassRoof-# | 9 | 9 | glass-dome, glass-roof-wide | baked GLB | 2.7e-01 | 0.0e+00 |
-| 02-Sport-03-SwimmingPool-# | 5 | 19 | sport-1-deck, sport-1-main, sport-1-wading, sport-2, sport-3-deck, sport-3-main, sport-3-wading, sport-4, sport-5 | old rows | 7.5e-01 | 1.6e+00 |
-| 07-Garden-01-Tree-# | 5 | 13 | - | old rows | 0.0e+00 | 0.0e+00 |
-| 07-Garden-02-Table-# | 5 | 97 | picnic-table | old rows | 2.2e-06 | 0.0e+00 |
-| 07-Garden-03-Landscape-# | 4 | 4 | formal-garden-hex, formal-garden-round, formal-garden-star | baked GLB | 0.0e+00 | 0.0e+00 |
-| 07-Garden-04-Lake-# | 5 | 11 | freeform, sport-2, sport-4 | old rows | 0.0e+00 | 0.0e+00 |
-| OrbitalGun# | 4 | 4 | orbital-gun | baked GLB | 2.0e-01 | 0.0e+00 |
-| SeaportSystem-01-Container-01-20Footer-# | 28 | 28 | 28 meshes (containers-e-w-01 ...) | baked GLB | 0.0e+00 | 0.0e+00 |
-| SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-# | 48 | 48 | 48 meshes (gantry-crane-e-w-01 ...) | baked GLB | 0.0e+00 | 0.0e+00 |
-| SeaportSystem-02-ShipToShoreGantryCrane-03-CraneTip-# | 6 | 6 | crane-tip-01, crane-tip-02 | baked GLB | 1.0e+01 | 0.0e+00 |
-| beacon# | 2 | 2 | landing-beacon-hex, landing-beacon-round | baked GLB | 0.0e+00 | 0.0e+00 |
-| bevel# | 6 | 6 | bevel | baked GLB | 3.6e-06 | 0.0e+00 |
-| bison# | 1 | 2 | bison | baked GLB | 1.7e-06 | 0.0e+00 |
-| cars_# | 8 | 79 | car, parking-barrier, parking-shelter | old rows | 0.0e+00 | 0.0e+00 |
-| cars_2b | 1 | 8 | car, parking-shelter | old rows | 0.0e+00 | 0.0e+00 |
-| cars_3b | 1 | 9 | car, parking-barrier | old rows | 0.0e+00 | 0.0e+00 |
-| cattle# | 3 | 7 | cow, cow-grazing, cow-resting | baked GLB | 2.0e-06 | 0.0e+00 |
-| chickens# | 3 | 9 | hen, rooster | baked GLB | 2.3e-06 | 0.0e+00 |
-| construction# | 3 | 5 | bulldozer, crawler-crane, debris-1, debris-3, site-excavation | baked GLB | 5.0e-02 | 0.0e+00 |
-| fortified | 1 | 1 | fortification | baked GLB | 0.0e+00 | 0.0e+00 |
-| garden# | 6 | 36 | garden-bed | old rows | 8.3e-07 | 0.0e+00 |
-| geyser_magma | 1 | 1 | magma | baked GLB | 2.2e-01 | 0.0e+00 |
-| geyser_water_off | 1 | 1 | water-dormant | baked GLB | 0.0e+00 | 0.0e+00 |
-| geyser_water_on | 1 | 1 | water-erupting | baked GLB | 0.0e+00 | 0.0e+00 |
-| horses# | 2 | 7 | horse, horse-black-running, horse-brown-running, horse-relaxed | baked GLB | 2.4e-06 | 0.0e+00 |
-| ledge# | 6 | 6 | ledge | baked GLB | 3.4e-06 | 0.0e+00 |
-| pigs# | 2 | 8 | pig, pig-brown-resting | baked GLB | 2.2e-06 | 0.0e+00 |
-| pillars# | 6 | 36 | pillar | baked GLB | 2.0e-06 | 0.0e+00 |
-| pool# | 1 | 2 | freeform | old rows | 0.0e+00 | 0.0e+00 |
-| road_trees# | 64 | 336 | - | old rows | 0.0e+00 | 0.0e+00 |
-| rubble_hardened | 1 | 1 | hardened | baked GLB | 0.0e+00 | 0.0e+00 |
-| rubble_hardened_path | 1 | 1 | hardened-path | baked GLB | 0.0e+00 | 0.0e+00 |
-| rubble_heavy | 1 | 1 | heavy | baked GLB | 0.0e+00 | 0.0e+00 |
-| rubble_heavy_path | 1 | 1 | heavy-path | baked GLB | 0.0e+00 | 0.0e+00 |
-| rubble_light | 1 | 1 | light | baked GLB | 0.0e+00 | 0.0e+00 |
-| rubble_light_path | 1 | 1 | light-path | baked GLB | 0.0e+00 | 0.0e+00 |
-| rubble_medium | 1 | 1 | medium | baked GLB | 0.0e+00 | 0.0e+00 |
-| rubble_medium_path | 1 | 1 | medium-path | baked GLB | 0.0e+00 | 0.0e+00 |
-| rubble_wall | 1 | 1 | wall | baked GLB | 0.0e+00 | 0.0e+00 |
-| rubble_wall_path | 1 | 1 | wall-path | baked GLB | 0.0e+00 | 0.0e+00 |
-| skylight# | 6 | 6 | skylight | baked GLB | 3.2e-06 | 0.0e+00 |
-| square# | 6 | 13 | fountain, plaza, plaza-flowers, plaza-flowers-pillars, plaza-hedge, plaza-pillars, plaza-pond | baked GLB, old rows | 9.0e-01 | 0.0e+00 |
-| stack# | 6 | 12 | chimney-stack, grille | baked GLB | 2.1e-06 | 0.0e+00 |
-| suburb# | 3 | 23 | car, concrete-pipe, grandstand, parking-shelter-no-floor, picnic-table, rectangular-no-deck, round-no-deck | old rows | 7.8e-07 | 0.0e+00 |
-
-- 281 tileset keys resolved to 3D at the base; all resolve through layouts.json, and every row names an existing mesh.
-- `bevel1` (now `scenery/roofs/bevel`) stood 1 px off Z=0; the mesh is re-grounded.
-- `bevel2` (now `scenery/roofs/bevel`) stood 1 px off Z=0; the mesh is re-grounded.
-- `bevel3` (now `scenery/roofs/bevel`) stood 1 px off Z=0; the mesh is re-grounded.
-- `bevel4` (now `scenery/roofs/bevel`) stood 1 px off Z=0; the mesh is re-grounded.
-- `bevel5` (now `scenery/roofs/bevel`) stood 1 px off Z=0; the mesh is re-grounded.
-- `bevel6` (now `scenery/roofs/bevel`) stood 1 px off Z=0; the mesh is re-grounded.
-- `FluffSystem-01-Building-07-GlassRoof-3-01` (now `scenery/roofs/glass-dome`) stood -7.4 px off Z=0; the mesh is re-grounded.
-- `SeaportSystem-02-ShipToShoreGantryCrane-03-CraneTip-1-01` (now `scenery/seaport/crane-tip-01`) stood 10.3 px off Z=0; it keeps that height (see Fixed).
-- `SeaportSystem-02-ShipToShoreGantryCrane-03-CraneTip-1-02` (now `scenery/seaport/crane-tip-02`) stood 10.3 px off Z=0; it keeps that height (see Fixed).
-- `SeaportSystem-02-ShipToShoreGantryCrane-03-CraneTip-1-03` (now `scenery/seaport/crane-tip-02`) stood 10.3 px off Z=0; it keeps that height (see Fixed).
-- `SeaportSystem-02-ShipToShoreGantryCrane-03-CraneTip-1-04` (now `scenery/seaport/crane-tip-01`) stood 10.3 px off Z=0; it keeps that height (see Fixed).
-- `SeaportSystem-02-ShipToShoreGantryCrane-03-CraneTip-1-05` (now `scenery/seaport/crane-tip-02`) stood 10.3 px off Z=0; it keeps that height (see Fixed).
-- `SeaportSystem-02-ShipToShoreGantryCrane-03-CraneTip-1-06` (now `scenery/seaport/crane-tip-02`) stood 10.3 px off Z=0; it keeps that height (see Fixed).
-- 141 meshes reached by decodable tileset tokens: all grounded within 0.01 px and present in the blueprint.
-- Every row has Z=0.
-- Decals: 22 in `decals/decals.json`, each with its image by path convention; 170 legacy decal ids decode to them.
-- Emblems: 13 full emblems; all 169 ground-symbol tiles decode (13 sets of 7 pieces, 78 one-hex variants). The variants match their emblem at the decode transform: blurred mean |difference| at most 5.5/255 (the -04 variants at most 4.4), coverage overlap at least 0.77.
-- Car parks: 10 legacy car-park keys place 20 standard decal rows and seat all 72 cars in distinct slots (only the conversion places them; no 3D view draws the legacy sprite).
-- 4 keys stretch a row (01-Building-07-GlassRoof-#).
-- Colours: 25 keys recolour a shared mesh; 25 keep the base's vertex order and match its colours, by family within 07-Garden-04-Lake-# 0.6, bison# 2.6, cars_# 0.5, cars_2b 0.5, cars_3b 0.4, cattle# 0.4, chickens# 2.9, horses# 3.9, pigs# 1.1, suburb# 0.5 (of 255).
-- Copy check: 256 meshes reached by rows, palette props and the scatter kit; accepted `water-dormant`: GpuGeysers takes the eruption from the asset name (water-erupting).
-- Coplanar check (upward faces within 0.1 px, outlines overlapping by more than 0.01 px, different shading): 56 multi-row layouts and every row mesh, no z-fighting.
-- Accepted: 12 sliver pairs in 5 terrain-owned rubble meshes (rebar and beam flanges crossing slabs at shallow angles).
-- Accepted: `FluffSystem-02-Sport-03-SwimmingPool-1-03` trees lowered by 1.6 px to Z=0.
-- Fixed: `OrbitalGunE` differs by 0.2 px: vent slats raised clear of the plinth top they z-fought with.
-- Fixed: `OrbitalGunN` differs by 0.2 px: vent slats raised clear of the plinth top they z-fought with.
-- Fixed: `OrbitalGunS` differs by 0.2 px: vent slats raised clear of the plinth top they z-fought with.
-- Fixed: `OrbitalGunW` differs by 0.2 px: vent slats raised clear of the plinth top they z-fought with.
-- Fixed: `construction1` differs by 0.05 px: the debris is its own object, grounded: it floated 0.05 px.
-- Fixed: `construction3` differs by 0.05 px: the debris is its own object, grounded: it floated 0.05 px.
-- Fixed: `square1` differs by 0.9 px: the fountain is its own object; its outer wall reaches the ground, hidden by the plaza.
-- Fixed: `FluffSystem-01-Building-07-GlassRoof-1-01` differs by 0.273 px: the narrow glass roof is the wide one stretched to 29 px; its side curbs and ridge bar are 20% thinner.
-- Fixed: `FluffSystem-01-Building-07-GlassRoof-1-02` differs by 0.273 px: the narrow glass roof is the wide one stretched to 29 px; its side curbs and ridge bar are 20% thinner.
-- Fixed: `FluffSystem-01-Building-07-GlassRoof-1-03` differs by 0.273 px: the narrow glass roof is the wide one stretched to 29 px; its side curbs and ridge bar are 20% thinner.
-- Fixed: `FluffSystem-01-Building-07-GlassRoof-1-04` differs by 0.273 px: the narrow glass roof is the wide one stretched to 29 px; its side curbs and ridge bar are 20% thinner.
-- Fixed: `FluffSystem-02-Sport-03-SwimmingPool-1-03` differs by 0.751 px: two overlapping pool islands, whose coplanar tops z-fought, are merged into one.
-- Fixed: `SeaportSystem-02-ShipToShoreGantryCrane-03-CraneTip-1-01` differs by 10.3 px: tips keep their boom height; grounding them broke the boom at the hex edge.
-- Fixed: `SeaportSystem-02-ShipToShoreGantryCrane-03-CraneTip-1-02` differs by 10.3 px: tips keep their boom height; grounding them broke the boom at the hex edge.
-- Fixed: `SeaportSystem-02-ShipToShoreGantryCrane-03-CraneTip-1-03` differs by 10.3 px: tips keep their boom height; grounding them broke the boom at the hex edge.
-- Fixed: `SeaportSystem-02-ShipToShoreGantryCrane-03-CraneTip-1-04` differs by 10.3 px: tips keep their boom height; grounding them broke the boom at the hex edge.
-- Fixed: `SeaportSystem-02-ShipToShoreGantryCrane-03-CraneTip-1-05` differs by 10.3 px: tips keep their boom height; grounding them broke the boom at the hex edge.
-- Fixed: `SeaportSystem-02-ShipToShoreGantryCrane-03-CraneTip-1-06` differs by 10.3 px: tips keep their boom height; grounding them broke the boom at the hex edge.
-- Fixed: `geyser_magma` differs by 0.215 px: lava fissures lifted from 0.035 to 0.25 px above the rock they z-fought with.
-- Accepted: 1 `car*` meshes stand 0.0494 px up, as authored.
-- Accepted: 2 `crane-tip-*` meshes stand 10.3 px up, as authored.
-- Accepted: 1 `wagon*` meshes stand 3.5 px up, as authored.
-- Accepted: 1 `cab*` meshes stand 3.5 px up, as authored.
-- Accepted: 1 `coupler*` meshes stand 4 px up, as authored.
-
-Tolerance is 0.001 px for meshes and trees and 0.01 px for grounding. The pool
-trees are the only accepted tree difference: tree meshes are shared species
-assets, so a pool-island tree cannot keep its 1.6 px model height. The rubble
-meshes are terrain-owned and never placed by import or the editor; their thin
-rebar and beam flanges cross slabs at shallow angles, and those slivers are
-accepted by the coplanar check.
+`scenery/layouts.json` and the meshes and decals it names are edited directly. The heli pads
+(`fluff/heli1`-`3`) decode to their landing lights (`roofs/landing-light`, rows only) and the pad decal.
+No layout may z-fight: within one mesh, and between the rows of a layout, no two upward faces that face the
+same way and are shaded differently may lie within 0.1 px of each other where their outlines overlap. The
+terrain-owned rubble meshes, which import and the editor never place, are the exception: their thin rebar and
+beam flanges cross slabs at shallow angles. No two meshes that rows, palette props or the scatter kit reach may
+be copies (the same vertex radii about Z, heights, colours and materials): a rotated or mirrored copy is a row
+on the other mesh. `geysers/water-dormant` and `water-erupting` are the one accepted pair, because `GpuGeysers`
+takes the eruption from the asset name.
 
 ## Decals
 
 A decal id `decal/<group>/<name>` is the image `decals/<group>/<name>.png`; no
 catalog is needed to find it. Images are straight RGBA with north (+y) at the
 top; transparent texels carry the colour of the nearest ink so filtering and
-mipmaps do not darken edges. `tools/build_board_decals.py` writes every image and
-`decals/decals.json`, and also the car-park rows of `scenery/layouts.json`:
+mipmaps do not darken edges. The groups:
 
 | Folder | Decals | Source |
 |---|---|---|
@@ -675,12 +512,7 @@ the crown's vertex colours (the snow cards drop the species' pigment) and the
 winter impostor's texture and card colours; `manifest.json` points their `-snow`
 entry at the bare file (`"variant": "snow"`). The runtime builds the winter form
 from it (`RigidGlb.source`). `pine-tall`, `tree-dead`, `willow`, `tree-forked` and
-`foliage-snow` keep their own winter GLB: the duplicate scan found their snow
-geometry or bark different. `python tools/merge_snow_trees.py merge` folds a
-rebuilt `<species>-snow.glb` into its bare GLB (and removes it); `split` writes it
-out again for the Blender tree tools, which read and write the winter GLBs. Ten
-pairs share the bare geometry exactly; the nine regenerated ones (from
-`tree-broad` on) take the bare geometry, 0.15-0.61 px from their own.
+`foliage-snow` keep their own winter GLB: their snow geometry or bark differs.
 
 ## Rock and scatter meshes
 
@@ -690,8 +522,7 @@ pairs share the bare geometry exactly; the nine regenerated ones (from
   meshes and 1,572 triangles. Rough terrain, rims, slopes and cliffs share these files.
 - `rocks/outcrop-N.glb` (N = 0..7) are bedrock formations used by zero-gravity
   rough and dry natural rough on exposed ridges, in the same layout (`outcrop-N-lod0` to `-lod2`; 92, 44
-  and 22 triangles). Unlike the other rocks they are generated: rebuild them with
-  `blender -b --factory-startup --python tools/build_outcrop_assets.py`.
+  and 22 triangles).
 - `scatter/` contains 25 independently editable GLBs: `stone-block-N.glb` and
   `stone-boulder-N.glb` (N = 0..7, eight triangles each, open base), `bush-N.glb`
   (N = 0..7, shrub masses, 660 triangles dry and 792 green) and `grass.glb` (six
@@ -755,7 +586,7 @@ no rock or scatter geometry is generated in-game.
   the plant takes the sun: red, the share of direct light its own leaves let
   through; green, the share of bark, cactus or snow the card shows. Shrubs and
   orchard trees carry the same level; `prepare_tree_lods.py -- impostors`
-  refreshes it for all of them.
+  re-bakes it (see Editing and checks).
   The manifest records every level; screen-pixel thresholds live in Java's
   `TreeLod`, so no camera or game state is baked into these assets.
 - Every plant's origin is the foot of its trunk, where the board places, grounds and
@@ -776,11 +607,10 @@ no rock or scatter geometry is generated in-game.
   from green foliage and preserve the birch's pale trunk and dark scars. Existing
   vertex colors tint the pale maps; dominant-axis UVs follow the tree's original
   proportions. Snow variants use their own authored geometry.
-- `orchard-*.glb`: six fruit-tree forms and their snow variants reuse the shared
-  branch-cutout baker. Their authored branch and apple counts stay intact at
+- `orchard-*.glb`: six fruit-tree forms and their snow variants, with cutout leaf
+  cards. Their authored branch and apple counts stay intact at
   each level; leaf cards use the remaining budget (480/240/84/12 triangles per
-  tree). Bark and fruit retain their orchard atlases. Rebuild with
-  `tools/build_orchard_assets.py`, then `tools/prepare_tree_lods.py -- impostors`.
+  tree). Bark and fruit retain their orchard atlases.
 - `textures/vegetation/marsh-sedge.png`: the editable 1254 by 1254 RGBA sedge/cattail
   cutout for marsh vegetation. The renderer filters it to one shared 512 by 512
   texture with mipmaps; all three plant LODs use this same image. Ground peat,
@@ -813,8 +643,8 @@ no rock or scatter geometry is generated in-game.
   `theme_mars/water_anim_mars_N.gif`, `theme_volcano/water_anim_volcano_N.gif`,
   `base/base_magma_anim_N.gif`, and `water/rapids_anim.gif` / `water/torrent_anim.gif`.
   The latter paths are relative to `tileset/saxarba/`. All are independent copies
-  of the original 32-frame, 3.2-second animations. `tools/copy_board_tileset.py`
-  includes these runtime-selected images even when the static tileset omits them.
+  of the original 32-frame, 3.2-second animations. The runtime selects these
+  images, so they stay even where the static tileset omits them.
   `GpuWaterShader.USE_PROCEDURAL_WATER` selects shader-generated water patterns
   and palettes matched to this artwork, using the renderer's shared noise field.
   Set it to `false` and rebuild for the authored water GIFs. Both paths share
@@ -836,16 +666,12 @@ no rock or scatter geometry is generated in-game.
   before lighting, and caches the resulting paired atlas material. The source
   images remain separate. Riverbanks keep the undecorated ground artwork.
 
-Edit roof art under `tileset/`, then rebuild the derived roof texture and mesh.
-Opaque source roof pixels and their UV locations are unchanged by the export;
-RGB is extended only outside the roof mask to prevent filtering fringes.
-Each `buildings/<name>.png` is an exact copy of the original tile artwork,
-including transparency and shadows, for inspection beside `<name>.glb`.
-The processed RGB roof texture is embedded in the GLB; its offline input is
-under `tools/board-models/roofs`. Edit the facade Material Maker projects under
-`tools/materials/structures/facades/` to change windows/walls. Edit
-`tools/building-footprints.json` between preparation
-and export to author a silhouette manually.
+Each building GLB embeds its processed RGB roof texture: the source roof's opaque
+pixels at their UV locations, with RGB extended only outside the roof mask to
+prevent filtering fringes. Each `buildings/<name>.png` is an exact copy of the
+original tile artwork, including transparency and shadows, for inspection beside
+`<name>.glb`. Edit the facade Material Maker projects under
+`tools/materials/structures/facades/` to change windows/walls.
 
 Models are indexed GLB with positions, flat normals, vertex colors and UVs.
 The importer converts glTF Y-up and linear colors back to the board convention.
@@ -878,18 +704,12 @@ corners, unit height Z=0..1, no end faces; stretched between footing and cap) an
 (16 by 13, Z=0 at the floor, a 1-unit lip, buried 6). The runtime (`BoardBridgeFooting`) places one pier under
 each joint of a bridge whose Pillars toggle is on: each of the two hexes builds the half on its own side of the
 edge, cut at the kit's mirror plane and closed by its section there, so the pier must stay mirror-symmetric in X
-and Y and each part convex. `bridges/maglev-pier.glb` is the same kit for the elevated maglev's pillars, from the
-same generator (`python tools/build_bridge_pier.py --profile maglev`), with parts named `maglev-pier-*`: cap 6 by
-4 under the 4 wide beam (soffit at Z=-2.5), shaft 3.2 square, footing 7 by 7 (a 0.6 lip, buried 4). The same
-runtime code places it: one pier on each shared edge of two hexes of a maglev route whose Pillars toggle is on (the
-marker's `"pillars": true`, set for the whole connected route), from below the floor up to the beam's underside, and
-none where the beam is less than a level up or a road, ground rail or bridge deck crosses the edge beneath.
-
-Bridge spans need no asset bake. Rebuild the retained detail kits in mm-data with
-`python tools/build_bridge_terminal.py` or `python tools/build_bridge_pier.py`;
-add `--profile maglev` for the maglev pier. Add `--check` to validate a shipped
-kit without changing it. The main board-asset builder also rebuilds the bridge
-terminal and pier kits.
+and Y and each part convex. `bridges/maglev-pier.glb` is the same kit for the elevated maglev's pillars, with
+parts named `maglev-pier-*`: cap 6 by 4 under the 4 wide beam (soffit at Z=-2.5), shaft 3.2 square, footing 7 by
+7 (a 0.6 lip, buried 4). The same runtime code places it: one pier on each shared edge of two hexes of a maglev
+route whose Pillars toggle is on (the marker's `"pillars": true`, set for the whole connected route), from below
+the floor up to the beam's underside, and none where the beam is less than a level up or a road, ground rail or
+bridge deck crosses the edge beneath.
 
 Textures and meshes are shared;
 translucency changes instance materials, not the assets. Snow trees have their
@@ -901,14 +721,14 @@ original extension and any crop). `normal-manifest.json` records dimensions,
 strength and source pixel hashes. Runtime selects each map through the chosen
 albedo image and composites both in the same order, then packs aligned atlases.
 No height estimation or normal-map generation runs in the game. Missing maps
-for custom art fall back to flat shading until they are prepared.
+for custom art fall back to flat shading.
 
-`tools/prepare_board_normals.py` smooths alpha-weighted image brightness and
-bakes constant normals over alternating 4-pixel triangles. Painted brightness
+The maps hold constant normals over alternating 4-pixel triangles, baked from the
+albedo's smoothed, alpha-weighted brightness. Painted brightness
 is only an approximation to height; baked highlights can also produce relief.
 Rubble/rough use the strongest relief, rocky themes are next, and grass, dirt,
 sand, snow, mud/swamp, tundra, fields and ice use gentler detail. Pavement and
-paved roads receive neutral maps, including their opaque coverage over grass.
+paved roads have neutral maps, including their opaque coverage over grass.
 South-edge cliff-top patches use restrained relief at strength 3. Their alpha
 masks control both color and normal coverage; reoriented normal mapping retains
 the base relief under the rim. These derived maps retain the same limitation as
@@ -920,47 +740,27 @@ geometry or shadow rebuild.
 Animated water keeps its separate rendering. These maps affect ground lighting
 and bank slopes, not silhouettes, picking, movement or cast-shadow geometry.
 
-## Rebuild
+## Editing and checks
 
-Run from the mm-data root (Python requires Pillow and NumPy; `tools/materials/export.py`
-requires Material Maker):
+The GLB, PNG and JSON files here are the source: edit them directly. Run the tools from the mm-data root
+(Python requires Pillow; `tools/materials/export.py` requires Material Maker):
 
 ```text
-python tools/copy_board_tileset.py
 python tools/materials/export.py
-python tools/test_texture_helpers.py
-python tools/prepare_board_normals.py
-python tools/prepare_board_normals.py --check
-python tools/test_board_normals.py
-python tools/prepare_building_footprints.py
-blender --background tools/board-assets.blend --python tools/build_saxarba_buildings.py
-blender --background tools/board-assets.blend --python tools/build_board_assets.py
+blender --background --factory-startup --python tools/prepare_tree_lods.py -- impostors <names...>
 python tools/validate_board_assets.py
 ```
 
-The copy step copies missing files only; it preserves local 3D artwork edits.
-It repairs two pre-existing fungus image-path typos in the copy only.
-Preparation follows actual building, fuel-tank and industrial entries in the
-independent include tree. Family selection lives in `facade_family` in the
-preparation script; it recognizes named fortress/hangar/sealed families before
-ordinary construction strength, including reinforced SMV structures.
-Blender uses constrained triangulation for the simplified roof outlines,
-exports runtime files, and saves editable object libraries at
-`tools/saxarba-buildings.blend` and `tools/board-assets.blend`.
-Use Blender's Append command to load their objects. The source scripts create
-their own scenes and do not replace the user's open scene.
+`export.py` exports every Material Maker project under `tools/materials/` into `textures/`. After editing a
+plant GLB, `prepare_tree_lods.py` re-bakes its LOD3 impostor; the bake preserves the three mesh levels, owns a
+temporary Blender scene and preserves the active scene. Name the plants: the 19 species whose `-snow` form is a
+material variant have no `-snow` GLB, so a run without names stops at the first of those manifest entries, and
+re-baking one of those species drops its winter impostor (`mmVariants.snow` on the impostor material).
 
-`build_board_assets.py` rebuilds bridges and crops while preserving the other
-manifest entries. Edit the maintained tree GLBs directly. To refresh their impostors, run
-`python tools/merge_snow_trees.py split`, then
-`blender --background --factory-startup --python tools/prepare_tree_lods.py -- impostors`,
-then `python tools/merge_snow_trees.py merge`. The bake preserves the three mesh
-levels, owns a temporary Blender scene and preserves the active scene. Its shared
-branch-card helpers remain available to the shrub, orchard and volcanic generators.
-
-Validation checks all 3,319 base models and 66 tree detail meshes, their budgets and texture dependencies, structure
-roof winding, unchanged opaque roof pixels, facade assignments, small runtime
-texture dimensions, preserved source resolution, and independent copied files.
+`validate_board_assets.py` checks each manifest entry against its GLB: the plant levels `-lod0` to `-lod3` and
+their triangle budgets (480, 240, 96 and 12), the triangle counts (at most 500 per model), one-level building
+heights, roof winding and facade assignments, understory and orchard grounding and height at every level,
+embedded images and that every external texture exists inside this directory. It refuses G3DJ meshes.
 Native Java integration tests additionally check transparency, lighting,
 water animation and representative model loading.
 
@@ -976,7 +776,7 @@ Pack (June 2019)**: `CommonTree_1/2/4`, `CommonTree_Dead_2`, `PineTree_1/2/3`,
 `Cactus_2` and `CactusFlowers_2`. The supplied CC0 notice is preserved
 in `QUATERNIUS-LICENSE.txt`.
 
-Bridge models are baked from the shared road outlines; crop models are authored with the Blender script.
+The crop model and the bridge terminal and pier kits are original work.
 Dirt, sandstone, rock, concrete and windowed facade albedos were generated with
 the built-in image_gen tool; exact prompts are in
 `../../../tools/board-texture-prompts.json`. The seven contextual facade albedos
@@ -1010,11 +810,7 @@ Only the roof belongs inside each building package; the facade stays shared.
 Each building keeps `<building>.png` beside `<building>.glb`: a byte-for-byte
 copy of its original tileset image, retaining alpha and shadows. This is for
 inspection and is not a runtime texture dependency. The processed roof PNG
-stays embedded, with no loose `*-roof.png` under deployed buildings. The
-footprint tool copies the original sibling and prepares the filtering-safe
-RGB roof under `tools/board-models/roofs`; the exporter embeds that prepared
-image. Validation checks the original sibling against its source and the
-embedded roof against the source's opaque pixels. There is no measured
+stays embedded, with no loose `*-roof.png` under deployed buildings. There is no measured
 runtime performance gain claimed from embedding.
 
 `field.glb` also contains a single LOD0 group. Deployed `data/` and

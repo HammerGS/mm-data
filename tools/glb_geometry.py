@@ -3,7 +3,7 @@
 Authoring uses MegaMek's Z-up coordinates and display-space colors. Files use
 glTF's Y-up coordinates and linear colors; the runtime keeps those colors linear.
 The explicit linear_colors option preserves original glTF color values in offline processing.
-The small reader is for our offline review tools and migration parity checks.
+The small reader is for our offline review, processing and validation tools.
 """
 import json
 import math
@@ -23,22 +23,6 @@ def display(value):
     return value * 12.92 if value <= .0031308 else 1.055 * value ** (1 / 2.4) - .055
 
 
-def colour(text):
-    """A '#rrggbb' colour as display-space channels."""
-    return tuple(int(text[i:i + 2], 16) / 255 for i in (1, 3, 5))
-
-
-def colour_text(value):
-    return '#%02x%02x%02x' % tuple(round(max(0, min(1, c)) * 255) for c in value[:3])
-
-
-def recolour(value, default, replacement):
-    """A colour-slot vertex's display colour once its slot's default colour is replaced: each channel keeps its ratio
-    to the default in linear light, so shaded parts of a slot stay shaded. The runtime applies the same rule."""
-    return tuple(display(linear(c) * linear(r) / linear(d)) if linear(d) > 1e-6 else r
-                 for c, d, r in zip(value, default, replacement))
-
-
 def y_up(value):
     return [value[0], value[2], -value[1]]
 
@@ -47,7 +31,7 @@ def z_up(value):
     return [value[0], -value[2], value[1]]
 
 
-def write_glb(path, model=None, *, levels=None, embedded_images=None, extras=None, linear_colors=False):
+def write_glb(path, model=None, *, levels=None, extras=None, linear_colors=False):
     """Export existing rigid authoring arrays, preserving node/part/material IDs.
 
     With `linear_colors=True`, pigment factors and vertex RGB are already linear; alpha is unchanged.
@@ -108,7 +92,7 @@ def write_glb(path, model=None, *, levels=None, embedded_images=None, extras=Non
                     raise ValueError('Expected diffuse, normal, occlusion or metallic-roughness texture')
                 index = len(document.setdefault('images', []))
                 filename = texture['filename']
-                encoded_image = texture.get('data', (embedded_images or {}).get(filename))
+                encoded_image = texture.get('data')
                 if encoded_image is None:
                     document['images'].append({'uri': filename})
                 else:
