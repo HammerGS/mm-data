@@ -596,7 +596,8 @@ no rock or scatter geometry is generated in-game.
 - `textures/vegetation/*-cutout.png`: eight shared 512 by 512 RGBA textures
   for broadleaf/conifer and their snow variants, palm fronds, cactus flowers, ferns and shrubs. Near, medium and far crowns
   share these clamped images; impostors are baked from the same alpha-tested
-  geometry. Source images are in `tools/foliage-sources/`. Bark textures are shared.
+  geometry. The Material Maker projects under `tools/materials/vegetation/` generate them.
+  Bark textures are shared.
 - `textures/vegetation/cactus-skin.png` and `cactus-skin-normal.png`: 512-square
   albedo and estimated shallow normal relief, shared by both cactus variants
   at all three mesh levels. Standard glTF `normalTexture` supplies the normal
@@ -717,8 +718,7 @@ own snow materials, as variants of the bare tree where it shares their shape.
 Rough terrain places the shared GLB rock templates in its terrain mesh.
 Ground image normal maps remain a separate surface detail. `normals/` mirrors ground image paths
 under `tileset/`, appending `.png` to the complete source name (including its
-original extension and any crop). `normal-manifest.json` records dimensions,
-strength and source pixel hashes. Runtime selects each map through the chosen
+original extension and any crop). Runtime selects each map through the chosen
 albedo image and composites both in the same order, then packs aligned atlases.
 No height estimation or normal-map generation runs in the game. Missing maps
 for custom art fall back to flat shading.
@@ -747,19 +747,20 @@ The GLB, PNG and JSON files here are the source: edit them directly. Run the too
 
 ```text
 python tools/materials/export.py
-blender --background --factory-startup --python tools/prepare_tree_lods.py -- impostors <names...>
+blender --background --factory-startup --python tools/prepare_tree_lods.py -- impostors [names...]
 python tools/validate_board_assets.py
 ```
 
 `export.py` exports every Material Maker project under `tools/materials/` into `textures/`. After editing a
-plant GLB, `prepare_tree_lods.py` re-bakes its LOD3 impostor; the bake preserves the three mesh levels, owns a
-temporary Blender scene and preserves the active scene. Name the plants: the 19 species whose `-snow` form is a
-material variant have no `-snow` GLB, so a run without names stops at the first of those manifest entries, and
-re-baking one of those species drops its winter impostor (`mmVariants.snow` on the impostor material).
+plant GLB, `prepare_tree_lods.py` re-bakes its LOD3 impostor (every plant's without names); the bake preserves
+the three mesh levels, owns a temporary Blender scene and preserves the active scene. The 19 species whose
+`-snow` form is a material variant keep their winter impostor (`mmVariants.snow` on the impostor material) as
+it is: the bake does not re-render it.
 
 `validate_board_assets.py` checks each manifest entry against its GLB: the plant levels `-lod0` to `-lod3` and
 their triangle budgets (480, 240, 96 and 12), the triangle counts (at most 500 per model), one-level building
-heights, roof winding and facade assignments, understory and orchard grounding and height at every level,
+heights, roof winding and facade assignments, understory and orchard grounding, LOD0 height and every coarser
+level's height from 10% below to 1% above it,
 embedded images and that every external texture exists inside this directory. It refuses G3DJ meshes.
 Native Java integration tests additionally check transparency, lighting,
 water animation and representative model loading.

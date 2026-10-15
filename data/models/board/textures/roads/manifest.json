@@ -1,8 +1,6 @@
 {
-  "generator": "tools/prepare_road_materials.py",
   "materials": {
     "asphalt": {
-      "source_sha256": "c8f79dea4da3d390e4391133ce6940654bce756e8e05cdab5cd62d12921938af",
       "size": 1024,
       "repeat_detail_metres": 1.0,
       "height_source": "estimated local material relief",
@@ -15,7 +13,6 @@
       ]
     },
     "dirt": {
-      "source_sha256": "26be4d4c6a9add350629d9f5528d2bc4a27504173d185514cff80fe9037606cc",
       "size": 1024,
       "repeat_detail_metres": 1.0,
       "height_source": "estimated local material relief",
@@ -28,7 +25,6 @@
       ]
     },
     "gravel": {
-      "source_sha256": "c38ef025cc85ecd228e82c26f4674581c5161134d0bfb5d26b0fe2bd187a2d51",
       "size": 1024,
       "repeat_detail_metres": 1.0,
       "height_source": "estimated local material relief",
