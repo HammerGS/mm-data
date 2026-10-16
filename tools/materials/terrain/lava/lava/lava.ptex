@@ -1841,7 +1841,6 @@
       "type": "graph",
       "parameters": {
         "Heat_strength": 1,
-        "Curl_strength": 1,
         "Wall_glow": 1
       },
       "node_position": {
@@ -1876,12 +1875,12 @@
           },
           "ports": [
             {
-              "name": "Game heat",
-              "type": "rgba",
+              "name": "Heat",
+              "type": "f",
               "group_size": 0
             },
             {
-              "name": "Heat",
+              "name": "Crack glow",
               "type": "f",
               "group_size": 0
             }
@@ -1892,7 +1891,6 @@
           "type": "remote",
           "parameters": {
             "Heat_strength": 1,
-            "Curl_strength": 1,
             "Wall_glow": 1
           },
           "seed_int": 0,
@@ -1904,15 +1902,6 @@
             {
               "name": "Heat_strength",
               "label": "Heat strength",
-              "type": "named_parameter",
-              "min": 0,
-              "max": 2,
-              "step": 0.01,
-              "default": 1
-            },
-            {
-              "name": "Curl_strength",
-              "label": "Curl strength",
               "type": "named_parameter",
               "min": 0,
               "max": 2,
@@ -2001,186 +1990,6 @@
           }
         },
         {
-          "name": "Curl_X_scale",
-          "type": "math",
-          "parameters": {
-            "op": 2,
-            "default_in1": 0,
-            "default_in2": 255,
-            "clamp": false
-          },
-          "seed_int": 0,
-          "node_position": {
-            "x": 270,
-            "y": 180
-          }
-        },
-        {
-          "name": "Curl_X_code",
-          "type": "math",
-          "parameters": {
-            "op": 8,
-            "default_in1": 0,
-            "default_in2": 0,
-            "clamp": false
-          },
-          "seed_int": 0,
-          "node_position": {
-            "x": 540,
-            "y": 180
-          }
-        },
-        {
-          "name": "Curl_X_value",
-          "type": "math",
-          "parameters": {
-            "op": 3,
-            "default_in1": 0,
-            "default_in2": 255,
-            "clamp": false
-          },
-          "seed_int": 0,
-          "node_position": {
-            "x": 810,
-            "y": 180
-          }
-        },
-        {
-          "name": "Curl_X_signed",
-          "type": "math",
-          "parameters": {
-            "op": 1,
-            "default_in1": 0,
-            "default_in2": 0.5,
-            "clamp": false
-          },
-          "seed_int": 0,
-          "node_position": {
-            "x": 1080,
-            "y": 180
-          }
-        },
-        {
-          "name": "Curl_X_strength",
-          "type": "math",
-          "parameters": {
-            "op": 2,
-            "default_in1": 0,
-            "default_in2": "$Curl_strength",
-            "clamp": false
-          },
-          "seed_int": 0,
-          "node_position": {
-            "x": 1350,
-            "y": 180
-          }
-        },
-        {
-          "name": "Curl_X",
-          "type": "math",
-          "parameters": {
-            "op": 0,
-            "default_in1": 0,
-            "default_in2": 0.5,
-            "clamp": true
-          },
-          "seed_int": 0,
-          "node_position": {
-            "x": 1620,
-            "y": 180
-          }
-        },
-        {
-          "name": "Curl_Y_scale",
-          "type": "math",
-          "parameters": {
-            "op": 2,
-            "default_in1": 0,
-            "default_in2": 255,
-            "clamp": false
-          },
-          "seed_int": 0,
-          "node_position": {
-            "x": 0,
-            "y": 360
-          }
-        },
-        {
-          "name": "Curl_Y_code",
-          "type": "math",
-          "parameters": {
-            "op": 8,
-            "default_in1": 0,
-            "default_in2": 0,
-            "clamp": false
-          },
-          "seed_int": 0,
-          "node_position": {
-            "x": 270,
-            "y": 360
-          }
-        },
-        {
-          "name": "Curl_Y_value",
-          "type": "math",
-          "parameters": {
-            "op": 3,
-            "default_in1": 0,
-            "default_in2": 255,
-            "clamp": false
-          },
-          "seed_int": 0,
-          "node_position": {
-            "x": 540,
-            "y": 360
-          }
-        },
-        {
-          "name": "Curl_Y_signed",
-          "type": "math",
-          "parameters": {
-            "op": 1,
-            "default_in1": 0,
-            "default_in2": 0.5,
-            "clamp": false
-          },
-          "seed_int": 0,
-          "node_position": {
-            "x": 810,
-            "y": 360
-          }
-        },
-        {
-          "name": "Curl_Y_strength",
-          "type": "math",
-          "parameters": {
-            "op": 2,
-            "default_in1": 0,
-            "default_in2": "$Curl_strength",
-            "clamp": false
-          },
-          "seed_int": 0,
-          "node_position": {
-            "x": 1080,
-            "y": 360
-          }
-        },
-        {
-          "name": "Curl_Y",
-          "type": "math",
-          "parameters": {
-            "op": 0,
-            "default_in1": 0,
-            "default_in2": 0.5,
-            "clamp": true
-          },
-          "seed_int": 0,
-          "node_position": {
-            "x": 1350,
-            "y": 360
-          }
-        },
-        {
           "name": "Glow_scale",
           "type": "math",
           "parameters": {
@@ -2239,16 +2048,6 @@
             "x": 540,
             "y": 540
           }
-        },
-        {
-          "name": "Heat_and_flow",
-          "type": "combine",
-          "parameters": {},
-          "seed_int": 0,
-          "node_position": {
-            "x": 810,
-            "y": 540
-          }
         }
       ],
       "connections": [
@@ -2284,78 +2083,6 @@
         },
         {
           "from": "Source",
-          "from_port": 1,
-          "to": "Curl_X_scale",
-          "to_port": 0
-        },
-        {
-          "from": "Curl_X_scale",
-          "from_port": 0,
-          "to": "Curl_X_code",
-          "to_port": 0
-        },
-        {
-          "from": "Curl_X_code",
-          "from_port": 0,
-          "to": "Curl_X_value",
-          "to_port": 0
-        },
-        {
-          "from": "Curl_X_value",
-          "from_port": 0,
-          "to": "Curl_X_signed",
-          "to_port": 0
-        },
-        {
-          "from": "Curl_X_signed",
-          "from_port": 0,
-          "to": "Curl_X_strength",
-          "to_port": 0
-        },
-        {
-          "from": "Curl_X_strength",
-          "from_port": 0,
-          "to": "Curl_X",
-          "to_port": 0
-        },
-        {
-          "from": "Source",
-          "from_port": 2,
-          "to": "Curl_Y_scale",
-          "to_port": 0
-        },
-        {
-          "from": "Curl_Y_scale",
-          "from_port": 0,
-          "to": "Curl_Y_code",
-          "to_port": 0
-        },
-        {
-          "from": "Curl_Y_code",
-          "from_port": 0,
-          "to": "Curl_Y_value",
-          "to_port": 0
-        },
-        {
-          "from": "Curl_Y_value",
-          "from_port": 0,
-          "to": "Curl_Y_signed",
-          "to_port": 0
-        },
-        {
-          "from": "Curl_Y_signed",
-          "from_port": 0,
-          "to": "Curl_Y_strength",
-          "to_port": 0
-        },
-        {
-          "from": "Curl_Y_strength",
-          "from_port": 0,
-          "to": "Curl_Y",
-          "to_port": 0
-        },
-        {
-          "from": "Source",
           "from_port": 3,
           "to": "Glow_scale",
           "to_port": 0
@@ -2379,40 +2106,632 @@
           "to_port": 0
         },
         {
+          "from_port": 0,
+          "to_port": 0,
           "from": "Heat",
-          "from_port": 0,
-          "to": "Heat_and_flow",
-          "to_port": 0
+          "to": "gen_outputs"
         },
         {
-          "from": "Curl_X",
           "from_port": 0,
-          "to": "Heat_and_flow",
-          "to_port": 1
-        },
-        {
-          "from": "Curl_Y",
-          "from_port": 0,
-          "to": "Heat_and_flow",
-          "to_port": 2
-        },
-        {
+          "to_port": 1,
           "from": "Glow",
-          "from_port": 0,
-          "to": "Heat_and_flow",
-          "to_port": 3
+          "to": "gen_outputs"
+        }
+      ]
+    },
+    {
+      "name": "Emission",
+      "label": "Emission \u2014 same source for preview and game",
+      "type": "graph",
+      "parameters": {},
+      "node_position": {
+        "x": 900,
+        "y": 1300
+      },
+      "seed_int": 0,
+      "nodes": [
+        {
+          "name": "gen_inputs",
+          "type": "ios",
+          "parameters": {},
+          "seed_int": 0,
+          "node_position": {
+            "x": 0,
+            "y": 0
+          },
+          "ports": [
+            {
+              "name": "Heat",
+              "type": "f",
+              "group_size": 0
+            },
+            {
+              "name": "Crack glow",
+              "type": "f",
+              "group_size": 0
+            }
+          ]
         },
         {
-          "from": "Heat_and_flow",
-          "from_port": 0,
-          "to": "gen_outputs",
-          "to_port": 0
+          "name": "Cool_red",
+          "type": "uniform",
+          "parameters": {
+            "color": {
+              "type": "Color",
+              "r": 0.12,
+              "g": 0.0008,
+              "b": 5e-05,
+              "a": 1
+            }
+          },
+          "seed_int": 0,
+          "node_position": {
+            "x": 230,
+            "y": 0
+          }
         },
         {
-          "from": "Heat",
+          "name": "Molten_orange",
+          "type": "uniform",
+          "parameters": {
+            "color": {
+              "type": "Color",
+              "r": 0.42,
+              "g": 0.025,
+              "b": 0.0006,
+              "a": 1
+            }
+          },
+          "seed_int": 0,
+          "node_position": {
+            "x": 460,
+            "y": 0
+          }
+        },
+        {
+          "name": "Hot_yellow",
+          "type": "uniform",
+          "parameters": {
+            "color": {
+              "type": "Color",
+              "r": 1,
+              "g": 0.55,
+              "b": 0.014,
+              "a": 1
+            }
+          },
+          "seed_int": 0,
+          "node_position": {
+            "x": 690,
+            "y": 0
+          }
+        },
+        {
+          "name": "Crack_red",
+          "type": "uniform",
+          "parameters": {
+            "color": {
+              "type": "Color",
+              "r": 0.025,
+              "g": 0.0022,
+              "b": 0.00015,
+              "a": 1
+            }
+          },
+          "seed_int": 0,
+          "node_position": {
+            "x": 920,
+            "y": 0
+          }
+        },
+        {
+          "name": "Cooling_weight_start",
+          "type": "math",
+          "parameters": {
+            "op": 1,
+            "clamp": false,
+            "default_in1": 0,
+            "default_in2": 0.15
+          },
+          "seed_int": 0,
+          "node_position": {
+            "x": 0,
+            "y": 230
+          }
+        },
+        {
+          "name": "Cooling_weight_range",
+          "type": "math",
+          "parameters": {
+            "op": 3,
+            "clamp": false,
+            "default_in1": 0,
+            "default_in2": 0.5499999999999999
+          },
+          "seed_int": 0,
+          "node_position": {
+            "x": 230,
+            "y": 230
+          }
+        },
+        {
+          "name": "Cooling_weight",
+          "type": "math",
+          "parameters": {
+            "op": 20,
+            "clamp": false,
+            "default_in1": 0,
+            "default_in2": 0
+          },
+          "seed_int": 0,
+          "node_position": {
+            "x": 460,
+            "y": 230
+          }
+        },
+        {
+          "name": "Cooling_ramp",
+          "type": "blend",
+          "parameters": {
+            "amount": 1,
+            "blend_type": 0
+          },
+          "seed_int": 0,
+          "node_position": {
+            "x": 690,
+            "y": 230
+          }
+        },
+        {
+          "name": "Hot_weight_start",
+          "type": "math",
+          "parameters": {
+            "op": 1,
+            "clamp": false,
+            "default_in1": 0,
+            "default_in2": 0.8
+          },
+          "seed_int": 0,
+          "node_position": {
+            "x": 920,
+            "y": 230
+          }
+        },
+        {
+          "name": "Hot_weight_range",
+          "type": "math",
+          "parameters": {
+            "op": 3,
+            "clamp": false,
+            "default_in1": 0,
+            "default_in2": 0.14
+          },
+          "seed_int": 0,
+          "node_position": {
+            "x": 0,
+            "y": 460
+          }
+        },
+        {
+          "name": "Hot_weight",
+          "type": "math",
+          "parameters": {
+            "op": 20,
+            "clamp": false,
+            "default_in1": 0,
+            "default_in2": 0
+          },
+          "seed_int": 0,
+          "node_position": {
+            "x": 230,
+            "y": 460
+          }
+        },
+        {
+          "name": "Hot_ramp",
+          "type": "blend",
+          "parameters": {
+            "amount": 1,
+            "blend_type": 0
+          },
+          "seed_int": 0,
+          "node_position": {
+            "x": 460,
+            "y": 460
+          }
+        },
+        {
+          "name": "Hot_emission",
+          "type": "math_v3",
+          "parameters": {
+            "op": 2,
+            "clamp": false,
+            "d_in1_x": 0,
+            "d_in1_y": 0,
+            "d_in1_z": 0,
+            "d_in2_x": 0,
+            "d_in2_y": 0,
+            "d_in2_z": 0
+          },
+          "seed_int": 0,
+          "node_position": {
+            "x": 690,
+            "y": 460
+          }
+        },
+        {
+          "name": "Cold_fraction",
+          "type": "math",
+          "parameters": {
+            "op": 1,
+            "clamp": false,
+            "default_in1": 1,
+            "default_in2": 0
+          },
+          "seed_int": 0,
+          "node_position": {
+            "x": 920,
+            "y": 460
+          }
+        },
+        {
+          "name": "Crack_weight",
+          "type": "math",
+          "parameters": {
+            "op": 2,
+            "clamp": false,
+            "default_in1": 0,
+            "default_in2": 0
+          },
+          "seed_int": 0,
+          "node_position": {
+            "x": 0,
+            "y": 690
+          }
+        },
+        {
+          "name": "Crack_emission",
+          "type": "math_v3",
+          "parameters": {
+            "op": 2,
+            "clamp": false,
+            "d_in1_x": 0,
+            "d_in1_y": 0,
+            "d_in1_z": 0,
+            "d_in2_x": 0,
+            "d_in2_y": 0,
+            "d_in2_z": 0
+          },
+          "seed_int": 0,
+          "node_position": {
+            "x": 230,
+            "y": 690
+          }
+        },
+        {
+          "name": "Combined_emission",
+          "type": "math_v3",
+          "parameters": {
+            "op": 0,
+            "clamp": false,
+            "d_in1_x": 0,
+            "d_in1_y": 0,
+            "d_in1_z": 0,
+            "d_in2_x": 0,
+            "d_in2_y": 0,
+            "d_in2_z": 0
+          },
+          "seed_int": 0,
+          "node_position": {
+            "x": 460,
+            "y": 690
+          }
+        },
+        {
+          "name": "Exposed_melt_start",
+          "type": "math",
+          "parameters": {
+            "op": 1,
+            "clamp": false,
+            "default_in1": 0,
+            "default_in2": 0.28
+          },
+          "seed_int": 0,
+          "node_position": {
+            "x": 690,
+            "y": 690
+          }
+        },
+        {
+          "name": "Exposed_melt_range",
+          "type": "math",
+          "parameters": {
+            "op": 3,
+            "clamp": false,
+            "default_in1": 0,
+            "default_in2": 0.28
+          },
+          "seed_int": 0,
+          "node_position": {
+            "x": 920,
+            "y": 690
+          }
+        },
+        {
+          "name": "Exposed_melt",
+          "type": "math",
+          "parameters": {
+            "op": 20,
+            "clamp": false,
+            "default_in1": 0,
+            "default_in2": 0
+          },
+          "seed_int": 0,
+          "node_position": {
+            "x": 0,
+            "y": 920
+          }
+        },
+        {
+          "name": "Emitted_RGB",
+          "type": "math_v3",
+          "parameters": {
+            "op": 2,
+            "clamp": false,
+            "d_in1_x": 0,
+            "d_in1_y": 0,
+            "d_in1_z": 0,
+            "d_in2_x": 0,
+            "d_in2_y": 0,
+            "d_in2_z": 0
+          },
+          "seed_int": 0,
+          "node_position": {
+            "x": 230,
+            "y": 920
+          }
+        },
+        {
+          "name": "Emission_channels",
+          "type": "decompose",
+          "parameters": {},
+          "seed_int": 0,
+          "node_position": {
+            "x": 460,
+            "y": 920
+          }
+        },
+        {
+          "name": "Game_emission",
+          "type": "combine",
+          "parameters": {},
+          "seed_int": 0,
+          "node_position": {
+            "x": 690,
+            "y": 920
+          }
+        },
+        {
+          "name": "gen_outputs",
+          "type": "ios",
+          "parameters": {},
+          "seed_int": 0,
+          "node_position": {
+            "x": 920,
+            "y": 920
+          },
+          "ports": [
+            {
+              "name": "Emission RGB / heat A",
+              "type": "rgba",
+              "group_size": 0
+            },
+            {
+              "name": "Linear emission",
+              "type": "rgb",
+              "group_size": 0
+            }
+          ]
+        }
+      ],
+      "connections": [
+        {
           "from_port": 0,
-          "to": "gen_outputs",
-          "to_port": 1
+          "to_port": 0,
+          "from": "gen_inputs",
+          "to": "Cooling_weight_start"
+        },
+        {
+          "from_port": 0,
+          "to_port": 0,
+          "from": "Cooling_weight_start",
+          "to": "Cooling_weight_range"
+        },
+        {
+          "from_port": 0,
+          "to_port": 0,
+          "from": "Cooling_weight_range",
+          "to": "Cooling_weight"
+        },
+        {
+          "from_port": 0,
+          "to_port": 0,
+          "from": "Molten_orange",
+          "to": "Cooling_ramp"
+        },
+        {
+          "from_port": 0,
+          "to_port": 1,
+          "from": "Cool_red",
+          "to": "Cooling_ramp"
+        },
+        {
+          "from_port": 0,
+          "to_port": 2,
+          "from": "Cooling_weight",
+          "to": "Cooling_ramp"
+        },
+        {
+          "from_port": 0,
+          "to_port": 0,
+          "from": "gen_inputs",
+          "to": "Hot_weight_start"
+        },
+        {
+          "from_port": 0,
+          "to_port": 0,
+          "from": "Hot_weight_start",
+          "to": "Hot_weight_range"
+        },
+        {
+          "from_port": 0,
+          "to_port": 0,
+          "from": "Hot_weight_range",
+          "to": "Hot_weight"
+        },
+        {
+          "from_port": 0,
+          "to_port": 0,
+          "from": "Hot_yellow",
+          "to": "Hot_ramp"
+        },
+        {
+          "from_port": 0,
+          "to_port": 1,
+          "from": "Cooling_ramp",
+          "to": "Hot_ramp"
+        },
+        {
+          "from_port": 0,
+          "to_port": 2,
+          "from": "Hot_weight",
+          "to": "Hot_ramp"
+        },
+        {
+          "from_port": 0,
+          "to_port": 0,
+          "from": "Hot_ramp",
+          "to": "Hot_emission"
+        },
+        {
+          "from_port": 0,
+          "to_port": 1,
+          "from": "gen_inputs",
+          "to": "Hot_emission"
+        },
+        {
+          "from_port": 0,
+          "to_port": 1,
+          "from": "gen_inputs",
+          "to": "Cold_fraction"
+        },
+        {
+          "from_port": 1,
+          "to_port": 0,
+          "from": "gen_inputs",
+          "to": "Crack_weight"
+        },
+        {
+          "from_port": 0,
+          "to_port": 1,
+          "from": "Cold_fraction",
+          "to": "Crack_weight"
+        },
+        {
+          "from_port": 0,
+          "to_port": 0,
+          "from": "Crack_red",
+          "to": "Crack_emission"
+        },
+        {
+          "from_port": 0,
+          "to_port": 1,
+          "from": "Crack_weight",
+          "to": "Crack_emission"
+        },
+        {
+          "from_port": 0,
+          "to_port": 0,
+          "from": "Hot_emission",
+          "to": "Combined_emission"
+        },
+        {
+          "from_port": 0,
+          "to_port": 1,
+          "from": "Crack_emission",
+          "to": "Combined_emission"
+        },
+        {
+          "from_port": 0,
+          "to_port": 0,
+          "from": "gen_inputs",
+          "to": "Exposed_melt_start"
+        },
+        {
+          "from_port": 0,
+          "to_port": 0,
+          "from": "Exposed_melt_start",
+          "to": "Exposed_melt_range"
+        },
+        {
+          "from_port": 0,
+          "to_port": 0,
+          "from": "Exposed_melt_range",
+          "to": "Exposed_melt"
+        },
+        {
+          "from_port": 0,
+          "to_port": 0,
+          "from": "Combined_emission",
+          "to": "Emitted_RGB"
+        },
+        {
+          "from_port": 0,
+          "to_port": 1,
+          "from": "Exposed_melt",
+          "to": "Emitted_RGB"
+        },
+        {
+          "from_port": 0,
+          "to_port": 0,
+          "from": "Emitted_RGB",
+          "to": "Emission_channels"
+        },
+        {
+          "from_port": 0,
+          "to_port": 0,
+          "from": "Emission_channels",
+          "to": "Game_emission"
+        },
+        {
+          "from_port": 1,
+          "to_port": 1,
+          "from": "Emission_channels",
+          "to": "Game_emission"
+        },
+        {
+          "from_port": 2,
+          "to_port": 2,
+          "from": "Emission_channels",
+          "to": "Game_emission"
+        },
+        {
+          "from_port": 0,
+          "to_port": 3,
+          "from": "gen_inputs",
+          "to": "Game_emission"
+        },
+        {
+          "from_port": 0,
+          "to_port": 0,
+          "from": "Game_emission",
+          "to": "gen_outputs"
+        },
+        {
+          "from_port": 0,
+          "to_port": 1,
+          "from": "Emitted_RGB",
+          "to": "gen_outputs"
         }
       ]
     },
@@ -3483,7 +3802,7 @@
         },
         "ao": 1,
         "depth_scale": 0.5,
-        "emission_energy": 1,
+        "emission_energy": 5,
         "flags_transparent": false,
         "metallic": 0,
         "normal": 1,
@@ -3498,8 +3817,14 @@
         "code": "",
         "exports": {
           "MegaMek/Maps": {
-            "export_extension": "",
-            "files": []
+            "export_extension": ".json",
+            "files": [
+              {
+                "type": "template",
+                "file_name": "$(path_prefix).json",
+                "template": "{\n  \"emissionScale\": $(param:emission_energy)\n}\n"
+              }
+            ]
           }
         },
         "global": "",
@@ -3654,12 +3979,12 @@
           },
           {
             "control": "None",
-            "default": 1,
-            "label": "Emission",
-            "max": 1,
+            "default": 5,
+            "label": "Emission scale (linear radiance)",
+            "max": 32,
             "min": 0,
             "name": "emission_energy",
-            "step": 0.01,
+            "step": 0.1,
             "type": "float"
           },
           {
@@ -3805,51 +4130,6 @@
       "type": "material_export"
     },
     {
-      "name": "Heat_preview_color",
-      "type": "colorize",
-      "parameters": {
-        "gradient": {
-          "type": "Gradient",
-          "interpolation": 1,
-          "points": [
-            {
-              "pos": 0,
-              "r": 0,
-              "g": 0,
-              "b": 0,
-              "a": 1
-            },
-            {
-              "pos": 0.25,
-              "r": 0.3,
-              "g": 0.008,
-              "b": 0.001,
-              "a": 1
-            },
-            {
-              "pos": 0.65,
-              "r": 1,
-              "g": 0.14,
-              "b": 0.005,
-              "a": 1
-            },
-            {
-              "pos": 1,
-              "r": 1,
-              "g": 0.72,
-              "b": 0.18,
-              "a": 1
-            }
-          ]
-        }
-      },
-      "seed_int": 0,
-      "node_position": {
-        "x": 1100,
-        "y": 1300
-      }
-    },
-    {
       "name": "Notes",
       "type": "comment",
       "parameters": {},
@@ -3859,7 +4139,7 @@
         "y": -350
       },
       "title": "Original HEAD lava \u2014 pigment and source registration protected",
-      "text": "The exact historical pigment is authoritative. Fixed Poisson seam correction, intrinsic de-lighting and percentile field registration stay in necessary source images; no make-tileable approximation. Edit SurfaceResponse and HeatResponse for native material response. Source pigment PNG8 codes are preserved at the final file boundary; no tone/colour correction is applied. Numeric bin centres never feed physical calculations. Runtime remains protected until actual native comparison passes. Game motion is the restored original shader, not generated by this graph.",
+      "text": "Pigment, normal and surface exports remain unchanged. Edit the four colors inside Emission, HeatResponse heat/crack strengths, and Material emission scale. Emission uses linear RGB: the same graph drives Material preview and lava-heat.png RGB; its alpha retains heat coverage. The exported lava.json supplies the same emission scale. Exposed coverage is already baked into RGB. Runtime only advects/blends this source and applies the shared shore/bank response and camera exposure. No shader heat-to-color ramp or separate preview color remains. Default scale 5 is a calibration candidate, not final visual acceptance. Cold-start official CLI behavior still needs a native export gate.",
       "size": {
         "x": 950,
         "y": 160
@@ -4201,12 +4481,6 @@
       "to_port": 0
     },
     {
-      "from": "HeatResponse",
-      "from_port": 0,
-      "to": "HeatPNG8",
-      "to_port": 0
-    },
-    {
       "from": "Pigment",
       "from_port": 0,
       "to": "Material",
@@ -4235,18 +4509,6 @@
       "from_port": 3,
       "to": "Material",
       "to_port": 6
-    },
-    {
-      "from": "HeatResponse",
-      "from_port": 1,
-      "to": "Heat_preview_color",
-      "to_port": 0
-    },
-    {
-      "from": "Heat_preview_color",
-      "from_port": 0,
-      "to": "Material",
-      "to_port": 3
     },
     {
       "from": "PigmentPNG8",
@@ -4295,6 +4557,30 @@
       "from_port": 0,
       "to": "ExportHeat",
       "to_port": 0
+    },
+    {
+      "from_port": 0,
+      "to_port": 0,
+      "from": "HeatResponse",
+      "to": "Emission"
+    },
+    {
+      "from_port": 1,
+      "to_port": 1,
+      "from": "HeatResponse",
+      "to": "Emission"
+    },
+    {
+      "from_port": 0,
+      "to_port": 0,
+      "from": "Emission",
+      "to": "HeatPNG8"
+    },
+    {
+      "from_port": 1,
+      "to_port": 3,
+      "from": "Emission",
+      "to": "Material"
     }
   ]
 }

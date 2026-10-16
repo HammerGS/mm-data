@@ -1,6 +1,7 @@
 {
   "tile": 3.0,
-  "role": "debris",
-  "color_space": "sRGB",
-  "size": 512
+  "relief_metres": 0.02981424394547
 }
+
+
+

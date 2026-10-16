@@ -1,6 +1,7 @@
 {
   "tile": 8.0,
-  "role": "wall",
-  "color_space": "sRGB",
-  "size": 512
+  "relief_metres": 0.01216442883015
 }
+
+
+
