@@ -8838,921 +8838,9 @@
       "scale": 1.0
     }
   ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-01-Container-01-20Footer-1-01": [
-    {
-      "asset": "scenery/seaport/containers-n-s-01",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-01-Container-01-20Footer-1-02": [
-    {
-      "asset": "scenery/seaport/containers-n-s-02",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-01-Container-01-20Footer-1-03": [
-    {
-      "asset": "scenery/seaport/containers-n-s-03",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-01-Container-01-20Footer-1-04": [
-    {
-      "asset": "scenery/seaport/containers-n-s-04",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-01-Container-01-20Footer-1-05": [
-    {
-      "asset": "scenery/seaport/containers-n-s-05",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-01-Container-01-20Footer-1-06": [
-    {
-      "asset": "scenery/seaport/containers-n-s-06",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-01-Container-01-20Footer-1-07": [
-    {
-      "asset": "scenery/seaport/containers-n-s-07",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-01-Container-01-20Footer-2-01": [
-    {
-      "asset": "scenery/seaport/containers-ne-sw-01",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-01-Container-01-20Footer-2-02": [
-    {
-      "asset": "scenery/seaport/containers-ne-sw-02",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-01-Container-01-20Footer-2-03": [
-    {
-      "asset": "scenery/seaport/containers-ne-sw-03",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-01-Container-01-20Footer-2-04": [
-    {
-      "asset": "scenery/seaport/containers-ne-sw-04",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-01-Container-01-20Footer-2-05": [
-    {
-      "asset": "scenery/seaport/containers-ne-sw-05",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-01-Container-01-20Footer-2-06": [
-    {
-      "asset": "scenery/seaport/containers-ne-sw-06",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-01-Container-01-20Footer-2-07": [
-    {
-      "asset": "scenery/seaport/containers-ne-sw-07",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-01-Container-01-20Footer-3-01": [
-    {
-      "asset": "scenery/seaport/containers-nw-se-01",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-01-Container-01-20Footer-3-02": [
-    {
-      "asset": "scenery/seaport/containers-nw-se-02",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-01-Container-01-20Footer-3-03": [
-    {
-      "asset": "scenery/seaport/containers-nw-se-03",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-01-Container-01-20Footer-3-04": [
-    {
-      "asset": "scenery/seaport/containers-nw-se-04",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-01-Container-01-20Footer-3-05": [
-    {
-      "asset": "scenery/seaport/containers-nw-se-05",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-01-Container-01-20Footer-3-06": [
-    {
-      "asset": "scenery/seaport/containers-nw-se-06",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-01-Container-01-20Footer-3-07": [
-    {
-      "asset": "scenery/seaport/containers-nw-se-07",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-01-Container-01-20Footer-4-01": [
-    {
-      "asset": "scenery/seaport/containers-e-w-01",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-01-Container-01-20Footer-4-02": [
-    {
-      "asset": "scenery/seaport/containers-e-w-02",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-01-Container-01-20Footer-4-03": [
-    {
-      "asset": "scenery/seaport/containers-e-w-03",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-01-Container-01-20Footer-4-04": [
-    {
-      "asset": "scenery/seaport/containers-e-w-04",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-01-Container-01-20Footer-4-05": [
-    {
-      "asset": "scenery/seaport/containers-e-w-05",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-01-Container-01-20Footer-4-06": [
-    {
-      "asset": "scenery/seaport/containers-e-w-06",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-01-Container-01-20Footer-4-07": [
-    {
-      "asset": "scenery/seaport/containers-e-w-07",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-1-01": [
-    {
-      "asset": "scenery/seaport/gantry-crane-n-s-01",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-1-02": [
-    {
-      "asset": "scenery/seaport/gantry-crane-n-s-02",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-1-03": [
-    {
-      "asset": "scenery/seaport/gantry-crane-n-s-03",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-1-04": [
-    {
-      "asset": "scenery/seaport/gantry-crane-n-s-04",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-1-05": [
-    {
-      "asset": "scenery/seaport/gantry-crane-n-s-05",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-1-06": [
-    {
-      "asset": "scenery/seaport/gantry-crane-n-s-06",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-1-07": [
-    {
-      "asset": "scenery/seaport/gantry-crane-n-s-07",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-1-08": [
-    {
-      "asset": "scenery/seaport/gantry-crane-n-s-08",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-1-09": [
-    {
-      "asset": "scenery/seaport/gantry-crane-n-s-09",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-1-10": [
-    {
-      "asset": "scenery/seaport/gantry-crane-n-s-10",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-1-11": [
-    {
-      "asset": "scenery/seaport/gantry-crane-n-s-11",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-1-12": [
-    {
-      "asset": "scenery/seaport/gantry-crane-n-s-12",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-2-01": [
-    {
-      "asset": "scenery/seaport/gantry-crane-ne-sw-01",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-2-02": [
-    {
-      "asset": "scenery/seaport/gantry-crane-ne-sw-02",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-2-03": [
-    {
-      "asset": "scenery/seaport/gantry-crane-ne-sw-03",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-2-04": [
-    {
-      "asset": "scenery/seaport/gantry-crane-ne-sw-04",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-2-05": [
-    {
-      "asset": "scenery/seaport/gantry-crane-ne-sw-05",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-2-06": [
-    {
-      "asset": "scenery/seaport/gantry-crane-ne-sw-06",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-2-07": [
-    {
-      "asset": "scenery/seaport/gantry-crane-ne-sw-07",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-2-08": [
-    {
-      "asset": "scenery/seaport/gantry-crane-ne-sw-08",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-2-09": [
-    {
-      "asset": "scenery/seaport/gantry-crane-ne-sw-09",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-2-10": [
-    {
-      "asset": "scenery/seaport/gantry-crane-ne-sw-10",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-2-11": [
-    {
-      "asset": "scenery/seaport/gantry-crane-ne-sw-11",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-2-12": [
-    {
-      "asset": "scenery/seaport/gantry-crane-ne-sw-12",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-3-01": [
-    {
-      "asset": "scenery/seaport/gantry-crane-nw-se-01",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-3-02": [
-    {
-      "asset": "scenery/seaport/gantry-crane-nw-se-02",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-3-03": [
-    {
-      "asset": "scenery/seaport/gantry-crane-nw-se-03",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-3-04": [
-    {
-      "asset": "scenery/seaport/gantry-crane-nw-se-04",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-3-05": [
-    {
-      "asset": "scenery/seaport/gantry-crane-nw-se-05",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-3-06": [
-    {
-      "asset": "scenery/seaport/gantry-crane-nw-se-06",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-3-07": [
-    {
-      "asset": "scenery/seaport/gantry-crane-nw-se-07",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-3-08": [
-    {
-      "asset": "scenery/seaport/gantry-crane-nw-se-08",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-3-09": [
-    {
-      "asset": "scenery/seaport/gantry-crane-nw-se-09",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-3-10": [
-    {
-      "asset": "scenery/seaport/gantry-crane-nw-se-10",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-3-11": [
-    {
-      "asset": "scenery/seaport/gantry-crane-nw-se-11",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-3-12": [
-    {
-      "asset": "scenery/seaport/gantry-crane-nw-se-12",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-4-01": [
-    {
-      "asset": "scenery/seaport/gantry-crane-e-w-01",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-4-02": [
-    {
-      "asset": "scenery/seaport/gantry-crane-e-w-02",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-4-03": [
-    {
-      "asset": "scenery/seaport/gantry-crane-e-w-03",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-4-04": [
-    {
-      "asset": "scenery/seaport/gantry-crane-e-w-04",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-4-05": [
-    {
-      "asset": "scenery/seaport/gantry-crane-e-w-05",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-4-06": [
-    {
-      "asset": "scenery/seaport/gantry-crane-e-w-06",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-4-07": [
-    {
-      "asset": "scenery/seaport/gantry-crane-e-w-07",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-4-08": [
-    {
-      "asset": "scenery/seaport/gantry-crane-e-w-08",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-4-09": [
-    {
-      "asset": "scenery/seaport/gantry-crane-e-w-09",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-4-10": [
-    {
-      "asset": "scenery/seaport/gantry-crane-e-w-10",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-4-11": [
-    {
-      "asset": "scenery/seaport/gantry-crane-e-w-11",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-4-12": [
-    {
-      "asset": "scenery/seaport/gantry-crane-e-w-12",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 0.0,
-      "scale": 1.0
-    }
-  ],
   "scenery/saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-03-CraneTip-1-01": [
     {
-      "asset": "scenery/seaport/crane-tip-01",
+      "asset": "scenery/seaport/yard/crane-boom",
       "position": [
         0.0,
         0.0,
@@ -9764,7 +8852,31 @@
   ],
   "scenery/saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-03-CraneTip-1-02": [
     {
-      "asset": "scenery/seaport/crane-tip-02",
+      "asset": "scenery/seaport/yard/crane-boom",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": -60.0,
+      "scale": 1.0
+    }
+  ],
+  "scenery/saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-03-CraneTip-1-03": [
+    {
+      "asset": "scenery/seaport/yard/crane-boom",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": -120.0,
+      "scale": 1.0
+    }
+  ],
+  "scenery/saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-03-CraneTip-1-04": [
+    {
+      "asset": "scenery/seaport/yard/crane-boom",
       "position": [
         0.0,
         0.0,
@@ -9774,51 +8886,27 @@
       "scale": 1.0
     }
   ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-03-CraneTip-1-03": [
-    {
-      "asset": "scenery/seaport/crane-tip-02",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": -59.489759,
-      "scale": 1.0
-    }
-  ],
-  "scenery/saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-03-CraneTip-1-04": [
-    {
-      "asset": "scenery/seaport/crane-tip-01",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "rotation": 179.999991,
-      "scale": 1.0
-    }
-  ],
   "scenery/saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-03-CraneTip-1-05": [
     {
-      "asset": "scenery/seaport/crane-tip-02",
+      "asset": "scenery/seaport/yard/crane-boom",
       "position": [
         0.0,
         0.0,
         0.0
       ],
-      "rotation": 179.999991,
+      "rotation": -60.0,
       "scale": 1.0
     }
   ],
   "scenery/saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-03-CraneTip-1-06": [
     {
-      "asset": "scenery/seaport/crane-tip-02",
+      "asset": "scenery/seaport/yard/crane-boom",
       "position": [
         0.0,
         0.0,
         0.0
       ],
-      "rotation": 120.510232,
+      "rotation": -120.0,
       "scale": 1.0
     }
   ],
@@ -12189,6 +11277,255 @@
       "position": [
         0.0,
         -51.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0
+    }
+  ],
+  "yard/foliage-rows": [
+    {
+      "asset": "scenery/seaport/yard/foliage-rows",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0
+    }
+  ],
+  "yard/foliage-scattered": [
+    {
+      "asset": "scenery/seaport/yard/foliage-scattered",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0
+    },
+    {
+      "asset": "scenery/seaport/yard/reach-stacker",
+      "position": [
+        -9.5,
+        -6.0,
+        0.0
+      ],
+      "rotation": 60.0,
+      "scale": 1.0
+    }
+  ],
+  "yard/light-rows": [
+    {
+      "asset": "scenery/seaport/yard/light-rows",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0
+    },
+    {
+      "asset": "scenery/seaport/yard/yard-truck",
+      "position": [
+        10.15,
+        -4.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0,
+      "colours": [
+        "#306b52"
+      ]
+    }
+  ],
+  "yard/light-quay-crane": [
+    {
+      "asset": "scenery/seaport/yard/light-quay-crane",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0
+    },
+    {
+      "asset": "scenery/seaport/yard/quay-crane",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": -60.0,
+      "scale": 1.0
+    },
+    {
+      "asset": "scenery/seaport/yard/crane-boom",
+      "position": [
+        62.3538,
+        36.0,
+        0.0
+      ],
+      "rotation": -60.0,
+      "scale": 1.0
+    },
+    {
+      "asset": "scenery/seaport/yard/yard-truck",
+      "position": [
+        27.1638,
+        13.951,
+        0.0
+      ],
+      "rotation": -150.0,
+      "scale": 1.0,
+      "colours": [
+        "#996b47"
+      ]
+    }
+  ],
+  "yard/light-quay-crane-mirrored": [
+    {
+      "asset": "scenery/seaport/yard/light-quay-crane-mirrored",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0
+    },
+    {
+      "asset": "scenery/seaport/yard/quay-crane",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": -120.0,
+      "scale": 1.0
+    },
+    {
+      "asset": "scenery/seaport/yard/crane-boom",
+      "position": [
+        62.3538,
+        -36.0,
+        0.0
+      ],
+      "rotation": -120.0,
+      "scale": 1.0
+    },
+    {
+      "asset": "scenery/seaport/yard/yard-truck",
+      "position": [
+        25.6638,
+        -16.549,
+        0.0
+      ],
+      "rotation": -210.0,
+      "scale": 1.0,
+      "colours": [
+        "#996b47"
+      ]
+    }
+  ],
+  "yard/light-yard-gantry": [
+    {
+      "asset": "scenery/seaport/yard/light-yard-gantry",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0
+    },
+    {
+      "asset": "scenery/seaport/yard/yard-gantry",
+      "position": [
+        0,
+        -6.6,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0
+    },
+    {
+      "asset": "scenery/seaport/yard/yard-truck",
+      "position": [
+        -21.0,
+        14.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0
+    }
+  ],
+  "yard/heavy-rows": [
+    {
+      "asset": "scenery/seaport/yard/heavy-rows",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0
+    }
+  ],
+  "yard/heavy-yard-gantry": [
+    {
+      "asset": "scenery/seaport/yard/heavy-yard-gantry",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0
+    },
+    {
+      "asset": "scenery/seaport/yard/yard-gantry",
+      "position": [
+        0,
+        6.6,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0
+    }
+  ],
+  "yard/ultra-rows": [
+    {
+      "asset": "scenery/seaport/yard/ultra-rows",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0
+    }
+  ],
+  "yard/ultra-yard-gantry": [
+    {
+      "asset": "scenery/seaport/yard/ultra-yard-gantry",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": 0.0,
+      "scale": 1.0
+    },
+    {
+      "asset": "scenery/seaport/yard/yard-gantry-tall",
+      "position": [
+        0,
+        -6.6,
         0.0
       ],
       "rotation": 0.0,

@@ -224,23 +224,14 @@
       "id": "industry",
       "icon": {
         "elevation": 0,
-        "terrain": "pavement:1",
+        "terrain": "pavement:1;woods:1;foliage_elev:2",
         "theme": "grass",
-        "decorations": [
-          {
-            "id": "icon-1",
-            "kind": "prop",
-            "asset": "scenery/seaport/gantry-crane-e-w-01",
-            "placement": {
-              "mode": "surface",
-              "receiver": {
-                "terrain": "ground",
-                "surface": "top"
-              },
-              "offset": 0.0
-            }
+        "appearance": {
+          "vegetation": {
+            "variant": "woods/container-yard/yard-gantry",
+            "rotation": 90
           }
-        ]
+        }
       },
       "sections": [
         "gameplay",
@@ -1708,6 +1699,215 @@
       "owner": "vegetation",
       "selectors": "",
       "section": "vegetation/looks"
+    },
+    {
+      "id": "woods/container-yard/rows",
+      "label": "Container rows",
+      "owner": "vegetation",
+      "section": [
+        "industry/seaport",
+        "vegetation/looks"
+      ],
+      "family": "Container yard",
+      "skin": {
+        "layouts": {
+          "foliage": "yard/foliage-rows",
+          "light": "yard/light-rows",
+          "heavy": "yard/heavy-rows",
+          "ultra": "yard/ultra-rows"
+        },
+        "legacy": {
+          "0": [
+            "fluff:80:01",
+            "fluff:80:02",
+            "fluff:80:03",
+            "fluff:80:04",
+            "fluff:80:05",
+            "fluff:80:06",
+            "fluff:80:07"
+          ],
+          "60": [
+            "fluff:80:08",
+            "fluff:80:09",
+            "fluff:80:11",
+            "fluff:80:12",
+            "fluff:80:13",
+            "fluff:80:14",
+            "fluff:80:15"
+          ],
+          "300": [
+            "fluff:80:16",
+            "fluff:80:17",
+            "fluff:80:18",
+            "fluff:80:19",
+            "fluff:80:20",
+            "fluff:80:21",
+            "fluff:80:22"
+          ],
+          "90": [
+            "fluff:80:23",
+            "fluff:80:24",
+            "fluff:80:25",
+            "fluff:80:26",
+            "fluff:80:27",
+            "fluff:80:28",
+            "fluff:80:29"
+          ]
+        }
+      }
+    },
+    {
+      "id": "woods/container-yard/scattered",
+      "label": "Scattered containers",
+      "owner": "vegetation",
+      "section": [
+        "industry/seaport",
+        "vegetation/looks"
+      ],
+      "family": "Container yard",
+      "skin": {
+        "cover": "foliage",
+        "layouts": {
+          "foliage": "yard/foliage-scattered",
+          "light": "yard/light-rows",
+          "heavy": "yard/heavy-rows",
+          "ultra": "yard/ultra-rows"
+        },
+        "sprites": "woods/container-yard/rows"
+      }
+    },
+    {
+      "id": "woods/container-yard/quay-crane",
+      "label": "Quay crane yard",
+      "owner": "vegetation",
+      "section": [
+        "industry/seaport",
+        "vegetation/looks"
+      ],
+      "family": "Container yard",
+      "skin": {
+        "layouts": {
+          "foliage": "yard/foliage-rows",
+          "light": "yard/light-quay-crane",
+          "heavy": "yard/heavy-rows",
+          "ultra": "yard/ultra-rows"
+        },
+        "legacy": {
+          "0": [
+            "fluff:81:01",
+            "fluff:81:02",
+            "fluff:81:03"
+          ],
+          "180": [
+            "fluff:81:07",
+            "fluff:81:08",
+            "fluff:81:09"
+          ],
+          "60": [
+            "fluff:81:13",
+            "fluff:81:14",
+            "fluff:81:15",
+            "fluff:81:40",
+            "fluff:81:41",
+            "fluff:81:42"
+          ],
+          "240": [
+            "fluff:81:19",
+            "fluff:81:20",
+            "fluff:81:21",
+            "fluff:81:46",
+            "fluff:81:47",
+            "fluff:81:48"
+          ],
+          "300": [
+            "fluff:81:25",
+            "fluff:81:26",
+            "fluff:81:27"
+          ],
+          "120": [
+            "fluff:81:31",
+            "fluff:81:32",
+            "fluff:81:33"
+          ]
+        },
+        "mirror": "woods/container-yard/quay-crane-mirrored"
+      }
+    },
+    {
+      "id": "woods/container-yard/quay-crane-mirrored",
+      "label": "Quay crane yard, mirrored",
+      "owner": "vegetation",
+      "section": [
+        "industry/seaport",
+        "vegetation/looks"
+      ],
+      "family": "Container yard",
+      "skin": {
+        "layouts": {
+          "foliage": "yard/foliage-rows",
+          "light": "yard/light-quay-crane-mirrored",
+          "heavy": "yard/heavy-rows",
+          "ultra": "yard/ultra-rows"
+        },
+        "legacy": {
+          "0": [
+            "fluff:81:04",
+            "fluff:81:05",
+            "fluff:81:06"
+          ],
+          "180": [
+            "fluff:81:10",
+            "fluff:81:11",
+            "fluff:81:12"
+          ],
+          "60": [
+            "fluff:81:16",
+            "fluff:81:17",
+            "fluff:81:18"
+          ],
+          "240": [
+            "fluff:81:22",
+            "fluff:81:23",
+            "fluff:81:24"
+          ],
+          "300": [
+            "fluff:81:28",
+            "fluff:81:29",
+            "fluff:81:30",
+            "fluff:81:37",
+            "fluff:81:38",
+            "fluff:81:39"
+          ],
+          "120": [
+            "fluff:81:34",
+            "fluff:81:35",
+            "fluff:81:36",
+            "fluff:81:43",
+            "fluff:81:44",
+            "fluff:81:45"
+          ]
+        },
+        "mirror": "woods/container-yard/quay-crane"
+      }
+    },
+    {
+      "id": "woods/container-yard/yard-gantry",
+      "label": "Gantry yard",
+      "owner": "vegetation",
+      "section": [
+        "industry/seaport",
+        "vegetation/looks"
+      ],
+      "family": "Container yard",
+      "skin": {
+        "layouts": {
+          "foliage": "yard/foliage-rows",
+          "light": "yard/light-yard-gantry",
+          "heavy": "yard/heavy-yard-gantry",
+          "ultra": "yard/ultra-yard-gantry"
+        },
+        "sprites": "woods/container-yard/rows"
+      }
     },
     {
       "id": "rough/obstacles",
@@ -27132,548 +27332,489 @@
     {
       "id": "scenery/seaport/containers-n-s-01",
       "label": "Container yard N-S 1",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Container yard"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/containers-n-s-02",
       "label": "Container yard N-S 2",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Container yard"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/containers-n-s-03",
       "label": "Container yard N-S 3",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Container yard"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/containers-n-s-04",
       "label": "Container yard N-S 4",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Container yard"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/containers-n-s-05",
       "label": "Container yard N-S 5",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Container yard"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/containers-n-s-06",
       "label": "Container yard N-S 6",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Container yard"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/containers-n-s-07",
       "label": "Container yard N-S 7",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Container yard"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/containers-ne-sw-01",
       "label": "Container yard NE-SW 1",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Container yard"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/containers-ne-sw-02",
       "label": "Container yard NE-SW 2",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Container yard"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/containers-ne-sw-03",
       "label": "Container yard NE-SW 3",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Container yard"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/containers-ne-sw-04",
       "label": "Container yard NE-SW 4",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Container yard"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/containers-ne-sw-05",
       "label": "Container yard NE-SW 5",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Container yard"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/containers-ne-sw-06",
       "label": "Container yard NE-SW 6",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Container yard"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/containers-ne-sw-07",
       "label": "Container yard NE-SW 7",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Container yard"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/containers-nw-se-01",
       "label": "Container yard NW-SE 1",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Container yard"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/containers-nw-se-02",
       "label": "Container yard NW-SE 2",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Container yard"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/containers-nw-se-03",
       "label": "Container yard NW-SE 3",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Container yard"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/containers-nw-se-04",
       "label": "Container yard NW-SE 4",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Container yard"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/containers-nw-se-05",
       "label": "Container yard NW-SE 5",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Container yard"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/containers-nw-se-06",
       "label": "Container yard NW-SE 6",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Container yard"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/containers-nw-se-07",
       "label": "Container yard NW-SE 7",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Container yard"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/containers-e-w-01",
       "label": "Container yard E-W 1",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Container yard"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/containers-e-w-02",
       "label": "Container yard E-W 2",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Container yard"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/containers-e-w-03",
       "label": "Container yard E-W 3",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Container yard"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/containers-e-w-04",
       "label": "Container yard E-W 4",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Container yard"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/containers-e-w-05",
       "label": "Container yard E-W 5",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Container yard"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/containers-e-w-06",
       "label": "Container yard E-W 6",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Container yard"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/containers-e-w-07",
       "label": "Container yard E-W 7",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Container yard"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/gantry-crane-n-s-01",
       "label": "Gantry crane, boom NE, yard N-S 1",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Gantry crane"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/gantry-crane-n-s-02",
       "label": "Gantry crane, boom NE, yard N-S 2",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Gantry crane"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/gantry-crane-n-s-03",
       "label": "Gantry crane, boom NE, yard N-S 3",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Gantry crane"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/gantry-crane-n-s-04",
       "label": "Gantry crane, boom SE, yard N-S 4",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Gantry crane"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/gantry-crane-n-s-05",
       "label": "Gantry crane, boom SE, yard N-S 5",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Gantry crane"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/gantry-crane-n-s-06",
       "label": "Gantry crane, boom SE, yard N-S 6",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Gantry crane"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/gantry-crane-n-s-07",
       "label": "Gantry crane, boom SW, yard N-S 7",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Gantry crane"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/gantry-crane-n-s-08",
       "label": "Gantry crane, boom SW, yard N-S 8",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Gantry crane"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/gantry-crane-n-s-09",
       "label": "Gantry crane, boom SW, yard N-S 9",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Gantry crane"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/gantry-crane-n-s-10",
       "label": "Gantry crane, boom NW, yard N-S 10",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Gantry crane"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/gantry-crane-n-s-11",
       "label": "Gantry crane, boom NW, yard N-S 11",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Gantry crane"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/gantry-crane-n-s-12",
       "label": "Gantry crane, boom NW, yard N-S 12",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Gantry crane"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/gantry-crane-ne-sw-01",
       "label": "Gantry crane, boom SE, yard NE-SW 1",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Gantry crane"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/gantry-crane-ne-sw-02",
       "label": "Gantry crane, boom SE, yard NE-SW 2",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Gantry crane"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/gantry-crane-ne-sw-03",
       "label": "Gantry crane, boom SE, yard NE-SW 3",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Gantry crane"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/gantry-crane-ne-sw-04",
       "label": "Gantry crane, boom S, yard NE-SW 4",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Gantry crane"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/gantry-crane-ne-sw-05",
       "label": "Gantry crane, boom S, yard NE-SW 5",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Gantry crane"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/gantry-crane-ne-sw-06",
       "label": "Gantry crane, boom S, yard NE-SW 6",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Gantry crane"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/gantry-crane-ne-sw-07",
       "label": "Gantry crane, boom NW, yard NE-SW 7",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Gantry crane"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/gantry-crane-ne-sw-08",
       "label": "Gantry crane, boom NW, yard NE-SW 8",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Gantry crane"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/gantry-crane-ne-sw-09",
       "label": "Gantry crane, boom NW, yard NE-SW 9",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Gantry crane"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/gantry-crane-ne-sw-10",
       "label": "Gantry crane, boom N, yard NE-SW 10",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Gantry crane"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/gantry-crane-ne-sw-11",
       "label": "Gantry crane, boom N, yard NE-SW 11",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Gantry crane"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/gantry-crane-ne-sw-12",
       "label": "Gantry crane, boom N, yard NE-SW 12",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Gantry crane"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/gantry-crane-nw-se-01",
       "label": "Gantry crane, boom N, yard NW-SE 1",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Gantry crane"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/gantry-crane-nw-se-02",
       "label": "Gantry crane, boom N, yard NW-SE 2",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Gantry crane"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/gantry-crane-nw-se-03",
       "label": "Gantry crane, boom N, yard NW-SE 3",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Gantry crane"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/gantry-crane-nw-se-04",
       "label": "Gantry crane, boom NE, yard NW-SE 4",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Gantry crane"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/gantry-crane-nw-se-05",
       "label": "Gantry crane, boom NE, yard NW-SE 5",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Gantry crane"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/gantry-crane-nw-se-06",
       "label": "Gantry crane, boom NE, yard NW-SE 6",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Gantry crane"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/gantry-crane-nw-se-07",
       "label": "Gantry crane, boom S, yard NW-SE 7",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Gantry crane"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/gantry-crane-nw-se-08",
       "label": "Gantry crane, boom S, yard NW-SE 8",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Gantry crane"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/gantry-crane-nw-se-09",
       "label": "Gantry crane, boom S, yard NW-SE 9",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Gantry crane"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/gantry-crane-nw-se-10",
       "label": "Gantry crane, boom SW, yard NW-SE 10",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Gantry crane"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/gantry-crane-nw-se-11",
       "label": "Gantry crane, boom SW, yard NW-SE 11",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Gantry crane"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/gantry-crane-nw-se-12",
       "label": "Gantry crane, boom SW, yard NW-SE 12",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Gantry crane"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/gantry-crane-e-w-01",
       "label": "Gantry crane, boom NE, yard E-W 1",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Gantry crane"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/gantry-crane-e-w-02",
       "label": "Gantry crane, boom NE, yard E-W 2",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Gantry crane"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/gantry-crane-e-w-03",
       "label": "Gantry crane, boom NE, yard E-W 3",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Gantry crane"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/gantry-crane-e-w-04",
       "label": "Gantry crane, boom SE, yard E-W 4",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Gantry crane"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/gantry-crane-e-w-05",
       "label": "Gantry crane, boom SE, yard E-W 5",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Gantry crane"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/gantry-crane-e-w-06",
       "label": "Gantry crane, boom SE, yard E-W 6",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Gantry crane"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/gantry-crane-e-w-07",
       "label": "Gantry crane, boom SW, yard E-W 7",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Gantry crane"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/gantry-crane-e-w-08",
       "label": "Gantry crane, boom SW, yard E-W 8",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Gantry crane"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/gantry-crane-e-w-09",
       "label": "Gantry crane, boom SW, yard E-W 9",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Gantry crane"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/gantry-crane-e-w-10",
       "label": "Gantry crane, boom NW, yard E-W 10",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Gantry crane"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/gantry-crane-e-w-11",
       "label": "Gantry crane, boom NW, yard E-W 11",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Gantry crane"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/gantry-crane-e-w-12",
       "label": "Gantry crane, boom NW, yard E-W 12",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Gantry crane"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/crane-tip-01",
       "label": "Crane boom tip, straight",
-      "kind": "prop",
-      "section": "industry/seaport",
-      "family": "Crane boom tip"
+      "kind": "prop"
     },
     {
       "id": "scenery/seaport/crane-tip-02",
       "label": "Crane boom tip, diagonal",
+      "kind": "prop"
+    },
+    {
+      "id": "scenery/seaport/yard/container",
+      "label": "Container",
       "kind": "prop",
       "section": "industry/seaport",
-      "family": "Crane boom tip"
+      "family": "Container"
+    },
+    {
+      "id": "scenery/seaport/yard/container-stack-2",
+      "label": "Container stack, two high",
+      "kind": "prop",
+      "section": "industry/seaport",
+      "family": "Container"
+    },
+    {
+      "id": "scenery/seaport/yard/container-stack-3",
+      "label": "Container stack, three high",
+      "kind": "prop",
+      "section": "industry/seaport",
+      "family": "Container"
+    },
+    {
+      "id": "scenery/seaport/yard/quay-crane",
+      "label": "Quay crane",
+      "kind": "prop",
+      "section": "industry/seaport",
+      "snap": {
+        "set": "crane-boom",
+        "radius": 0.06,
+        "angleTolerance": 2,
+        "connectors": [
+          [
+            0,
+            0.5,
+            2.2778,
+            90
+          ]
+        ]
+      }
+    },
+    {
+      "id": "scenery/seaport/yard/crane-boom",
+      "label": "Crane boom segment",
+      "kind": "prop",
+      "section": "industry/seaport",
+      "snap": {
+        "set": "crane-boom",
+        "radius": 0.06,
+        "angleTolerance": 2,
+        "connectors": [
+          [
+            0,
+            0.5,
+            2.2778,
+            90
+          ],
+          [
+            0,
+            -0.5,
+            2.2778,
+            270
+          ]
+        ]
+      }
+    },
+    {
+      "id": "scenery/seaport/yard/yard-gantry",
+      "label": "Yard gantry",
+      "kind": "prop",
+      "section": "industry/seaport",
+      "family": "Yard gantry"
+    },
+    {
+      "id": "scenery/seaport/yard/yard-gantry-tall",
+      "label": "Yard gantry, tall",
+      "kind": "prop",
+      "section": "industry/seaport",
+      "family": "Yard gantry"
+    },
+    {
+      "id": "scenery/seaport/yard/straddle-carrier",
+      "label": "Straddle carrier",
+      "kind": "prop",
+      "section": "industry/seaport"
+    },
+    {
+      "id": "scenery/seaport/yard/reach-stacker",
+      "label": "Reach stacker",
+      "kind": "prop",
+      "section": "industry/seaport"
+    },
+    {
+      "id": "scenery/seaport/yard/yard-truck",
+      "label": "Yard truck",
+      "kind": "prop",
+      "section": "industry/seaport"
     },
     {
       "id": "scenery/military/orbital-gun",
