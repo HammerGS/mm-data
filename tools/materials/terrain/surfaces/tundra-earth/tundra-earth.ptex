@@ -25,7 +25,7 @@
   },
   {
    "name": "Pigment",
-   "label": "Moss ground with humus",
+   "label": "Complete tundra mixture 1",
    "type": "graph",
    "node_position": {
     "x": 400,
@@ -36,10 +36,11 @@
     "Saturation": 1,
     "Value": 1,
     "HummockShare": 0.05,
-    "DetailRepeats": 2,
-    "AccentThreshold": 0.62,
-    "AccentAmount": 0.35,
-    "AccentScale": 8,
+    "DetailRepeats": 4,
+    "LichenCoverage": 0.38,
+    "RustCoverage": 0.36,
+    "HumusCoverage": 0.44,
+    "CommunityScale": 8,
     "EdgeWidth": 0.1
    },
    "seed_int": 0,
@@ -96,10 +97,11 @@
       "Saturation": 1,
       "Value": 1,
       "HummockShare": 0.05,
-      "DetailRepeats": 2,
-      "AccentThreshold": 0.62,
-      "AccentAmount": 0.35,
-      "AccentScale": 8,
+      "DetailRepeats": 4,
+      "LichenCoverage": 0.38,
+      "RustCoverage": 0.36,
+      "HumusCoverage": 0.44,
+      "CommunityScale": 8,
       "EdgeWidth": 0.1
      },
      "seed": 0,
@@ -142,61 +144,86 @@
       },
       {
        "name": "HummockShare",
-       "label": "Small height variation share",
+       "label": "Low mat height variation",
        "type": "named_parameter",
        "default": 0.05,
        "min": 0,
-       "max": 0.3,
+       "max": 0.2,
        "step": 0.01
       },
       {
        "name": "DetailRepeats",
-       "label": "Fine vegetation repeats",
+       "label": "Botanical detail repeats",
        "type": "named_parameter",
-       "default": 2,
+       "default": 4,
        "min": 1,
        "max": 8,
        "step": 1
       },
       {
-       "name": "AccentThreshold",
-       "label": "Humus threshold (higher = less)",
+       "name": "LichenCoverage",
+       "label": "Gray lichen presence",
        "type": "named_parameter",
-       "default": 0.62,
-       "min": 0.2,
-       "max": 0.85,
+       "default": 0.38,
+       "min": 0,
+       "max": 1,
        "step": 0.01
       },
       {
-       "name": "AccentAmount",
-       "label": "Humus blend strength",
+       "name": "RustCoverage",
+       "label": "Rust leaf presence",
        "type": "named_parameter",
-       "default": 0.35,
+       "default": 0.36,
+       "min": 0,
+       "max": 1,
+       "step": 0.01
+      },
+      {
+       "name": "HumusCoverage",
+       "label": "Dark humus presence",
+       "type": "named_parameter",
+       "default": 0.44,
        "min": 0,
        "max": 1,
        "step": 0.01
       },
       {
        "name": "EdgeWidth",
-       "label": "Species transition width",
+       "label": "Species interleaving width",
        "type": "named_parameter",
        "default": 0.1,
-       "min": 0.01,
+       "min": 0.02,
        "max": 0.3,
        "step": 0.01
       },
       {
-       "name": "AccentScale",
-       "label": "Local humus frequency",
+       "name": "CommunityScale",
+       "label": "Fine community frequency",
        "type": "linked_control",
        "default": 8,
        "linked_widgets": [
         {
-         "node": "AccentRegions",
+         "node": "LichenRegion",
          "widget": "scale_x"
         },
         {
-         "node": "AccentRegions",
+         "node": "LichenRegion",
+         "widget": "scale_y"
+        },
+        {
+         "node": "RustRegion",
+         "widget": "scale_x"
+        },
+        {
+         "node": "RustRegion",
+         "widget": "scale_y"
+        },
+        {
+         "node": "HumusRegion",
+         "widget": "scale_x"
+        },
+        {
+         "node": "HumusRegion",
          "widget": "scale_y"
         }
        ]
@@ -309,7 +336,7 @@
       "scale_x": 8,
       "scale_y": 8,
       "folds": 0,
-      "iterations": 4,
+      "iterations": 3,
       "persistence": 0.5
      },
      "seed_int": 317,
@@ -1232,6 +1259,98 @@
      }
     },
     {
+     "name": "LichenSource",
+     "type": "transform",
+     "parameters": {
+      "translate_x": -0.5,
+      "translate_y": 0.5,
+      "rotate": 0,
+      "scale_x": 2,
+      "scale_y": 2,
+      "repeat": false
+     },
+     "seed_int": 0,
+     "node_position": {
+      "x": 1650,
+      "y": -800
+     }
+    },
+    {
+     "name": "LichenSeam",
+     "type": "make_tileable",
+     "parameters": {
+      "w": 0.15
+     },
+     "seed_int": 0,
+     "node_position": {
+      "x": 750,
+      "y": -540
+     }
+    },
+    {
+     "name": "LichenDetail",
+     "type": "transform",
+     "parameters": {
+      "translate_x": 0.137,
+      "translate_y": 0.371,
+      "rotate": 0,
+      "scale_x": "1.0/$DetailRepeats",
+      "scale_y": "1.0/$DetailRepeats",
+      "repeat": true
+     },
+     "seed_int": 0,
+     "node_position": {
+      "x": 1050,
+      "y": -540
+     }
+    },
+    {
+     "name": "RustSource",
+     "type": "transform",
+     "parameters": {
+      "translate_x": 0.5,
+      "translate_y": -0.5,
+      "rotate": 0,
+      "scale_x": 2,
+      "scale_y": 2,
+      "repeat": false
+     },
+     "seed_int": 0,
+     "node_position": {
+      "x": 1350,
+      "y": -540
+     }
+    },
+    {
+     "name": "RustSeam",
+     "type": "make_tileable",
+     "parameters": {
+      "w": 0.15
+     },
+     "seed_int": 0,
+     "node_position": {
+      "x": 1650,
+      "y": -540
+     }
+    },
+    {
+     "name": "RustDetail",
+     "type": "transform",
+     "parameters": {
+      "translate_x": 0.271,
+      "translate_y": 0.193,
+      "rotate": 0,
+      "scale_x": "1.0/$DetailRepeats",
+      "scale_y": "1.0/$DetailRepeats",
+      "repeat": true
+     },
+     "seed_int": 0,
+     "node_position": {
+      "x": 750,
+      "y": -280
+     }
+    },
+    {
      "name": "HumusSource",
      "type": "transform",
      "parameters": {
@@ -1244,8 +1363,8 @@
      },
      "seed_int": 0,
      "node_position": {
-      "x": 750,
-      "y": -540
+      "x": 1050,
+      "y": -280
      }
     },
     {
@@ -1256,16 +1375,16 @@
      },
      "seed_int": 0,
      "node_position": {
-      "x": 1050,
-      "y": -540
+      "x": 1350,
+      "y": -280
      }
     },
     {
      "name": "HumusDetail",
      "type": "transform",
      "parameters": {
-      "translate_x": 0,
-      "translate_y": 0,
+      "translate_x": 0.419,
+      "translate_y": 0.107,
       "rotate": 0,
       "scale_x": "1.0/$DetailRepeats",
       "scale_y": "1.0/$DetailRepeats",
@@ -1273,12 +1392,72 @@
      },
      "seed_int": 0,
      "node_position": {
-      "x": 1350,
-      "y": -540
+      "x": 1650,
+      "y": -280
      }
     },
     {
-     "name": "AccentRegions",
+     "name": "LichenRegion",
+     "type": "fbm",
+     "parameters": {
+      "noise": 1,
+      "scale_x": 8,
+      "scale_y": 8,
+      "folds": 0,
+      "iterations": 3,
+      "persistence": 0.5
+     },
+     "seed_int": 317,
+     "node_position": {
+      "x": 750,
+      "y": -20
+     }
+    },
+    {
+     "name": "LichenLevel",
+     "type": "math",
+     "parameters": {
+      "op": 1,
+      "default_in1": 0,
+      "default_in2": "1.0-$LichenCoverage",
+      "clamp": false
+     },
+     "seed_int": 0,
+     "node_position": {
+      "x": 1050,
+      "y": -20
+     }
+    },
+    {
+     "name": "LichenMask",
+     "type": "math",
+     "parameters": {
+      "op": 3,
+      "default_in1": 0,
+      "default_in2": "$EdgeWidth",
+      "clamp": true
+     },
+     "seed_int": 0,
+     "node_position": {
+      "x": 1350,
+      "y": -20
+     }
+    },
+    {
+     "name": "LichenCommunity",
+     "type": "blend",
+     "parameters": {
+      "blend_type": 0,
+      "amount": 1
+     },
+     "seed_int": 0,
+     "node_position": {
+      "x": 1650,
+      "y": -20
+     }
+    },
+    {
+     "name": "RustRegion",
      "type": "fbm",
      "parameters": {
       "noise": 1,
@@ -1291,26 +1470,26 @@
      "seed_int": 791,
      "node_position": {
       "x": 750,
-      "y": -280
+      "y": 240
      }
     },
     {
-     "name": "AccentLevel",
+     "name": "RustLevel",
      "type": "math",
      "parameters": {
       "op": 1,
       "default_in1": 0,
-      "default_in2": "$AccentThreshold",
+      "default_in2": "1.0-$RustCoverage",
       "clamp": false
      },
      "seed_int": 0,
      "node_position": {
       "x": 1050,
-      "y": -280
+      "y": 240
      }
     },
     {
-     "name": "AccentMask",
+     "name": "RustMask",
      "type": "math",
      "parameters": {
       "op": 3,
@@ -1321,26 +1500,11 @@
      "seed_int": 0,
      "node_position": {
       "x": 1350,
-      "y": -280
+      "y": 240
      }
     },
     {
-     "name": "AccentStrength",
-     "type": "math",
-     "parameters": {
-      "op": 2,
-      "default_in1": 0,
-      "default_in2": "$AccentAmount",
-      "clamp": false
-     },
-     "seed_int": 0,
-     "node_position": {
-      "x": 750,
-      "y": -20
-     }
-    },
-    {
-     "name": "SpeciesColor",
+     "name": "RustCommunity",
      "type": "blend",
      "parameters": {
       "blend_type": 0,
@@ -1348,8 +1512,68 @@
      },
      "seed_int": 0,
      "node_position": {
+      "x": 1650,
+      "y": 240
+     }
+    },
+    {
+     "name": "HumusRegion",
+     "type": "fbm",
+     "parameters": {
+      "noise": 1,
+      "scale_x": 8,
+      "scale_y": 8,
+      "folds": 0,
+      "iterations": 3,
+      "persistence": 0.5
+     },
+     "seed_int": 143,
+     "node_position": {
+      "x": 750,
+      "y": 500
+     }
+    },
+    {
+     "name": "HumusLevel",
+     "type": "math",
+     "parameters": {
+      "op": 1,
+      "default_in1": 0,
+      "default_in2": "1.0-$HumusCoverage",
+      "clamp": false
+     },
+     "seed_int": 0,
+     "node_position": {
       "x": 1050,
-      "y": -20
+      "y": 500
+     }
+    },
+    {
+     "name": "HumusMask",
+     "type": "math",
+     "parameters": {
+      "op": 3,
+      "default_in1": 0,
+      "default_in2": "$EdgeWidth",
+      "clamp": true
+     },
+     "seed_int": 0,
+     "node_position": {
+      "x": 1350,
+      "y": 500
+     }
+    },
+    {
+     "name": "HumusCommunity",
+     "type": "blend",
+     "parameters": {
+      "blend_type": 0,
+      "amount": 1
+     },
+     "seed_int": 0,
+     "node_position": {
+      "x": 1650,
+      "y": 500
      }
     }
    ],
@@ -1496,6 +1720,42 @@
      "from_port": 0,
      "to_port": 0,
      "from": "LinearPigmentGrid",
+     "to": "LichenSource"
+    },
+    {
+     "from_port": 0,
+     "to_port": 0,
+     "from": "LichenSource",
+     "to": "LichenSeam"
+    },
+    {
+     "from_port": 0,
+     "to_port": 0,
+     "from": "LichenSeam",
+     "to": "LichenDetail"
+    },
+    {
+     "from_port": 0,
+     "to_port": 0,
+     "from": "LinearPigmentGrid",
+     "to": "RustSource"
+    },
+    {
+     "from_port": 0,
+     "to_port": 0,
+     "from": "RustSource",
+     "to": "RustSeam"
+    },
+    {
+     "from_port": 0,
+     "to_port": 0,
+     "from": "RustSeam",
+     "to": "RustDetail"
+    },
+    {
+     "from_port": 0,
+     "to_port": 0,
+     "from": "LinearPigmentGrid",
      "to": "HumusSource"
     },
     {
@@ -1513,49 +1773,103 @@
     {
      "from_port": 0,
      "to_port": 0,
-     "from": "AccentRegions",
-     "to": "AccentLevel"
+     "from": "LichenRegion",
+     "to": "LichenLevel"
     },
     {
      "from_port": 0,
      "to_port": 0,
-     "from": "AccentLevel",
-     "to": "AccentMask"
-    },
-    {
-     "from_port": 0,
-     "to_port": 0,
-     "from": "AccentMask",
-     "to": "AccentStrength"
+     "from": "LichenLevel",
+     "to": "LichenMask"
     },
     {
      "from_port": 0,
      "to_port": 2,
-     "from": "AccentStrength",
-     "to": "SpeciesColor"
+     "from": "LichenMask",
+     "to": "LichenCommunity"
+    },
+    {
+     "from_port": 0,
+     "to_port": 0,
+     "from": "LichenDetail",
+     "to": "LichenCommunity"
+    },
+    {
+     "from_port": 0,
+     "to_port": 0,
+     "from": "RustRegion",
+     "to": "RustLevel"
+    },
+    {
+     "from_port": 0,
+     "to_port": 0,
+     "from": "RustLevel",
+     "to": "RustMask"
+    },
+    {
+     "from_port": 0,
+     "to_port": 2,
+     "from": "RustMask",
+     "to": "RustCommunity"
+    },
+    {
+     "from_port": 0,
+     "to_port": 0,
+     "from": "RustDetail",
+     "to": "RustCommunity"
+    },
+    {
+     "from_port": 0,
+     "to_port": 0,
+     "from": "HumusRegion",
+     "to": "HumusLevel"
+    },
+    {
+     "from_port": 0,
+     "to_port": 0,
+     "from": "HumusLevel",
+     "to": "HumusMask"
+    },
+    {
+     "from_port": 0,
+     "to_port": 2,
+     "from": "HumusMask",
+     "to": "HumusCommunity"
     },
     {
      "from_port": 0,
      "to_port": 0,
      "from": "HumusDetail",
-     "to": "SpeciesColor"
+     "to": "HumusCommunity"
     },
     {
      "from_port": 0,
      "to_port": 1,
      "from": "MossDetail",
-     "to": "SpeciesColor"
+     "to": "LichenCommunity"
+    },
+    {
+     "from_port": 0,
+     "to_port": 1,
+     "from": "LichenCommunity",
+     "to": "RustCommunity"
+    },
+    {
+     "from_port": 0,
+     "to_port": 1,
+     "from": "RustCommunity",
+     "to": "HumusCommunity"
     },
     {
      "from_port": 0,
      "to_port": 0,
-     "from": "SpeciesColor",
+     "from": "HumusCommunity",
      "to": "PigmentControls"
     },
     {
      "from_port": 0,
      "to_port": 0,
-     "from": "SpeciesColor",
+     "from": "HumusCommunity",
      "to": "SourceValueForHeight"
     }
    ]
@@ -1566,7 +1880,7 @@
    "type": "graph",
    "parameters": {
     "RepeatMetres": 24,
-    "ReliefMetres": 0.12,
+    "ReliefMetres": 0.06,
     "NormalStrength": 1,
     "NearCavityStrength": 20,
     "WideCavityStrength": 9,
@@ -1636,7 +1950,7 @@
      "type": "remote",
      "parameters": {
       "RepeatMetres": 24,
-      "ReliefMetres": 0.12,
+      "ReliefMetres": 0.06,
       "NormalStrength": 1,
       "NearCavityStrength": 20,
       "WideCavityStrength": 9,
@@ -1665,7 +1979,7 @@
        "min": 0,
        "max": 1,
        "step": 0.001,
-       "default": 0.12
+       "default": 0.06
       },
       {
        "name": "NormalStrength",
@@ -3632,7 +3946,7 @@
     "size": 9,
     "sss": 1,
     "RepeatMetres": 24,
-    "ReliefMetres": 0.12,
+    "ReliefMetres": 0.06,
     "OverrideRoughness": false
    },
    "seed_int": 0,
@@ -3879,7 +4193,7 @@
       "control": "None",
       "default": 24,
       "min": 0.001,
-      "max": 64,
+      "max": 192,
       "step": 0.1
      },
      {
@@ -3996,7 +4310,7 @@
     "y": -420
    },
    "title": "Original appearance, editable material response",
-   "text": "Fine moss tundra material, with local humus accents. The shared four-quadrant source supplies separate moss/lichen/rust/humus art; native transforms select only these two species. Native linear seam treatment and local masks are editable. Broad moss-versus-lichen communities are placed by the existing runtime world-space blend, not baked into this periodically repeated texture. Repeat24 m; two source-detail repeats. Height/normal/AO remain correlated shallow artistic proxies, not measured scans. No extra source or finished PBR map inputs. Standard512 exports; optional roughness override is off.",
+   "text": "Complete cold tundra mixture variant 1: moss/humus dominant with small interleaved gray lichen and rusty leaf fragments. Both variants use the same species and coverage/physical defaults; only native field seeds and source placement differ. The existing runtime world blend therefore varies detail placement, not biome palette. Native 8/16/32-frequency masks span about3/1.5/.75m at24m repeat. Four fine source repeats keep botanical shapes small. Presence controls move the actual species masks; they are not post-color gains or exact area percentages. Shared source quadrants are selected and mixed in linear RGB, encoded once. Registered shallow .06m height proxy drives native normal/AO. Standard512 exports; no extra runtime sampler or hidden shader tint.",
    "size": {
     "x": 950,
     "y": 160
@@ -4019,7 +4333,7 @@
    },
    "parameters": {
     "RepeatMetres": 24,
-    "ReliefMetres": 0.12,
+    "ReliefMetres": 0.06,
     "OverrideRoughness": false
    },
    "widgets": [
@@ -4054,7 +4368,7 @@
        "widget": "ReliefMetres"
       }
      ],
-     "default": 0.12
+     "default": 0.06
     },
     {
      "name": "OverrideRoughness",
