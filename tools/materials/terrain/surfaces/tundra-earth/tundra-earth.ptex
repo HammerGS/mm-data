@@ -13,7 +13,7 @@
    "name": "PigmentSource",
    "type": "image",
    "parameters": {
-    "image": "%PROJECT_PATH%/sources/pigment.png",
+    "image": "%PROJECT_PATH%/sources/species.png",
     "fix_ar": false,
     "clamp": false
    },
@@ -25,7 +25,7 @@
   },
   {
    "name": "Pigment",
-   "label": "Moss, lichen and autumn low vegetation",
+   "label": "Moss ground with humus",
    "type": "graph",
    "node_position": {
     "x": 400,
@@ -35,8 +35,12 @@
     "Hue": 0,
     "Saturation": 1,
     "Value": 1,
-    "PatchContrast": 0.2,
-    "HummockShare": 0.15
+    "HummockShare": 0.05,
+    "DetailRepeats": 2,
+    "AccentThreshold": 0.62,
+    "AccentAmount": 0.35,
+    "AccentScale": 8,
+    "EdgeWidth": 0.1
    },
    "seed_int": 0,
    "nodes": [
@@ -91,8 +95,12 @@
       "Hue": 0,
       "Saturation": 1,
       "Value": 1,
-      "PatchContrast": 0.2,
-      "HummockShare": 0.15
+      "HummockShare": 0.05,
+      "DetailRepeats": 2,
+      "AccentThreshold": 0.62,
+      "AccentAmount": 0.35,
+      "AccentScale": 8,
+      "EdgeWidth": 0.1
      },
      "seed": 0,
      "widgets": [
@@ -133,34 +141,62 @@
        ]
       },
       {
-       "name": "PatchContrast",
-       "label": "Hummock color variation",
-       "type": "named_parameter",
-       "default": 0.2,
-       "min": 0,
-       "max": 0.5,
-       "step": 0.01
-      },
-      {
        "name": "HummockShare",
-       "label": "Broad share of shallow height",
+       "label": "Small height variation share",
        "type": "named_parameter",
-       "default": 0.15,
+       "default": 0.05,
        "min": 0,
-       "max": 0.5,
+       "max": 0.3,
        "step": 0.01
       },
       {
-       "name": "HummockScale",
-       "label": "Hummock frequency",
+       "name": "DetailRepeats",
+       "label": "Fine vegetation repeats",
+       "type": "named_parameter",
+       "default": 2,
+       "min": 1,
+       "max": 8,
+       "step": 1
+      },
+      {
+       "name": "AccentThreshold",
+       "label": "Humus threshold (higher = less)",
+       "type": "named_parameter",
+       "default": 0.62,
+       "min": 0.2,
+       "max": 0.85,
+       "step": 0.01
+      },
+      {
+       "name": "AccentAmount",
+       "label": "Humus blend strength",
+       "type": "named_parameter",
+       "default": 0.35,
+       "min": 0,
+       "max": 1,
+       "step": 0.01
+      },
+      {
+       "name": "EdgeWidth",
+       "label": "Species transition width",
+       "type": "named_parameter",
+       "default": 0.1,
+       "min": 0.01,
+       "max": 0.3,
+       "step": 0.01
+      },
+      {
+       "name": "AccentScale",
+       "label": "Local humus frequency",
        "type": "linked_control",
+       "default": 8,
        "linked_widgets": [
         {
-         "node": "Hummocks",
+         "node": "AccentRegions",
          "widget": "scale_x"
         },
         {
-         "node": "Hummocks",
+         "node": "AccentRegions",
          "widget": "scale_y"
         }
        ]
@@ -266,24 +302,12 @@
      }
     },
     {
-     "name": "SeamlessVegetation",
-     "type": "make_tileable",
-     "parameters": {
-      "w": 0.18
-     },
-     "seed_int": 0,
-     "node_position": {
-      "x": 650,
-      "y": 250
-     }
-    },
-    {
      "name": "Hummocks",
      "type": "fbm",
      "parameters": {
       "noise": 1,
-      "scale_x": 3,
-      "scale_y": 3,
+      "scale_x": 8,
+      "scale_y": 8,
       "folds": 0,
       "iterations": 4,
       "persistence": 0.5
@@ -292,49 +316,6 @@
      "node_position": {
       "x": 930,
       "y": 250
-     }
-    },
-    {
-     "name": "PatchAmplitude",
-     "type": "math",
-     "parameters": {
-      "op": 2,
-      "default_in1": 0,
-      "default_in2": "$PatchContrast",
-      "clamp": false
-     },
-     "seed_int": 0,
-     "node_position": {
-      "x": 1210,
-      "y": 250
-     }
-    },
-    {
-     "name": "PatchGain",
-     "type": "math",
-     "parameters": {
-      "op": 0,
-      "default_in1": 0,
-      "default_in2": "1.0-.5*$PatchContrast",
-      "clamp": false
-     },
-     "seed_int": 0,
-     "node_position": {
-      "x": 1490,
-      "y": 250
-     }
-    },
-    {
-     "name": "VegetationColor",
-     "type": "math_v3",
-     "parameters": {
-      "op": 2,
-      "clamp": true
-     },
-     "seed_int": 0,
-     "node_position": {
-      "x": 650,
-      "y": 490
      }
     },
     {
@@ -1203,6 +1184,173 @@
       "x": 1210,
       "y": 970
      }
+    },
+    {
+     "name": "MossSource",
+     "type": "transform",
+     "parameters": {
+      "translate_x": 0.5,
+      "translate_y": 0.5,
+      "rotate": 0,
+      "scale_x": 2,
+      "scale_y": 2,
+      "repeat": false
+     },
+     "seed_int": 0,
+     "node_position": {
+      "x": 750,
+      "y": -800
+     }
+    },
+    {
+     "name": "MossSeam",
+     "type": "make_tileable",
+     "parameters": {
+      "w": 0.15
+     },
+     "seed_int": 0,
+     "node_position": {
+      "x": 1050,
+      "y": -800
+     }
+    },
+    {
+     "name": "MossDetail",
+     "type": "transform",
+     "parameters": {
+      "translate_x": 0,
+      "translate_y": 0,
+      "rotate": 0,
+      "scale_x": "1.0/$DetailRepeats",
+      "scale_y": "1.0/$DetailRepeats",
+      "repeat": true
+     },
+     "seed_int": 0,
+     "node_position": {
+      "x": 1350,
+      "y": -800
+     }
+    },
+    {
+     "name": "HumusSource",
+     "type": "transform",
+     "parameters": {
+      "translate_x": -0.5,
+      "translate_y": -0.5,
+      "rotate": 0,
+      "scale_x": 2,
+      "scale_y": 2,
+      "repeat": false
+     },
+     "seed_int": 0,
+     "node_position": {
+      "x": 750,
+      "y": -540
+     }
+    },
+    {
+     "name": "HumusSeam",
+     "type": "make_tileable",
+     "parameters": {
+      "w": 0.15
+     },
+     "seed_int": 0,
+     "node_position": {
+      "x": 1050,
+      "y": -540
+     }
+    },
+    {
+     "name": "HumusDetail",
+     "type": "transform",
+     "parameters": {
+      "translate_x": 0,
+      "translate_y": 0,
+      "rotate": 0,
+      "scale_x": "1.0/$DetailRepeats",
+      "scale_y": "1.0/$DetailRepeats",
+      "repeat": true
+     },
+     "seed_int": 0,
+     "node_position": {
+      "x": 1350,
+      "y": -540
+     }
+    },
+    {
+     "name": "AccentRegions",
+     "type": "fbm",
+     "parameters": {
+      "noise": 1,
+      "scale_x": 8,
+      "scale_y": 8,
+      "folds": 0,
+      "iterations": 3,
+      "persistence": 0.5
+     },
+     "seed_int": 791,
+     "node_position": {
+      "x": 750,
+      "y": -280
+     }
+    },
+    {
+     "name": "AccentLevel",
+     "type": "math",
+     "parameters": {
+      "op": 1,
+      "default_in1": 0,
+      "default_in2": "$AccentThreshold",
+      "clamp": false
+     },
+     "seed_int": 0,
+     "node_position": {
+      "x": 1050,
+      "y": -280
+     }
+    },
+    {
+     "name": "AccentMask",
+     "type": "math",
+     "parameters": {
+      "op": 3,
+      "default_in1": 0,
+      "default_in2": "$EdgeWidth",
+      "clamp": true
+     },
+     "seed_int": 0,
+     "node_position": {
+      "x": 1350,
+      "y": -280
+     }
+    },
+    {
+     "name": "AccentStrength",
+     "type": "math",
+     "parameters": {
+      "op": 2,
+      "default_in1": 0,
+      "default_in2": "$AccentAmount",
+      "clamp": false
+     },
+     "seed_int": 0,
+     "node_position": {
+      "x": 750,
+      "y": -20
+     }
+    },
+    {
+     "name": "SpeciesColor",
+     "type": "blend",
+     "parameters": {
+      "blend_type": 0,
+      "amount": 1
+     },
+     "seed_int": 0,
+     "node_position": {
+      "x": 1050,
+      "y": -20
+     }
     }
    ],
    "connections": [
@@ -1246,48 +1394,6 @@
      "from": "SourceRound",
      "to": "SourceValue",
      "from_port": 0,
-     "to_port": 0
-    },
-    {
-     "from": "LinearPigmentGrid",
-     "from_port": 0,
-     "to": "SeamlessVegetation",
-     "to_port": 0
-    },
-    {
-     "from": "SeamlessVegetation",
-     "from_port": 0,
-     "to": "VegetationColor",
-     "to_port": 0
-    },
-    {
-     "from": "Hummocks",
-     "from_port": 0,
-     "to": "PatchAmplitude",
-     "to_port": 0
-    },
-    {
-     "from": "PatchAmplitude",
-     "from_port": 0,
-     "to": "PatchGain",
-     "to_port": 0
-    },
-    {
-     "from": "PatchGain",
-     "from_port": 0,
-     "to": "VegetationColor",
-     "to_port": 1
-    },
-    {
-     "from": "VegetationColor",
-     "from_port": 0,
-     "to": "PigmentControls",
-     "to_port": 0
-    },
-    {
-     "from": "SeamlessVegetation",
-     "from_port": 0,
-     "to": "SourceValueForHeight",
      "to_port": 0
     },
     {
@@ -1367,6 +1473,90 @@
      "from_port": 0,
      "to": "gen_outputs",
      "to_port": 1
+    },
+    {
+     "from_port": 0,
+     "to_port": 0,
+     "from": "LinearPigmentGrid",
+     "to": "MossSource"
+    },
+    {
+     "from_port": 0,
+     "to_port": 0,
+     "from": "MossSource",
+     "to": "MossSeam"
+    },
+    {
+     "from_port": 0,
+     "to_port": 0,
+     "from": "MossSeam",
+     "to": "MossDetail"
+    },
+    {
+     "from_port": 0,
+     "to_port": 0,
+     "from": "LinearPigmentGrid",
+     "to": "HumusSource"
+    },
+    {
+     "from_port": 0,
+     "to_port": 0,
+     "from": "HumusSource",
+     "to": "HumusSeam"
+    },
+    {
+     "from_port": 0,
+     "to_port": 0,
+     "from": "HumusSeam",
+     "to": "HumusDetail"
+    },
+    {
+     "from_port": 0,
+     "to_port": 0,
+     "from": "AccentRegions",
+     "to": "AccentLevel"
+    },
+    {
+     "from_port": 0,
+     "to_port": 0,
+     "from": "AccentLevel",
+     "to": "AccentMask"
+    },
+    {
+     "from_port": 0,
+     "to_port": 0,
+     "from": "AccentMask",
+     "to": "AccentStrength"
+    },
+    {
+     "from_port": 0,
+     "to_port": 2,
+     "from": "AccentStrength",
+     "to": "SpeciesColor"
+    },
+    {
+     "from_port": 0,
+     "to_port": 0,
+     "from": "HumusDetail",
+     "to": "SpeciesColor"
+    },
+    {
+     "from_port": 0,
+     "to_port": 1,
+     "from": "MossDetail",
+     "to": "SpeciesColor"
+    },
+    {
+     "from_port": 0,
+     "to_port": 0,
+     "from": "SpeciesColor",
+     "to": "PigmentControls"
+    },
+    {
+     "from_port": 0,
+     "to_port": 0,
+     "from": "SpeciesColor",
+     "to": "SourceValueForHeight"
     }
    ]
   },
@@ -1375,7 +1565,7 @@
    "label": "SurfaceResponse",
    "type": "graph",
    "parameters": {
-    "RepeatMetres": 48,
+    "RepeatMetres": 24,
     "ReliefMetres": 0.12,
     "NormalStrength": 1,
     "NearCavityStrength": 20,
@@ -1445,7 +1635,7 @@
      "name": "gen_parameters",
      "type": "remote",
      "parameters": {
-      "RepeatMetres": 48,
+      "RepeatMetres": 24,
       "ReliefMetres": 0.12,
       "NormalStrength": 1,
       "NearCavityStrength": 20,
@@ -1466,7 +1656,7 @@
        "min": 0.001,
        "max": 96,
        "step": 0.1,
-       "default": 48
+       "default": 24
       },
       {
        "name": "ReliefMetres",
@@ -3441,7 +3631,7 @@
     "roughness": 1,
     "size": 9,
     "sss": 1,
-    "RepeatMetres": 48,
+    "RepeatMetres": 24,
     "ReliefMetres": 0.12,
     "OverrideRoughness": false
    },
@@ -3806,7 +3996,7 @@
     "y": -420
    },
    "title": "Original appearance, editable material response",
-   "text": "48 m tundra mat: olive moss, branching gray lichen, dark humus and local rusty autumn leaves. The sole source pigment was generated from the requested tundra reference; standing dwarf shrubs are separate game scatter. Source species colors remain intact through native linear seam treatment and modest hummock gain. Edit source, Hue/Saturation/Value, Hummock color variation/frequency, shallow height share and physical response. Height is a registered artistic inference from source value plus the same native hummocks. One PNG source; no baked normal/AO/roughness inputs. Standard 512-square native exports, no runtime shader changes. The 48 m finite repeat is a two-hex compromise, not aperiodic or preservation of the old 24 m pixel density.",
+   "text": "Fine moss tundra material, with local humus accents. The shared four-quadrant source supplies separate moss/lichen/rust/humus art; native transforms select only these two species. Native linear seam treatment and local masks are editable. Broad moss-versus-lichen communities are placed by the existing runtime world-space blend, not baked into this periodically repeated texture. Repeat24 m; two source-detail repeats. Height/normal/AO remain correlated shallow artistic proxies, not measured scans. No extra source or finished PBR map inputs. Standard512 exports; optional roughness override is off.",
    "size": {
     "x": 950,
     "y": 160
@@ -3828,7 +4018,7 @@
     "y": -650
    },
    "parameters": {
-    "RepeatMetres": 48,
+    "RepeatMetres": 24,
     "ReliefMetres": 0.12,
     "OverrideRoughness": false
    },
@@ -3847,7 +4037,7 @@
        "widget": "RepeatMetres"
       }
      ],
-     "default": 48,
+     "default": 24,
      "max": 96
     },
     {
