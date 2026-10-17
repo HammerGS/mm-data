@@ -22,7 +22,7 @@
       "sections": [
         "basic",
         "gameplay",
-        "water"
+        "liquids"
       ]
     },
     {
@@ -737,10 +737,16 @@
           "id": "shallow",
           "label": "Water",
           "terrain": "water:1",
-          "section": "ground-water/water",
+          "section": "ground-water/liquids",
           "settings": [
             "rapids"
           ]
+        },
+        {
+          "id": "magma",
+          "label": "Lava",
+          "terrain": "water:1;magma:2",
+          "section": "ground-water/liquids"
         }
       ]
     },
