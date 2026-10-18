@@ -16,7 +16,8 @@ Scenery meshes live in topic folders under `scenery/`, with kebab-case names:
 | `vehicles/` | the car (its paint is a colour slot), parking barrier, parking shelters |
 | `construction/` | crawler crane, bulldozer, concrete debris, excavation site, concrete pipe |
 | `farm/` | one mesh per animal and pose: cow, pig, horse, bison, hen and rooster; coats are colour slots |
-| `seaport/` | container rows and gantry cranes by row axis (`n-s`, `ne-sw`, `nw-se`, `e-w`), crane tips |
+| `seaport/` | the legacy container rows, gantry cranes and crane tips, decoded no more: objects of `.board2` files written before batch 12 |
+| `seaport/yard/` | the container yard looks' ten compositions (`yard/<name>` in `layouts.json`) and the ten seaport props |
 | `maglev/` | route marker (the only rail mesh), station platform, city and colony vehicles, the city gangway coupler; `train.png` and `colony-train.png` are the stamps' thumbnails |
 | `military/` | orbital gun, fortification |
 | `rubble/` | rubble by structure type, and the cleared paths through it |
@@ -24,11 +25,12 @@ Scenery meshes live in topic folders under `scenery/`, with kebab-case names:
 
 No mesh sits at a legacy key. A legacy key is `scenery/<tileset image path
 without extension>`; it resolves only through `scenery/layouts.json`, so that
-file is the complete legacy-to-mesh mapping. A key that was one GLB at the base is a
-one-row entry at the origin on its renamed mesh. Every mesh stands on Z=0 and
-every row has Z=0. Two kinds of mesh stand above Z=0 by design: a seaport crane
-tip hangs from the gantry boom, so its mesh keeps the boom height and its grabber
-is 10.28 px up, and the maglev vehicles ride the route's beam (their suspension shoes
+file is the complete legacy-to-mesh mapping. Its `yard/<name>` keys are no legacy
+keys: they are the container yard looks' compositions, which a hex's woods draw.
+A key that was one GLB at the base is a one-row entry at the origin on its
+renamed mesh. Every mesh stands on Z=0 and
+every row has Z=0. Two kinds of mesh stand above Z=0 by design: a crane's boom
+segment (`seaport/yard/crane-boom`) keeps the boom height (41 px up), and the maglev vehicles ride the route's beam (their suspension shoes
 1.3 px up, the coupler's shoe links 2.3 px; see Maglev). Blueprint IDs are the new mesh
 paths; stamps still name legacy keys.
 Decal rows (`decal/...`) name painted decals, not meshes (see Decals): each
@@ -64,6 +66,7 @@ are one mesh each:
 | `farm/pig` | Skin, Spots | pink spotted (default), pink, brown spotted |
 | `farm/bison` | Coat | dark, light |
 | `pools/*` | Wall, Coping, Deck, Water | `parks/pond-1`, `-2`, `-4` are `pools/freeform`, `sport-2`, `sport-4` in the 'Pond' colours |
+| `seaport/yard/container`, `container-stack-2`, `container-stack-3`, `yard-truck` | Paint; Bottom, Top; Bottom, Middle, Top; Container | one mesh each, the 11 legacy container paints as presets |
 
 Every vertex whose colour differs between a family's coats belongs to the slot
 that reproduces it for every coat; each car and pond row names its colours.
@@ -139,86 +142,7 @@ Coats that differ only in colour share one mesh with colour slots, so there are
 | `rubble/medium-path` | `saxarba/rubble_medium_path` | yes, one row |
 | `rubble/wall` | `saxarba/misc/rubble_wall` | yes, one row |
 | `rubble/wall-path` | `saxarba/rubble_wall_path` | yes, one row |
-| `seaport/containers-e-w-01` | `saxarba/SMV_Seaport/SeaportSystem-01-Container-01-20Footer-4-01` | yes, one row |
-| `seaport/containers-e-w-02` | `saxarba/SMV_Seaport/SeaportSystem-01-Container-01-20Footer-4-02` | yes, one row |
-| `seaport/containers-e-w-03` | `saxarba/SMV_Seaport/SeaportSystem-01-Container-01-20Footer-4-03` | yes, one row |
-| `seaport/containers-e-w-04` | `saxarba/SMV_Seaport/SeaportSystem-01-Container-01-20Footer-4-04` | yes, one row |
-| `seaport/containers-e-w-05` | `saxarba/SMV_Seaport/SeaportSystem-01-Container-01-20Footer-4-05` | yes, one row |
-| `seaport/containers-e-w-06` | `saxarba/SMV_Seaport/SeaportSystem-01-Container-01-20Footer-4-06` | yes, one row |
-| `seaport/containers-e-w-07` | `saxarba/SMV_Seaport/SeaportSystem-01-Container-01-20Footer-4-07` | yes, one row |
-| `seaport/containers-n-s-01` | `saxarba/SMV_Seaport/SeaportSystem-01-Container-01-20Footer-1-01` | yes, one row |
-| `seaport/containers-n-s-02` | `saxarba/SMV_Seaport/SeaportSystem-01-Container-01-20Footer-1-02` | yes, one row |
-| `seaport/containers-n-s-03` | `saxarba/SMV_Seaport/SeaportSystem-01-Container-01-20Footer-1-03` | yes, one row |
-| `seaport/containers-n-s-04` | `saxarba/SMV_Seaport/SeaportSystem-01-Container-01-20Footer-1-04` | yes, one row |
-| `seaport/containers-n-s-05` | `saxarba/SMV_Seaport/SeaportSystem-01-Container-01-20Footer-1-05` | yes, one row |
-| `seaport/containers-n-s-06` | `saxarba/SMV_Seaport/SeaportSystem-01-Container-01-20Footer-1-06` | yes, one row |
-| `seaport/containers-n-s-07` | `saxarba/SMV_Seaport/SeaportSystem-01-Container-01-20Footer-1-07` | yes, one row |
-| `seaport/containers-ne-sw-01` | `saxarba/SMV_Seaport/SeaportSystem-01-Container-01-20Footer-2-01` | yes, one row |
-| `seaport/containers-ne-sw-02` | `saxarba/SMV_Seaport/SeaportSystem-01-Container-01-20Footer-2-02` | yes, one row |
-| `seaport/containers-ne-sw-03` | `saxarba/SMV_Seaport/SeaportSystem-01-Container-01-20Footer-2-03` | yes, one row |
-| `seaport/containers-ne-sw-04` | `saxarba/SMV_Seaport/SeaportSystem-01-Container-01-20Footer-2-04` | yes, one row |
-| `seaport/containers-ne-sw-05` | `saxarba/SMV_Seaport/SeaportSystem-01-Container-01-20Footer-2-05` | yes, one row |
-| `seaport/containers-ne-sw-06` | `saxarba/SMV_Seaport/SeaportSystem-01-Container-01-20Footer-2-06` | yes, one row |
-| `seaport/containers-ne-sw-07` | `saxarba/SMV_Seaport/SeaportSystem-01-Container-01-20Footer-2-07` | yes, one row |
-| `seaport/containers-nw-se-01` | `saxarba/SMV_Seaport/SeaportSystem-01-Container-01-20Footer-3-01` | yes, one row |
-| `seaport/containers-nw-se-02` | `saxarba/SMV_Seaport/SeaportSystem-01-Container-01-20Footer-3-02` | yes, one row |
-| `seaport/containers-nw-se-03` | `saxarba/SMV_Seaport/SeaportSystem-01-Container-01-20Footer-3-03` | yes, one row |
-| `seaport/containers-nw-se-04` | `saxarba/SMV_Seaport/SeaportSystem-01-Container-01-20Footer-3-04` | yes, one row |
-| `seaport/containers-nw-se-05` | `saxarba/SMV_Seaport/SeaportSystem-01-Container-01-20Footer-3-05` | yes, one row |
-| `seaport/containers-nw-se-06` | `saxarba/SMV_Seaport/SeaportSystem-01-Container-01-20Footer-3-06` | yes, one row |
-| `seaport/containers-nw-se-07` | `saxarba/SMV_Seaport/SeaportSystem-01-Container-01-20Footer-3-07` | yes, one row |
-| `seaport/crane-tip-01` | `saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-03-CraneTip-1-01` | yes, one row |
-| `seaport/crane-tip-02` | `saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-03-CraneTip-1-02` | yes, one row |
-| `seaport/crane-tip-02`, turned -59.49, 180 and 120.51 degrees | `seaport/crane-tip-03`, `-05`, `-06`, `saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-03-CraneTip-1-03`, `-05`, `-06` | yes, one row each |
-| `seaport/crane-tip-01`, turned 180 degrees | `seaport/crane-tip-04`, `saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-03-CraneTip-1-04` | yes, one row |
-| `seaport/gantry-crane-e-w-01` | `saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-4-01` | yes, one row |
-| `seaport/gantry-crane-e-w-02` | `saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-4-02` | yes, one row |
-| `seaport/gantry-crane-e-w-03` | `saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-4-03` | yes, one row |
-| `seaport/gantry-crane-e-w-04` | `saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-4-04` | yes, one row |
-| `seaport/gantry-crane-e-w-05` | `saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-4-05` | yes, one row |
-| `seaport/gantry-crane-e-w-06` | `saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-4-06` | yes, one row |
-| `seaport/gantry-crane-e-w-07` | `saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-4-07` | yes, one row |
-| `seaport/gantry-crane-e-w-08` | `saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-4-08` | yes, one row |
-| `seaport/gantry-crane-e-w-09` | `saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-4-09` | yes, one row |
-| `seaport/gantry-crane-e-w-10` | `saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-4-10` | yes, one row |
-| `seaport/gantry-crane-e-w-11` | `saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-4-11` | yes, one row |
-| `seaport/gantry-crane-e-w-12` | `saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-4-12` | yes, one row |
-| `seaport/gantry-crane-n-s-01` | `saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-1-01` | yes, one row |
-| `seaport/gantry-crane-n-s-02` | `saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-1-02` | yes, one row |
-| `seaport/gantry-crane-n-s-03` | `saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-1-03` | yes, one row |
-| `seaport/gantry-crane-n-s-04` | `saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-1-04` | yes, one row |
-| `seaport/gantry-crane-n-s-05` | `saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-1-05` | yes, one row |
-| `seaport/gantry-crane-n-s-06` | `saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-1-06` | yes, one row |
-| `seaport/gantry-crane-n-s-07` | `saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-1-07` | yes, one row |
-| `seaport/gantry-crane-n-s-08` | `saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-1-08` | yes, one row |
-| `seaport/gantry-crane-n-s-09` | `saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-1-09` | yes, one row |
-| `seaport/gantry-crane-n-s-10` | `saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-1-10` | yes, one row |
-| `seaport/gantry-crane-n-s-11` | `saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-1-11` | yes, one row |
-| `seaport/gantry-crane-n-s-12` | `saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-1-12` | yes, one row |
-| `seaport/gantry-crane-ne-sw-01` | `saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-2-01` | yes, one row |
-| `seaport/gantry-crane-ne-sw-02` | `saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-2-02` | yes, one row |
-| `seaport/gantry-crane-ne-sw-03` | `saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-2-03` | yes, one row |
-| `seaport/gantry-crane-ne-sw-04` | `saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-2-04` | yes, one row |
-| `seaport/gantry-crane-ne-sw-05` | `saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-2-05` | yes, one row |
-| `seaport/gantry-crane-ne-sw-06` | `saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-2-06` | yes, one row |
-| `seaport/gantry-crane-ne-sw-07` | `saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-2-07` | yes, one row |
-| `seaport/gantry-crane-ne-sw-08` | `saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-2-08` | yes, one row |
-| `seaport/gantry-crane-ne-sw-09` | `saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-2-09` | yes, one row |
-| `seaport/gantry-crane-ne-sw-10` | `saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-2-10` | yes, one row |
-| `seaport/gantry-crane-ne-sw-11` | `saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-2-11` | yes, one row |
-| `seaport/gantry-crane-ne-sw-12` | `saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-2-12` | yes, one row |
-| `seaport/gantry-crane-nw-se-01` | `saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-3-01` | yes, one row |
-| `seaport/gantry-crane-nw-se-02` | `saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-3-02` | yes, one row |
-| `seaport/gantry-crane-nw-se-03` | `saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-3-03` | yes, one row |
-| `seaport/gantry-crane-nw-se-04` | `saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-3-04` | yes, one row |
-| `seaport/gantry-crane-nw-se-05` | `saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-3-05` | yes, one row |
-| `seaport/gantry-crane-nw-se-06` | `saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-3-06` | yes, one row |
-| `seaport/gantry-crane-nw-se-07` | `saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-3-07` | yes, one row |
-| `seaport/gantry-crane-nw-se-08` | `saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-3-08` | yes, one row |
-| `seaport/gantry-crane-nw-se-09` | `saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-3-09` | yes, one row |
-| `seaport/gantry-crane-nw-se-10` | `saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-3-10` | yes, one row |
-| `seaport/gantry-crane-nw-se-11` | `saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-3-11` | yes, one row |
-| `seaport/gantry-crane-nw-se-12` | `saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-01-20Footer-3-12` | yes, one row |
+| `seaport/yard/crane-boom`, turned 0, -60 and -120 degrees for tips 1 and 4, 2 and 5, 3 and 6 | `saxarba/SMV_Seaport/SeaportSystem-02-ShipToShoreGantryCrane-03-CraneTip-1-01`-`06` (a tip no converted crane reaches) | yes, one row each |
 | `vehicles/car` (paint as a colour) | `components/car-<paint>` (19 paints) | - |
 | `vehicles/parking-barrier` | `components/parking-barrier` | - |
 | `vehicles/parking-shelter` | `components/shelter` | - |
@@ -327,11 +251,11 @@ outer wall reaches the ground: the plaza hides that 0.9 px plinth, bare ground
 shows it. Their rows use the same
 angles and offsets that baked the old variants. GlassRoof-1-01..04 and
 GlassRoof-2-02..04 are rows on the wide glass roof (the 1-0n rows stretch it to the
-narrow roof's width), crane tips 03-06 rows on tips 01 and 02, OrbitalGun
+narrow roof's width), the six crane tips rows on the boom segment `seaport/yard/crane-boom`, OrbitalGun
 N/S/W rows on the orbital gun and Landscape 1-03 rows on the round formal garden. The sport pool decks are separate components, so no
 row names its own key. Rows carry no `kind`: `tree-broad` is the only tree.
-Maglev decodes to a route marker and its pieces (see Maglev). Herds decode to one row per animal;
-each seaport key stays one baked mesh.
+Maglev decodes to a route marker and its pieces (see Maglev). Herds decode to one row per animal.
+The legacy container yard and quay crane keys are gone: their art is a container yard look of the hex's woods.
 
 The conversion takes every legacy art token (FLUFF and GROUND_FLUFF below the server values 2000+,
 ROAD_FLUFF, WATER_FLUFF, BLDG_FLUFF), so a `.board2` holds none. A token becomes objects (these rows, or a legacy
@@ -495,11 +419,10 @@ Palette rules, checked by `BoardSceneryDecodeDataTest`:
   outline"; group "Legacy building art"), each with the `selectors` of the
   legacy token it stands for.
 
-The 78 seaport pieces are
-visible in the Seaport group (container yards, gantry cranes and the straight and
-diagonal boom tips, which the other four tip directions turn), one baked mesh each, with live 3D previews; import
-places each seaport key as one object and gives a hex whose art covered woods
-the `woods/no-trees` vegetation design. Imported and placed trees store their
+The 78 legacy seaport pieces are off the palette; objects of `.board2` files written
+before batch 12 keep them and their labels. Industry > Seaport holds the container
+yard looks and the ten `seaport/yard/` props; import gives a hex with container yard
+or quay crane art the container yard look of its woods at its rotation. Imported and placed trees store their
 bare species; the renderer draws the `-snow` form on a snow surface unless the
 object is marked `"bare": true`.
 
