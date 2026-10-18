@@ -452,7 +452,13 @@
         {
           "terrain": "mud",
           "label": "Mud",
-          "optional": true
+          "optional": true,
+          "choices": [
+            {
+              "value": 1,
+              "label": "Present"
+            }
+          ]
         },
         {
           "terrain": "ground_fluff",
@@ -1305,12 +1311,37 @@
         {
           "terrain": "hazardous_liquid",
           "label": "Hazardous Liquid",
-          "optional": true
+          "optional": true,
+          "choices": [
+            {
+              "value": 0,
+              "label": "Normal"
+            },
+            {
+              "value": 1,
+              "label": "Wind blown"
+            },
+            {
+              "value": 2,
+              "label": "Flows"
+            },
+            {
+              "value": 3,
+              "label": "Flows and wind blown"
+            }
+          ],
+          "brush": true
         },
         {
           "terrain": "ultra_sublevel",
           "label": "Ultra Sublevel",
-          "optional": true
+          "optional": true,
+          "choices": [
+            {
+              "value": 1,
+              "label": "Present"
+            }
+          ]
         }
       ],
       "preview": {
