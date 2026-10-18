@@ -1021,6 +1021,17 @@
           "step": 1,
           "brush": true,
           "height": true
+        },
+        {
+          "terrain": "bridge_mud",
+          "label": "Mud on deck",
+          "optional": true,
+          "choices": [
+            {
+              "value": 1,
+              "label": "Present"
+            }
+          ]
         }
       ],
       "category": "Structures",
