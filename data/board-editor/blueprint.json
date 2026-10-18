@@ -351,6 +351,7 @@
       "sections": [
         "hazards",
         "rubble",
+        "scorched",
         "scenario"
       ]
     },
@@ -626,6 +627,13 @@
         }
       ],
       "receiver": "ground"
+    },
+    {
+      "id": "scorch",
+      "label": "Scorched ground",
+      "present": "",
+      "defaults": "",
+      "fields": []
     },
     {
       "id": "vegetation",
@@ -26588,6 +26596,34 @@
       "owner": "building",
       "pieces": "buildings/saxarba/fuel_tanks/fuel_tank_{weight}_{nn}",
       "section": "buildings/looks"
+    },
+    {
+      "id": "scorch/singed",
+      "label": "Singed",
+      "owner": "scorch",
+      "section": "hazards/scorched",
+      "family": "Scorched ground"
+    },
+    {
+      "id": "scorch/charred",
+      "label": "Charred",
+      "owner": "scorch",
+      "section": "hazards/scorched",
+      "family": "Scorched ground"
+    },
+    {
+      "id": "scorch/ash",
+      "label": "Ash",
+      "owner": "scorch",
+      "section": "hazards/scorched",
+      "family": "Scorched ground"
+    },
+    {
+      "id": "scorch/glass",
+      "label": "Fused glass",
+      "owner": "scorch",
+      "section": "hazards/scorched",
+      "family": "Scorched ground"
     }
   ],
   "assets": [
