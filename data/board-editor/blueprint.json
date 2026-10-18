@@ -1625,6 +1625,30 @@
         }
       ],
       "palette": false
+    },
+    {
+      "id": "ways",
+      "label": "Rails and deck roads",
+      "present": "",
+      "defaults": "",
+      "fields": [
+        {
+          "terrain": "rail",
+          "label": "Rail",
+          "optional": true
+        },
+        {
+          "terrain": "bridge_rail",
+          "label": "Rail on bridge",
+          "optional": true
+        },
+        {
+          "terrain": "bridge_road",
+          "label": "Road on bridge",
+          "optional": true
+        }
+      ],
+      "palette": false
     }
   ],
   "variants": [
