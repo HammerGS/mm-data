@@ -1016,7 +1016,7 @@
           "label": "Construction factor",
           "optional": false,
           "min": 1,
-          "max": 200,
+          "max": 650,
           "step": 1,
           "brush": true
         },
@@ -1025,7 +1025,7 @@
           "label": "Deck height above hex level",
           "optional": false,
           "min": 0,
-          "max": 20,
+          "max": 50,
           "step": 1,
           "brush": true,
           "height": true
@@ -1649,22 +1649,28 @@
       "id": "ways",
       "label": "Rails and deck roads",
       "present": "",
-      "defaults": "",
+      "defaults": "bridge:4;bridge_cf:650",
       "fields": [
         {
           "terrain": "rail",
           "label": "Rail",
-          "optional": true
+          "optional": true,
+          "edges": true,
+          "choices": [ { "value": 1, "label": "Rail" }, { "value": 2, "label": "Maglev" } ]
         },
         {
           "terrain": "bridge_rail",
           "label": "Rail on bridge",
-          "optional": true
+          "optional": true,
+          "edges": true,
+          "choices": [ { "value": 1, "label": "Rail" }, { "value": 2, "label": "Maglev" } ]
         },
         {
           "terrain": "bridge_road",
           "label": "Road on bridge",
-          "optional": true
+          "optional": true,
+          "edges": true,
+          "choices": [{"value": 1, "label": "Paved", "material": "asphalt"}, {"value": 2, "label": "Alley", "material": "asphalt"}, {"value": 3, "label": "Dirt", "material": "dirt"}, {"value": 4, "label": "Gravel", "material": "gravel"}]
         }
       ],
       "palette": false
