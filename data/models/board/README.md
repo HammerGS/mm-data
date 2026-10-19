@@ -14,6 +14,7 @@ Scenery meshes live in topic folders under `scenery/`, with kebab-case names:
 | `parks/` | bench, picnic table, garden bed, pillar, hex plaza, fountain, plaza variants, formal gardens, grandstand |
 | `pools/` | sport pools (deck, main and wading basins), rectangular, round and freeform pools; a pond is a pool in pond colours |
 | `vehicles/` | the car (its paint is a colour slot), parking barrier, parking shelters |
+| `road/` | stop sign, three-aspect pole signal and curved mast-arm signal gantry; facing +Y with pole bases at Z=0; generated road-junction controls |
 | `construction/` | crawler crane, bulldozer, concrete debris, excavation site, concrete pipe |
 | `farm/` | one mesh per animal and pose: cow, pig, horse, bison, hen and rooster; coats are colour slots |
 | `seaport/` | the legacy container rows, gantry cranes and crane tips, decoded no more: objects of `.board2` files written before batch 12 |
