@@ -1,0 +1,5 @@
+{
+  "tool": "Built-in imagegen",
+  "purpose": "Seamless tunnel concrete albedo",
+  "prompt": "Use case: photorealistic-natural. Asset type: production seamless square 1024 x 1024 albedo texture for a low-poly concrete road tunnel portal in a realistic strategy game. Create a flat, straight-on orthographic scan of one continuous area of mature cast concrete, approximately 2 meters across. Light warm gray cement, fine dense mineral grain and tiny shallow pinholes; restrained subtle tonal variation and faint traces of smooth formwork. It should read as solid maintained civil engineering concrete, quietly weathered, not decorative stone. Lighting perfectly uniform and diffuse, no shading, no directional shadows, no highlights, no perspective. All four edges must tile seamlessly. Keep the value range narrow: mostly medium-light gray around RGB 160-175, subtle warm variation, small slightly darker pores. No large black or white stains, no cloudy procedural-noise blobs, no moss, no cracks, no borders, no panels, no expansion joints, no logos or text. Fill the entire image with the concrete surface, no objects or background."
+}

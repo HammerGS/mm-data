@@ -125,12 +125,10 @@ roughness 0.68 and metalness zero: a metal object covered in paint still reflect
 rubber, glazing and other small parts, so it remains roughness one / metalness zero until that art has a mask or
 separate surfaces. The generic GLB writer still defaults to roughness one / metalness zero for other callers.
 
-The first deployed calibration updates **Atlas and Warhammer bodies**, alongside six board buildings.
-`python tools/calibrate_model_materials.py` previews that selection; `--apply` updates only its material factors
-and manifest checksums, preserving all geometry, LOD groups and embedded images. A complete rebuild uses that
-same selection, including all LODs of the reviewed bodies. Other bodies, equipment, troops and vehicles keep
-their earlier defaults; the camouflage role alone does not identify a physical material (it can include
-clothing). These are artistic starting values, not measured scans.
+The calibration covers the **Atlas and Warhammer bodies**: a complete rebuild applies that selection to all LODs
+of the reviewed bodies. Other bodies, equipment, troops and vehicles keep the defaults; the camouflage role alone
+does not identify a physical material (it can include clothing). These are artistic starting values, not
+measured scans.
 
 ## Rebuilding
 
