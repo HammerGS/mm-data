@@ -4,12 +4,12 @@ Run with Blender's Python (including Blender MCP): exec(compile(Path(__file__).r
 str(__file__), 'exec')). Creates a separate authoring scene, exports through the shared
 board GLB writer and renders a preview. All dimensions here are physical metres; GLBs
 use the established 2.8 model pixels per metre. Both fronts face +Y, bases stand at Z=0.
+Call main(('stop-sign',)) to refresh only the STOP asset from road-stop-face.png.
 """
 import json
 import math
 import struct
 import sys
-import zlib
 from pathlib import Path
 
 import bpy
@@ -126,80 +126,34 @@ def signal_head_lod1(mats):
 
 
 def stop_face_texture():
-    """A tiny self-contained PNG keeps the sign lettering out of the geometry."""
-    size = 128
-    pixels = []
-    for row in range(size):
-        for column in range(size):
-            x, y = abs((column + .5) / 64 - 1), abs((row + .5) / 64 - 1)
-            inside = max(x, y) < .85 and x + y < 1.20
-            pixels.append((184, 9, 6) if inside else (235, 238, 235))
-    glyphs = {
-        'S': ['01111', '11000', '11000', '01110', '00011', '00011', '11110'],
-        'T': ['11111', '00100', '00100', '00100', '00100', '00100', '00100'],
-        'O': ['01110', '11011', '11011', '11011', '11011', '11011', '01110'],
-        'P': ['11110', '11011', '11011', '11110', '11000', '11000', '11000'],
-    }
-    for letter_index, letter in enumerate('STOP'):
-        for row, bits in enumerate(glyphs[letter]):
-            for column, bit in enumerate(bits):
-                if bit == '1':
-                    for dy in range(4):
-                        for dx in range(4):
-                            x = 18 + letter_index * 24 + column * 4 + dx
-                            y = 50 + row * 4 + dy
-                            pixels[y * size + x] = (250, 250, 245)
-    def chunk(kind, data):
-        return struct.pack('>I', len(data)) + kind + data + struct.pack('>I', zlib.crc32(kind + data))
-    scanlines = b''.join(b'\0' + bytes(v for pixel in pixels[y * size:(y + 1) * size] for v in pixel)
-                         for y in range(size))
-    data = (b'\x89PNG\r\n\x1a\n' + chunk(b'IHDR', struct.pack('>IIBBBBB', size, size, 8, 2, 0, 0, 0))
-            + chunk(b'IDAT', zlib.compress(scanlines)) + chunk(b'IEND', b''))
+    """The user-maintained artwork is a required input, never generated or overwritten."""
     path = REVIEW / 'road-stop-face.png'
-    path.write_bytes(data)
+    if not path.is_file():
+        raise FileNotFoundError(f'Required STOP artwork: {path}')
     return path
 
 
 def stop_sign_lod0(mats):
     parts = []
     detailed_pole(parts, 2.08, mats)
-    centre_z = 2.13
-    outline = [(math.cos(math.pi / 8 + i * math.pi / 4),
-                math.sin(math.pi / 8 + i * math.pi / 4)) for i in range(8)]
-    vertices = [(x * .455, y, centre_z + z * .455) for y in (.045, .095) for x, z in outline]
-    faces = [tuple(range(8)), tuple(reversed(range(8, 16)))]
-    faces.extend((i, i + 8, (i + 1) % 8 + 8, (i + 1) % 8) for i in range(8))
-    parts.append(polygon('octagonal sign rim', vertices, faces, mats['white']))
-    vertices = [(x * .418, .097, centre_z + z * .418) for x, z in outline]
-    parts.append(polygon('red sign face', vertices, [tuple(reversed(range(8)))], mats['sign red']))
-    glyphs = {
-        'S': [(0, 4, 3, 5), (0, 3, 1, 4), (0, 2, 3, 3), (2, 1, 3, 2), (0, 0, 3, 1)],
-        'T': [(0, 4, 3, 5), (1, 0, 2, 4)],
-        'O': [(0, 0, 1, 5), (2, 0, 3, 5), (1, 0, 2, 1), (1, 4, 2, 5)],
-        'P': [(0, 0, 1, 5), (1, 4, 3, 5), (1, 2, 3, 3), (2, 3, 3, 4)],
-    }
-    vertices, faces = [], []
-    unit, left = .035, -.2625
-    for letter_index, letter in enumerate('STOP'):
-        for x0, z0, x1, z1 in glyphs[letter]:
-            x0, x1 = -(left + (letter_index * 4 + x0) * unit), -(left + (letter_index * 4 + x1) * unit)
-            z0, z1 = centre_z + (z0 - 2.5) * unit, centre_z + (z1 - 2.5) * unit
-            start = len(vertices)
-            vertices.extend(((x0, .10, z0), (x1, .10, z0), (x1, .10, z1), (x0, .10, z1)))
-            faces.append(tuple(range(start, start + 4)))
-    parts.append(polygon('STOP lettering', vertices, faces, mats['white']))
+    parts.extend(stop_plate(mats, mats['white']))
     return parts
 
 
 def stop_sign_lod1(mats):
-    parts = [box('stop pole', (0, 0, 1.04), (.10, .10, 2.08), mats['metal'])]
+    return [box('stop pole', (0, 0, 1.04), (.10, .10, 2.08), mats['metal']),
+            *stop_plate(mats, mats['metal'])]
+
+
+def stop_plate(mats, rim_material):
+    """Both LODs share one octagonal face and identical artwork UV coordinates."""
     centre_z, radius = 2.13, .455
     outline = [(math.cos(math.pi / 8 + i * math.pi / 4),
                 math.sin(math.pi / 8 + i * math.pi / 4)) for i in range(8)]
     vertices = [(x * radius, y, centre_z + z * radius) for y in (.045, .095) for x, z in outline]
     faces = [tuple(range(8))]
     faces.extend((i, i + 8, (i + 1) % 8 + 8, (i + 1) % 8) for i in range(8))
-    parts.append(polygon('sign sides and back', vertices, faces, mats['metal']))
+    parts = [polygon('sign sides and back', vertices, faces, rim_material)]
     face = polygon('STOP face', vertices[8:], [tuple(reversed(range(8)))], mats['stop face'])
     uv = face.data.uv_layers.new(name='UVMap')
     for loop in face.data.loops:
@@ -250,7 +204,7 @@ def export(name, objects_by_level):
     for level, model in models.items():
         mesh = model['meshes'][0]
         triangles = sum(len(part['indices']) // 3 for part in mesh['parts'])
-        expected = {'traffic-signal': (416, 36), 'stop-sign': (132, 40)}[name][level]
+        expected = {'traffic-signal': (416, 36), 'stop-sign': (96, 40)}[name][level]
         assert triangles == expected, (name, level, triangles)
         counts.append({'node': f'{name}-lod{level}', 'triangles': triangles,
                        'vertices': len(mesh['vertices']) // 12, 'height': max(mesh['vertices'][2::12])})
@@ -282,17 +236,20 @@ def write_levels(name, models, source, extras=None):
 
 
 def render_preview(scene, assets, mats):
+    stops_only = set(assets) == {'stop-sign'}
     for level in (0, 1):
-        for obj in assets['traffic-signal'][level]:
-            obj.location.x += 2.4 - 3.2 * level
-        for obj in assets['stop-sign'][level]:
-            obj.location.x += .8 - 3.2 * level
+        if 'traffic-signal' in assets:
+            for obj in assets['traffic-signal'][level]:
+                obj.location.x += 2.4 - 3.2 * level
+        if 'stop-sign' in assets:
+            for obj in assets['stop-sign'][level]:
+                obj.location.x += .65 - 1.3 * level if stops_only else .8 - 3.2 * level
     box('preview floor', (0, 0, -.04), (200, 200, .08), mats['floor'])
-    bpy.ops.object.camera_add(location=(4, 18, 7))
+    bpy.ops.object.camera_add(location=(1, 12, 3.5) if stops_only else (4, 18, 7))
     camera = bpy.context.object
-    camera.rotation_euler = (Vector((0, 0, 1.6)) - camera.location).to_track_quat('-Z', 'Y').to_euler()
+    camera.rotation_euler = (Vector((0, 0, 2.12 if stops_only else 1.6)) - camera.location).to_track_quat('-Z', 'Y').to_euler()
     camera.data.type = 'ORTHO'
-    camera.data.ortho_scale = 7.3
+    camera.data.ortho_scale = 2.5 if stops_only else 7.3
     scene.camera = camera
     for location, energy, size in [((1, 4, 7), 950, 5), ((-4, 0, 4), 650, 4)]:
         bpy.ops.object.light_add(type='AREA', location=location)
@@ -310,11 +267,11 @@ def render_preview(scene, assets, mats):
     scene.render.resolution_percentage = 100
     scene.view_settings.view_transform = 'Standard'
     scene.render.image_settings.file_format = 'PNG'
-    scene.render.filepath = str(REVIEW / 'road-controls-preview.png')
+    scene.render.filepath = str(REVIEW / ('stop-sign-preview.png' if stops_only else 'road-controls-preview.png'))
     bpy.ops.render.render(write_still=True)
 
 
-def main():
+def main(names=('traffic-signal', 'stop-sign')):
     OUTPUT.mkdir(parents=True, exist_ok=True)
     REVIEW.mkdir(parents=True, exist_ok=True)
     old_scene = bpy.context.window.scene
@@ -327,7 +284,7 @@ def main():
             ('metal', (.53, .56, .58), .55, .5), ('housing', (.12, .135, .15), .1, .7),
             ('red', RED_OFF, 0, .3), ('Amber', AMBER_ON, 0, .4),
             ('green', (.025, .19, .075), 0, .4), ('stop face', (1, 1, 1), 0, .65),
-            ('sign red', (.72, .035, .025), 0, .6), ('white', (.9, .92, .9), .1, .55),
+            ('white', (.9, .92, .9), .1, .55),
             ('floor', (.27, .29, .30), 0, .8))}
         texture = stop_face_texture()
         face = mats['stop face']
@@ -335,21 +292,25 @@ def main():
         node = face.node_tree.nodes.new('ShaderNodeTexImage')
         node.image = bpy.data.images.load(str(texture), check_existing=False)
         face.node_tree.links.new(node.outputs['Color'], face.node_tree.nodes.get('Principled BSDF').inputs['Base Color'])
-        assets = {'traffic-signal': {}, 'stop-sign': {}}
-        for level, signal, stop in ((0, traffic_signal_lod0, stop_sign_lod0),
-                                    (1, traffic_signal_lod1, stop_sign_lod1)):
+        builders = {'traffic-signal': (traffic_signal_lod0, traffic_signal_lod1),
+                    'stop-sign': (stop_sign_lod0, stop_sign_lod1)}
+        assets = {name: {} for name in names}
+        for level in (0, 1):
             collection = bpy.data.collections.new(f'Road controls LOD{level}')
             scene.collection.children.link(collection)
-            assets['traffic-signal'][level] = signal(mats)
-            assets['stop-sign'][level] = stop(mats)
             for name in assets:
+                assets[name][level] = builders[name][level](mats)
                 for obj in assets[name][level]:
                     for old_collection in list(obj.users_collection):
                         old_collection.objects.unlink(obj)
                     collection.objects.link(obj)
         report = [export(name, levels) for name, levels in assets.items()]
         render_preview(scene, assets, mats)
-        (REVIEW / 'road-controls-validation.json').write_text(json.dumps(report, indent=2) + '\n')
+        report_path = REVIEW / 'road-controls-validation.json'
+        previous = json.loads(report_path.read_text()) if report_path.is_file() else []
+        by_file = {entry['file']: entry for entry in previous}
+        by_file.update({entry['file']: entry for entry in report})
+        report_path.write_text(json.dumps(list(by_file.values()), indent=2) + '\n')
         return report
     finally:
         bpy.context.window.scene = old_scene
