@@ -1,0 +1,74 @@
+{
+  "schema": 2,
+  "kind": "troop",
+  "family": "battle-armor",
+  "mesh": "battle-armor-trooper.glb",
+  "bounds": {
+    "min": [
+      -5.606820583343506,
+      -1.8467999696731567,
+      0.0
+    ],
+    "max": [
+      5.670953750610352,
+      1.8467999696731567,
+      9.720000267028809
+    ]
+  },
+  "rig": "meeple-v1",
+  "joints": {
+    "root": "root"
+  },
+  "locations": {},
+  "hardpoints": [],
+  "emitters": [
+    {
+      "id": "emitter-0",
+      "node": "root",
+      "position": [
+        5.671,
+        1.8468,
+        3.5223
+      ],
+      "direction": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "role": "muzzle",
+      "effect": "bullet"
+    },
+    {
+      "id": "emitter-1",
+      "node": "root",
+      "position": [
+        -1.8044,
+        -1.8468,
+        6.0264
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "role": "exhaust",
+      "effect": "exhaust"
+    },
+    {
+      "id": "emitter-2",
+      "node": "root",
+      "position": [
+        1.8044,
+        -1.8468,
+        6.0264
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "role": "exhaust",
+      "effect": "exhaust"
+    }
+  ]
+}
