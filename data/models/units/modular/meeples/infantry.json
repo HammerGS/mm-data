@@ -13,8 +13,7 @@
     "infantry/orcainfy.png": "units/modular/meeples/orca-rider.json",
     "infantry/infantry_vtol_squad.png": "units/modular/meeples/vtol-trooper.json",
     "infantry/infantry_vtol_platoon.png": "units/modular/meeples/vtol-trooper.json",
-    "infantry/mechwarrior.png": "units/modular/meeples/mechwarrior.json",
-    "infantry/miniguncycle.png": "units/modular/meeples/motorcycle-rider.json"
+    "infantry/mechwarrior.png": "units/modular/meeples/mechwarrior.json"
   },
   "vehicles": {
     "INF_MOTORIZED": "units/modular/meeples/buggy.json",
